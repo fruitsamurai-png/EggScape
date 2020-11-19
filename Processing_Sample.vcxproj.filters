@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Source\main.c" />
+    <ClCompile Include="Source\Score.c" />
+    <ClCompile Include="Source\platform.c">
+      <Filter>Platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\platform_global.c">
+      <Filter>Platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\platform_moving.c">
+      <Filter>Platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\mainmenu.c">
+      <Filter>Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\gameover.c">
+      <Filter>Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\howtoplay.c">
+      <Filter>Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\button.c">
+      <Filter>Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\character.c">
+      <Filter>Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\collision.c">
+      <Filter>Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\hand.c">
+      <Filter>Character</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Header\character.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\button.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\collision.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\gameover.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\hand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\howtoplay.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\mainmenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\platform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Score.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\platform_moving.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\platform_global.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{eae015df-c464-41c0-a57b-02adab22fe27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platforms">
+      <UniqueIdentifier>{8bce2017-08cf-4e6b-888e-0867f1375c3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Menus">
+      <UniqueIdentifier>{1f9b2de7-2787-4f5a-b4d0-ed48bde07ad5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Character">
+      <UniqueIdentifier>{4ed5e273-0105-454f-b4fd-c28fc498478e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
