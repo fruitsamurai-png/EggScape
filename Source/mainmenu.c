@@ -17,7 +17,6 @@ void mainmenu_init(void)
 	timer1 = 1.0f;
 	WINDOW_HEIGHT = (float)CP_System_GetWindowHeight();
 	WINDOW_WIDTH = (float)CP_System_GetWindowWidth();
-	speed = 0;
 	digipen_logo = CP_Image_Load("./Assets/digiPen_RED.png");
 	background1 = CP_Image_Load("./Assets/mainmenu_BACKGROUND.png");
 	init_button();
@@ -31,7 +30,6 @@ void mainmenu_update(void)
 		dt = CP_System_GetDt();
 		CP_Image_Draw(digipen_logo, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, 300, 250, 255);
 		timer1 -= dt;
-
 	}
 	else {
 		CP_Image_Draw(background1, WINDOW_WIDTH / 2, windowy / 2, windowx, windowy, 255);
@@ -44,7 +42,6 @@ void mainmenu_update(void)
 		play(playButton);
 		howtoplay(howtoplayButton);
 		exitgame(exitButton);
-		start_Game();
 	}
 }
 void mainmenu_exit(void)
@@ -54,5 +51,5 @@ void mainmenu_exit(void)
 	CP_Image_Free (&howtoplay_title);
 	CP_Image_Free (&eggy);
 	CP_Image_Free (&background1);
-
+	exit_button();
 }

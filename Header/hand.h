@@ -7,17 +7,8 @@ struct hands
 	float sizeX;
 	float sizeY;
 	int speed;
+	int increment;
 }hands;
-
-
-struct hand_bottom
-{
-	int positionx;
-	int positiony;
-	float sizex;
-	float sizey;
-
-}hand_bottom;
 
 void hand_init(void);
 void hand_update(void);

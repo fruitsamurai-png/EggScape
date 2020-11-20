@@ -30,6 +30,7 @@ float speed;
 float x;
 float i;
 float dt;
+int check;
 
 CP_Image eggy;
 CP_Image hand;
@@ -42,10 +43,11 @@ void restart(Button button);
 void menu(Button button);
 void exitgame(Button button);
 
-void start_Game(void);
+//void start_Game(void);
 
 void init_button(void);
 
 void init_button2(void);
 
 void init_button3(void);
+void exit_button(void);

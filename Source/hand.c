@@ -9,20 +9,21 @@ struct hands hand_full;
 //struct hand_bottom hands_bottom;
 CP_Image hand=NULL;
 
-int increment = -3;
+
 static void raise_hands(void)
 {
+	
 	if ((hand_full.positionY - 100) < (WINDOW_HEIGHT * 1.0f / 4.0f))
 	{
-		increment = 4;
+		hand_full.increment = 4;
 	}
 
 	else if ((hand_full.positionY + 100) > WINDOW_HEIGHT)
 	{
-		increment = -5;
+		hand_full.increment = -5;
 	}
 
-	hand_full.positionY += increment;
+	hand_full.positionY += hand_full.increment;
 }
 void hand_Collision(void)
 {
@@ -47,28 +48,17 @@ void hands_movement(void)
 void hand_init(void)
 {
 	hand = CP_Image_Load("./Assets/game_HAND.png");
+	hand_full.increment = -4;
 	hand_full.speed = 40;
 	hand_full.positionY = WINDOW_HEIGHT;
 	hand_full.positionX = (float)CP_Random_RangeInt(10,windowx);
+
 }
 
 void hand_update(void)
-{
+{	
+	raise_hands();
 	hands_movement();
-	//if (timer3 > 0)//whats this???
-	//{
-	//	dt = CP_System_GetDt();
-
-	//	if (speed < WINDOW_WIDTH)
-	//	{
-	//		speed += 20;
-	//	}
-	//	else
-	//	{
-
-	//	}
-	//	timer3 -= dt;
-	//}
 	if (CP_System_GetFrameCount() % 30 == 10)
 	{
 		hand = CP_Image_Load("./Assets/hand_OUT.png");
@@ -79,7 +69,7 @@ void hand_update(void)
 		hand = CP_Image_Load("./Assets/hand_GRAB.png");
 	}
 	hand_Collision();
-	raise_hands();
+	
 	CP_Image_Draw(hand, (float)(hand_full.positionX) , (float)hand_full.positionY, 200, 200, 255);
 }
 

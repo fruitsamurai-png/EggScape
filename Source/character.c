@@ -47,7 +47,7 @@ void eggs_init(void)
 {
 	egg.x = (float)(windowy * 0.50);
 	egg.y = (windowy * 0.50);
-	egg.maxaccel = 60 * CP_System_GetDt();
+	egg.maxaccel = 30;
 	egg.isdrop = 1;
 	egg.isjump = 0;
 	egg.h = 0;
@@ -55,7 +55,7 @@ void eggs_init(void)
 	egg.y = windowy / 2;
 	egg.start = 0;
 	egg.count = 0;
-	maxspeed = 60;
+	maxspeed = 30;
 }
 void eggs_update(void)
 {
@@ -64,21 +64,33 @@ void eggs_update(void)
 	{
 		if ((CP_Input_KeyDown(KEY_D) || CP_Input_KeyDown(KEY_RIGHT)))
 		{
+			if (check == 0)
+				egg.movement = 0;
 			egg.movement += (egg.maxaccel * CP_System_GetDt());
 			check = 1;
 		}
 		if ((CP_Input_KeyDown(KEY_A) || CP_Input_KeyDown(KEY_LEFT)))
 		{
+			if (check == 1)
+				egg.movement = 0;
 			egg.movement -= (egg.maxaccel * CP_System_GetDt());
 			check = 0;
 		}
 		if (check == 1)
 		{
 			eggy1 = CP_Image_Load("./Assets/eggy_RRUN.png");
+			/*if (check == 0)
+			{
+				egg.movement = 0;
+			}*/
 		}
 		else if (check == 0)
 		{
 			eggy1 = CP_Image_Load("./Assets/eggy_LRUN.png");
+			/*if (check == 1)
+			{
+				egg.movement = 0;
+			}*/
 		}
 	}
 	if (egg.start == 2)

@@ -53,6 +53,4 @@ void collide(void)
 	{
 		CP_Engine_SetNextGameState(gameover_init, gameover_update, gameover_exit);
 	}
-
-
 }
