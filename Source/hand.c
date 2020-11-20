@@ -27,10 +27,21 @@ static void raise_hands(void)
 }
 void hand_Collision(void)
 {
+	/*
 	if (CP_Math_Square(hand_full.positionX - egg.x) < CP_Math_Square((hand_full.sizeX / 2 + 50)) && CP_Math_Square((hand_full.positionY - egg.y)) < CP_Math_Square((hand_full.sizeY / 2 + 50)))
 	{
 		CP_Engine_SetNextGameState(gameover_init, gameover_update, gameover_exit);
 	}
+	*/
+	if(CP_Math_Square(hand_full.positionX - egg.x) < CP_Math_Square((hand_full.sizeX / 2 + 50)) && CP_Math_Square((hand_full.positionY - egg.y)) < CP_Math_Square((hand_full.sizeY / 2 + 50))
+		||
+		egg.x+blocksize>(hand_full.positionX - (blocksize / 2 * .5f))&&
+		egg.x< (hand_full.positionX - (blocksize / 2 * .5f)+ blocksize * .75f)&&
+		egg.y+blocksize>hand_full.positionY&&
+		egg.y< hand_full.positionY+blocksize
+		)
+		CP_Engine_SetNextGameState(gameover_init, gameover_update, gameover_exit);
+	CP_Graphics_DrawRect(hand_full.positionX-(blocksize/2*.5f), hand_full.positionY, blocksize*.75, blocksize);
 }
 void hands_movement(void)
 {
