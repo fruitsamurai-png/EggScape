@@ -51,7 +51,6 @@ void howtoplay_update(void)
 
 	play(playButton);	//calling the button that is in button.c and button.h
 	menu(menuButton);
-	start_Game();
 }
 void howtoplay_exit(void)
 {

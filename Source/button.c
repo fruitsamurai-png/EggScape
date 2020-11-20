@@ -18,6 +18,7 @@ void play(Button button)
 			CP_Input_GetMouseY() <= button.positionY + button.sizeY / 2)
 		{
 			timer3 = 5.5f;
+			check = 1;
 
 		}
 	}
@@ -30,10 +31,6 @@ void play(Button button)
 	{
 		eggy = CP_Image_Load("./Assets/eggy_RRUN.png");
 	}
-}
-
-void start_Game(void)
-{
 	x = 80;
 	if (timer3 > 0)
 	{
@@ -43,14 +40,35 @@ void start_Game(void)
 		{
 			speed += 20;
 		}
-		else
+		else if (check==1)
 		{
 			CP_Engine_SetNextGameState(game_init, game_update, game_exit);
+			check = 0;
 		}
 		timer3 -= dt;
 	}
 	CP_Image_Draw(eggy, x + speed, WINDOW_HEIGHT - 85, 200, 200, 255);
 }
+
+//void start_Game(void)
+//{
+//	x = 80;
+//	if (timer3 > 0)
+//	{
+//		dt = CP_System_GetDt();
+//
+//		if (speed < WINDOW_WIDTH)
+//		{
+//			speed += 20;
+//		}
+//		else
+//		{
+//			CP_Engine_SetNextGameState(game_init, game_update, game_exit);
+//		}
+//		timer3 -= dt;
+//	}
+//	CP_Image_Draw(eggy, x + speed, WINDOW_HEIGHT - 85, 200, 200, 255);
+//}
 
 void howtoplay(Button button)
 {
@@ -128,6 +146,10 @@ void init_button(void)
 	exitButton.positionY = WINDOW_HEIGHT * 3 / 4;
 	exitButton.sizeX = 80;
 	exitButton.sizeY = 50;
+	check = 0;
+	timer3 = 0;
+	speed = 0;
+	x = 80;
 }
 
 void init_button2(void)  //howtoplay screen buttons positioning
@@ -158,4 +180,10 @@ void init_button3(void)  //gameover screen buttons positioning
 	menuButton.positionY = WINDOW_HEIGHT * 6 / 7;
 	menuButton.sizeX = 100;
 	menuButton.sizeY = 40;
+}
+void exit_button(void)
+{
+	check = 0;
+	x = 80;
+	speed = 0;
 }
