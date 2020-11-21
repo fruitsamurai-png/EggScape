@@ -18,11 +18,6 @@ void collide(void)
 	 		egg.h > 0)
 		{
 			egg.isjump = 1;
-			egg.jjump = 0;
-			if (egg.start<2)
-			{
-				egg.start++;
-			}
 		}
 		if (egg.x < (plats_moving[i].dimx + dimw) &&
 			(egg.x + blocksize) > plats_moving[i].dimx &&
@@ -31,11 +26,6 @@ void collide(void)
 			egg.h > 0)
 		{
 			egg.isjump = 1;
-			egg.jjump = 0;
-			if (egg.start < 2)
-			{
-				egg.start++;
-			}
 		}
 	}
 	if (egg.x + egg.movement > (windowx - blocksize) || egg.x + egg.movement < 0)//teleport to the other side of the wall.
