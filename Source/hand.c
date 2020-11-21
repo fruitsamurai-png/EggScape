@@ -6,9 +6,11 @@
 #include "cprocessing.h"
 #include <time.h>
 
+#define attackinter 120
+
+int htimer=0;
+CP_Image hand = NULL;
 struct hands hand_full;
-//struct hand_bottom hands_bottom;
-CP_Image hand=NULL;
 
 static void raise_hands(void)
 {
@@ -25,6 +27,7 @@ static void raise_hands(void)
 
 	hand_full.positionY += hand_full.increment;
 }
+
 void hand_Collision(void)
 {
 		if(CP_Math_Square(hand_full.positionX - egg.x) < CP_Math_Square((hand_full.sizeX / 2 + 50)) && CP_Math_Square((hand_full.positionY - egg.y)) < CP_Math_Square((hand_full.sizeY / 2 + 50))
@@ -37,17 +40,43 @@ void hand_Collision(void)
 		CP_Engine_SetNextGameState(gameover_init, gameover_update, gameover_exit);
 	//CP_Graphics_DrawRect(hand_full.positionX-(blocksize/2*.5f), hand_full.positionY, blocksize*.75, blocksize);
 }
+
 void hands_movement(void)
 {
-	hand_full.positionX += hand_full.speed * CP_System_GetDt();
-	if (hand_full.positionX> (windowx-100) && hand_full.speed > 0)
+	if (hand_full.positionY > WINDOW_HEIGHT * 0.99 && htimer <= attackinter)
 	{
-		hand_full.speed *= -1;
+		hand = CP_Image_Load("./Assets/hand_OUT.png");
+		hand_full.positionX += hand_full.speed * CP_System_GetDt();
+		if (hand_full.positionX > (windowx - 100) && hand_full.speed > 0)
+		{
+			hand_full.speed *= -1;
+		}
+		else if (hand_full.positionX < 50 && hand_full.speed < 0)
+		{
+			hand_full.speed *= -1;
+		}
 	}
-	else if (hand_full.positionX<50 && hand_full.speed < 0)
+	//attaCKKKKKKKKKKKKKKKKKKKKKKK
+	if(hand_full.positionY > WINDOW_HEIGHT * 0.99)//timer++
+	htimer++;
+	if (htimer >= attackinter && hand_full.positionY > WINDOW_HEIGHT / 2)//attack
 	{
-		hand_full.speed *= -1;
+		hand = CP_Image_Load("./Assets/hand_GRAB.png");
+		if(htimer >= attackinter+50)
+		{
+			hand_full.positionY += -50;
+		}
 	}
+	if (hand_full.positionY < WINDOW_HEIGHT / 2)//reset timer, stop attack
+	{
+		htimer = 0;
+	}
+	if(hand_full.positionY<WINDOW_HEIGHT)//drop
+	hand_full.positionY += 5;
+	//CP_Graphics_DrawRect(0, WINDOW_HEIGHT * 0.9f, windowx, 5);
+	//CP_Graphics_DrawRect(0, hand_full.positionY-5, windowx, 5);
+
+
 }
 //CP_Image hand_bottom;
 void hand_init(void)
@@ -62,17 +91,18 @@ void hand_init(void)
 
 void hand_update(void)
 {	
-	raise_hands();
+	//raise_hands();
 	hands_movement();
-	if (CP_System_GetFrameCount() % 30 == 10)
-	{
-		hand = CP_Image_Load("./Assets/hand_OUT.png");
-	}
+	//hand = CP_Image_Load("./Assets/hand_OUT.png");
+	//if (CP_System_GetFrameCount() % 30 == 10)
+	//{
+	//	//hand = CP_Image_Load("./Assets/hand_OUT.png");
+	//}
 
-	else if (CP_System_GetFrameCount() % 30 == 0)
-	{
-		hand = CP_Image_Load("./Assets/hand_GRAB.png");
-	}
+	//else if (CP_System_GetFrameCount() % 30 == 0)
+	//{
+	//	//hand = CP_Image_Load("./Assets/hand_GRAB.png");
+	//}
 	hand_Collision();
 	
 	CP_Image_Draw(hand, (float)(hand_full.positionX) , (float)hand_full.positionY, 200, 200, 255);
