@@ -33,6 +33,9 @@
     <ClCompile Include="Source\hand.c">
       <Filter>Character</Filter>
     </ClCompile>
+    <ClCompile Include="Source\platforms_break.c">
+      <Filter>Platforms</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\character.h">
@@ -69,6 +72,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Header\platform_global.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\platform_break.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
