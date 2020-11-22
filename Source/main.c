@@ -45,7 +45,7 @@ void game_init(void)
 // this function will be called repeatedly every frame
 void game_update(void)
 {
-	if (CP_Input_KeyTriggered(KEY_P)) {
+	if (CP_Input_KeyTriggered(KEY_P) || CP_Input_KeyTriggered(KEY_ESCAPE)) {
 		if (pause)
 			pause = 0;
 		else

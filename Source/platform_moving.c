@@ -17,6 +17,15 @@ void platform_moving_init(void)
 }
 void platform_moving_update(int f)
 {
+
+	if (egg.x < (plats_moving[f].dimx + dimw) &&
+		(egg.x + blocksize) > plats_moving[f].dimx &&
+		(egg.y + blocksize) > plats_moving[f].dimy &&
+		egg.y < (plats_moving[f].dimy + dimh) &&
+		egg.h > 0)
+	{
+		egg.isjump = 1;
+	}
 	//equation for moving platform below
 		plats_moving->time += 1;
 		plats_moving[f].dimx += plats_moving->speed * CP_System_GetDt();
@@ -31,7 +40,7 @@ void platform_moving_update(int f)
 			plats_moving->time = 0;
 		}
 		CP_Settings_Fill(CP_Color_Create(66, 224, 245, 255));
-		CP_Image_Draw(table_moving, (plats_moving[f].dimx), (plats_moving[f].dimy), dimw * 1.25, (dimh * 1.25f), 255);
+		CP_Image_Draw(table_moving, (plats_moving[f].dimx), (plats_moving[f].dimy), dimw * 1.25, (dimh * 2.5f), 255);
 
 }
 void platform_moving_exit(void)

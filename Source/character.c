@@ -5,6 +5,7 @@
 #include "../Header/collision.h"
 
 CP_Image eggy1=NULL;
+CP_Sound Djump = NULL;
 int check=0;
 float maxspeed = 0;
 int timer = 0;
@@ -22,6 +23,7 @@ static void doublejump(void)
 				egg.isjump = 1;
 				egg.cooldown = 1;
 				alpha = 0;
+				CP_Sound_Play(Djump);
 			}
 			
 		}
@@ -85,6 +87,7 @@ void eggs_init(void)
 	maxspeed = 30;
 	egg.cooldown = 0;
 	alpha = 200;
+	Djump = CP_Sound_Load("./Assets/DJump.wav");
 }
 void eggs_update(void)
 {
@@ -139,4 +142,5 @@ void eggs_exit(void)
 	timer = 0;
 	alpha = 0;
 	CP_Image_Free(&eggy1);
+	CP_Sound_Free(Djump);
 }
