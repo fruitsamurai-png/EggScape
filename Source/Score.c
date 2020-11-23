@@ -8,7 +8,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 char charbuffer[100];
-int score;
 int temp;
 void score_init(void)
 {
@@ -24,9 +23,8 @@ void score_update(void)
 	CP_Settings_Fill(CP_Color_Create(255, 255, 255, 255));
 	CP_Font_DrawText("Score:", 10, 20);
 	temp = (int)-egg.h;
-	if (temp < egg.h)temp = 0;
 	if(egg.h<0 )egg.score = (int)temp;
-	score += egg.score;
+	score += egg.score/10;
 	if (score < 0)score = 0;
 	_itoa_s(score, charbuffer, 100, 10);
 	CP_Font_DrawText(charbuffer,50 ,20);

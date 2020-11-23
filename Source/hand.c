@@ -11,14 +11,18 @@ int htimer=0;
 CP_Image hand = NULL;
 void hand_Collision(void)
 {
-		if(CP_Math_Square(hand_full.positionX - egg.x) < CP_Math_Square((hand_full.sizeX / 2 + 50)) && CP_Math_Square((hand_full.positionY - egg.y)) < CP_Math_Square((hand_full.sizeY / 2 + 50))
+	if (CP_Math_Square(hand_full.positionX - egg.x) < CP_Math_Square((hand_full.sizeX / 2 + 50)) && CP_Math_Square((hand_full.positionY - egg.y)) < CP_Math_Square((hand_full.sizeY / 2 + 50))
 		||
-		egg.x+blocksize>(hand_full.positionX - (blocksize / 2 * .5f))&&
-		egg.x< (hand_full.positionX - (blocksize / 2 * .5f)+ blocksize * .75f)&&
-		egg.y+blocksize>hand_full.positionY&&
-		egg.y< hand_full.positionY+blocksize
+		egg.x + blocksize > (hand_full.positionX - (blocksize / 2 * .5f)) &&
+		egg.x< (hand_full.positionX - (blocksize / 2 * .5f) + blocksize * .75f) &&
+		egg.y + blocksize>hand_full.positionY &&
+		egg.y < hand_full.positionY + blocksize
 		)
+	{
+		htimer = 0;
+
 		CP_Engine_SetNextGameState(gameover_init, gameover_update, gameover_exit);
+		}
 	//CP_Graphics_DrawRect(hand_full.positionX-(blocksize/2*.5f), hand_full.positionY, blocksize*.75, blocksize);
 }
 
@@ -92,6 +96,7 @@ void hand_update(void)
 void hand_exit(void)
 {
 	CP_Image_Free(&hand);
+	htimer = 0;
 }
 
 

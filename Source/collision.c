@@ -9,9 +9,9 @@
 
 void collide(void)
 {
-	if (egg.x + egg.movement > (windowx - blocksize) || egg.x + egg.movement < 0)//teleport to the other side of the wall.
+	if (egg.x+blocksize/2 + egg.movement > (windowx - blocksize) || egg.x+blocksize/2 + egg.movement < 0)//teleport to the other side of the wall.
 	{
-		if (egg.x + egg.movement >= (windowx - blocksize))
+		if (egg.x + egg.movement >= (windowx))
 		{
 			egg.x = 0;
 		}

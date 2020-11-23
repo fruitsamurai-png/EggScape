@@ -25,9 +25,9 @@ void platform_update(int i)
 {
 	if (egg.x < (plats[i].dimx + dimw) &&
 		(egg.x + blocksize) > plats[i].dimx &&
-		(egg.y + blocksize) > plats[i].dimy &&
+		(egg.y + blocksize / 2) < plats[i].dimy - dimh &&
 		egg.y < (plats[i].dimy + dimh) &&
-		egg.h > 0)
+		egg.h > 0 && egg.y + blocksize / 2 + dimh / 2 + egg.h > plats[i].dimy)
 	{
 		egg.isjump = 1;
 		CP_Sound_Play(jump);
