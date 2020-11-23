@@ -25,16 +25,16 @@ void platform_update(int i)
 {
 	if (egg.x < (plats[i].dimx + dimw) &&
 		(egg.x + blocksize) > plats[i].dimx &&
-		(egg.y + blocksize / 2) < plats[i].dimy - dimh &&
+		(egg.y + blocksize) > plats[i].dimy &&
 		egg.y < (plats[i].dimy + dimh) &&
-		egg.h > 0 && egg.y + blocksize / 2 + dimh / 2 + egg.h > plats[i].dimy)
+		egg.h > 0)
 	{
 		egg.isjump = 1;
 		CP_Sound_Play(jump);
 	}
 
 	CP_Settings_Fill(CP_Color_Create(66, 224, 245, 255));
-	CP_Image_Draw(table, (plats[i].dimx+(dimw*0.5f)), (plats[i].dimy), dimw*1.25, (dimh*1.25f),255);
+	CP_Image_Draw(table, (plats[i].dimx), (plats[i].dimy), dimw, dimh,255);
 }
 void platform_exit(void)
 {

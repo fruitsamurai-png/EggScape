@@ -40,7 +40,7 @@ void platform_moving_update(int f)
 			plats_moving->time = 0;
 		}
 		CP_Settings_Fill(CP_Color_Create(66, 224, 245, 255));
-		CP_Image_Draw(table_moving, (plats_moving[f].dimx), (plats_moving[f].dimy), dimw * 1.25, (dimh * 2.5f), 255);
+		CP_Image_Draw(table_moving, (plats_moving[f].dimx), (plats_moving[f].dimy), dimw , dimh*1.25, 255);
 
 }
 void platform_moving_exit(void)

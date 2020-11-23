@@ -128,7 +128,7 @@ void eggs_update(void)
 	eggjump();// egg jumping 
 	doublejump();//double ability
 	CP_Settings_Fill(CP_Color_Create(255, 255, 255, 255));
-	CP_Image_Draw(eggy1, (float)egg.x, (float)egg.y, 100, 100, 255);
+	CP_Image_Draw(eggy1, (float)egg.x, (float)egg.y, blocksize, blocksize, 255);
 }
 void eggs_exit(void)
 {
