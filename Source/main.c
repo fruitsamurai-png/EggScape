@@ -39,6 +39,8 @@ void game_init(void)
 	eggs_init();
 	score_init();
 	hand_init();
+	
+
 	// initialize variables and CProcessing settings for this gamestate
 }
 // use CP_Engine_SetNextGameState to specify this function as the update function
