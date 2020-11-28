@@ -23,6 +23,19 @@ void platform_init(int i)
 }
 void platform_update(int i)
 {
+	static float volume = .5f;
+	if (CP_Input_KeyTriggered(KEY_Q))
+	{
+		volume -= .01f;
+		if (volume <= 0)
+			volume =0;
+	}
+	if (CP_Input_KeyTriggered(KEY_E))
+	{
+		volume += .01f;
+		if (volume >= 1)
+			volume = 1;
+	}
 	if (egg.x < (plats[i].dimx + dimw) &&
 		(egg.x + blocksize) > plats[i].dimx &&
 		(egg.y + blocksize) > plats[i].dimy &&
@@ -30,7 +43,8 @@ void platform_update(int i)
 		egg.h > 0)
 	{
 		egg.isjump = 1;
-		CP_Sound_Play(jump);
+		CP_Sound_PlayAdvanced(jump, volume, 1, 0, CP_SOUND_GROUP_0);
+		//CP_Sound_Play(jump);
 	}
 
 	CP_Settings_Fill(CP_Color_Create(66, 224, 245, 255));
