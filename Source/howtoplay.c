@@ -14,7 +14,6 @@ CP_Image right_letter = NULL;
 CP_Image space_title = NULL;
 CP_Image space = NULL;
 
-
 void howtoplay_init(void)
 {
 	WINDOW_HEIGHT = (float)CP_System_GetWindowHeight();		//since the WINDOW_HEIGHT and WINDOW_WIDTH is a float, there is a need to put the CP_System_GetWindow for both lengths in float

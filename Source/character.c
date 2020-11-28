@@ -3,19 +3,20 @@
 #include "../Header/main.h"
 #include "../Header/character.h"
 #include "../Header/collision.h"
-
+#include "../Header/sound.h"
 CP_Image eggy1=NULL;
-CP_Sound Djump = NULL;
 int check=0;
 float maxspeed = 0;
 int timer = 0;
 int alpha = 0;
 static void doublejump(void)
 {
-	CP_Settings_Fill(CP_Color_Create(255, 255, 255, 255));
+	CP_Settings_Fill(CP_Color_Create(120, 255, 0, 255));
 	CP_Graphics_DrawRect(windowx * 3 / 4, 0, (float)alpha, 40);
+	CP_Settings_TextSize(20);
 	CP_Settings_Fill(CP_Color_Create(255, 255, 255, 255));
-	CP_Font_DrawText("Doublejump:", 480, 20);
+	CP_Font_DrawText("Doublejump:", 470, 20);
+
 	if (CP_Input_KeyDown(KEY_SPACE))
 		{
 			if (egg.cooldown == 0)
@@ -23,9 +24,8 @@ static void doublejump(void)
 				egg.isjump = 1;
 				egg.cooldown = 1;
 				alpha = 0;
-				CP_Sound_Play(Djump);
+				sound.Djump = 1;
 			}
-			
 		}
 	if (egg.cooldown)
 	{
@@ -87,7 +87,6 @@ void eggs_init(void)
 	maxspeed = 30;
 	egg.cooldown = 0;
 	alpha = 200;
-	Djump = CP_Sound_Load("./Assets/DJump.wav");
 }
 void eggs_update(void)
 {
@@ -142,5 +141,4 @@ void eggs_exit(void)
 	timer = 0;
 	alpha = 0;
 	CP_Image_Free(&eggy1);
-	CP_Sound_Free(Djump);
 }

@@ -1,10 +1,7 @@
 #include "cprocessing.h"
-#include "../Header/platform.h"
 #include "../Header/main.h"
 #include "../Header/collision.h"
 #include "../Header/character.h"
-#include "../Header/platform_moving.h"
-#include "../Header/Score.h"
 #include "../Header/gameover.h"
 
 void collide(void)

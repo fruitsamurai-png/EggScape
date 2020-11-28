@@ -14,7 +14,6 @@
 
 #include "cprocessing.h"
 #include "../Header/main.h"
-#include "../Header/platform.h"
 #include "../Header/character.h"
 #include "../Header/collision.h"
 #include "../Header/mainmenu.h"
@@ -22,23 +21,29 @@
 #include "../Header/platform_global.h"
 #include "../Header/hand.h"
 #include "../Header/howtoplay.h"
+#include "../Header/gameover.h"
+#include "../Header/sound.h"
+#include "../Header/rat.h"
 #include "stdbool.h"
 CP_Image background=NULL;
+CP_Image pauseimg = NULL;
 float WINDOW_WIDTH;
 bool pause = 0;
 // use CP_Engine_SetNextGameState to specify this function as the initialization function
 // this function will be called once at the beginning of the program
 
-
 void game_init(void)
 {
 	WINDOW_WIDTH = (float)CP_System_GetWindowWidth();
-	background = CP_Image_Load("./Assets/Background.jpg");
+	background = CP_Image_Load("./Assets/background_new.jpg");
+	pauseimg = CP_Image_Load("./Assets/pause.png");
 	CP_System_SetWindowTitle("EggScape");
+	sound_init();
 	platform_global_init();
 	eggs_init();
 	score_init();
 	hand_init();
+	mouse_init();
 	// initialize variables and CProcessing settings for this gamestate
 }
 // use CP_Engine_SetNextGameState to specify this function as the update function
@@ -47,9 +52,14 @@ void game_update(void)
 {
 	if (CP_Input_KeyTriggered(KEY_P) || CP_Input_KeyTriggered(KEY_ESCAPE)) {
 		if (pause)
+		{
 			pause = 0;
+		}
 		else
+		{
 			pause = 1;
+			CP_Image_Draw(pauseimg, windowx * 0.50, windowy * 0.5, 100, 100, 255);
+		}
 	}
 	if (!pause)
 	{
@@ -59,6 +69,8 @@ void game_update(void)
 		score_update();
 		collide();
 		hand_update();
+		//sound_update();
+		mouse_update();
 	}
 	// check input, update simulation, render etc.
 }
@@ -70,10 +82,12 @@ void game_exit(void)
 	mainmenu_exit();
 	howtoplay_exit();
 	eggs_exit();
-	platform_exit();
 	score_exit();
 	platform_global_exit();
+	sound_exit();
+	mouse_exit();
 	CP_Image_Free(&background);
+	CP_Image_Free(&pauseimg);
 	// shut down the gamestate and cleanup any dynamic memory
 }
 

@@ -1,6 +1,5 @@
 #include "cprocessing.h"
 #include "../Header/platform_global.h"
-#include "../Header/collision.h"
 #include "../Header/main.h"
 #include "../Header/platform_moving.h"
 #include "../Header/platform.h"
@@ -16,16 +15,16 @@ void platform_generator1(int f)
 	if (score > 2000)rand = 3;
 	switch (rand)
 	{
-		case (0):
+		case 0:
 		{
 			if (plats[f].dimy > windowy)
 			{
 				plats[f].dimy = 0;
-				plats[f].dimx = (float)(CP_Random_RangeInt(0, (windowx - dimw)));
+				plats[f].dimx = (float)(CP_Random_RangeInt(dimw/2, (windowx - dimw)));
 			}
 			break;
 		}
-		case (1):
+		case 1:
 		{
 			count++;
 			if (plats[f].dimy > windowy)
@@ -38,12 +37,12 @@ void platform_generator1(int f)
 				else if (count % 10 != 0)
 				{
 					plats[f].dimy = 0;
-					plats[f].dimx = (float)(CP_Random_RangeInt(0, (windowx - dimw)));
+					plats[f].dimx = (float)(CP_Random_RangeInt(dimw/2, (windowx - dimw)));
 				}
 			}
 			break;
 		}
-		case (2):
+		case 2:
 		{
 			count++;
 			if (plats[f].dimy > windowy)
@@ -58,7 +57,7 @@ void platform_generator1(int f)
 				else if (count % 5 != 0)
 				{
 					plats[f].dimy = 0;
-					plats[f].dimx = (float)(CP_Random_RangeInt(0, (windowx - dimw)));
+					plats[f].dimx = (float)(CP_Random_RangeInt(dimw/2, (windowx - dimw)));
 				}
 			}
 			break;
@@ -100,7 +99,6 @@ void platform_global_init(void)
 }
 void platform_global_update(void)
 {
-	
 	for (int i = 0; i < 10; ++i)//drawing of the platforms
 	{
 		platform_update(i);
@@ -117,6 +115,7 @@ void platform_global_update(void)
 			plats_break[f].dimy = plats_break[f].dimy - egg.h;
 			platform_generator1(f);
 		}
+	
 	}
 }
 void platform_global_exit(void)

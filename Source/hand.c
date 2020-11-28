@@ -7,7 +7,7 @@
 #include <time.h>
 
 
-int htimer = 0, mtimer= 0;
+int htimer = 0;
 CP_Image hand = NULL;
 void hand_Collision(void)
 {
@@ -65,43 +65,6 @@ void hands_movement(void)
 
 }
 
-void mouse_body(void)
-{
-	++mtimer;
-	mouse.x += mouse.speed;
-	if (mouse.x > (windowx - 100) || mouse.x<0)
-	{
-		mouse.speed *= -1;	
-	}
-	if (mtimer > 120)
-	{
-		mouse.speed = 0;
-		mouse.y += 20;
-	}
-	if (mouse.y > windowy)
-	{
-		mouse.y = 0;
-		mouse.speed = 5;
-		mtimer = 0;
-	}
-	if (mouse.x + blocksize > egg.x &&
-		mouse.x <egg.x + blocksize &&
-		mouse.y + blocksize>egg.y &&
-		mouse.y < egg.y + blocksize)
-	{
-		mtimer = 0;
-		CP_Engine_SetNextGameState(gameover_init, gameover_update, gameover_exit);
-	}
-	CP_Graphics_DrawRect(mouse.x, mouse.y, blocksize, blocksize);
-}
-
-void mouse_init(void)
-{
-	mouse.x = 0;
-	mouse.y=0;	
-	mouse.speed = 10;
-
-}
 //CP_Image hand_bottom;
 void hand_init(void)
 {
@@ -110,8 +73,6 @@ void hand_init(void)
 	hand_full.speed = 40;
 	hand_full.positionY = WINDOW_HEIGHT;
 	hand_full.positionX = (float)CP_Random_RangeInt(10,windowx);
-	mouse_init();
-
 }
 
 void hand_update(void)
@@ -129,9 +90,6 @@ void hand_update(void)
 	//	//hand = CP_Image_Load("./Assets/hand_GRAB.png");
 	//}
 	hand_Collision();
-	mouse_body();
-	
-
 	CP_Image_Draw(hand, (float)(hand_full.positionX) , (float)hand_full.positionY, 200, 200, 255);
 }
 

@@ -1,14 +1,15 @@
 #include "cprocessing.h"
+#include <stdlib.h>
 #include "../Header/platform.h"
-#include "../Header/platform_moving.h"
 #include "../Header/main.h"
-#include "../Header/collision.h"
 #include "../Header/character.h"
 #include "../Header/Score.h"
 #include "../Header/platform_break.h"
-
+#include "../Header/sound.h"
+CP_Image table_break = NULL;
 void platform_break_init(int i)
 {
+	table_break = CP_Image_Load("./Assets/plat_break.png");
 	plats_break[i].isbroken = 1;
 	plats_break[i].alpha = 255;
 }
@@ -25,17 +26,13 @@ void platform_break_update(int i)
 			egg.isjump = 1;
 			plats_break[i].isbroken = 0;
 			plats_break[i].alpha = 0;
+			sound.breakjump = 1;
 		}
 	}
-	CP_Settings_Fill(CP_Color_Create(66, 224, 245, plats_break[i].alpha));
-	CP_Graphics_DrawRect(plats_break[i].dimx, plats_break[i].dimy, dimw, dimh);
+
+	CP_Image_Draw(table_break, (plats_break[i].dimx), (plats_break[i].dimy), dimw, dimh, plats_break[i].alpha);
 }
 void platform_break_exit(void)
 {
-	for (int i = 0; i < 10; i++)
-	{
-		plats_break[i].dimy = 0;
-		plats_break[i].dimx = 0;
-		plats_break[i].alpha = 0;
-	}
+	CP_Image_Free(&table_break);
 }
