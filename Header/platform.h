@@ -6,7 +6,7 @@ struct level {
 typedef struct plat {
 	float dimx, dimy;
 }plat;
-enum dimensions { dimw = 100, dimh = 20, };
+enum dimensions { dimw = 125, dimh = 50, };
 plat plats[10];
 void platform_init(int i);
 void platform_update(int i);

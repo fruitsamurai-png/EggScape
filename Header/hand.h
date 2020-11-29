@@ -10,9 +10,10 @@ struct hands
 	int increment;
 }hands;
 
+struct hands hand_full;
+#define attackinter 120
+void hands_movement(void);
+void hand_Collision(void);
 void hand_init(void);
 void hand_update(void);
 void hand_exit(void);
-static void raise_hands(void);
-void hands_movement(void);
-void hand_Collision(void);
