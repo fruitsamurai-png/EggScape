@@ -3,6 +3,7 @@
 #include "../Header/button.h"
 #include "../Header/gameover.h"
 #include "../Header/character.h"
+#include "../Header/sound.h"
 #include "../Header/rat.h"
 #include "cprocessing.h"
 #include <time.h>
@@ -40,6 +41,7 @@ void mouse_update(void)
 		mouse.y < egg.y + blocksize)
 	{
 		mtimer = 0;
+		sound.rathit = 1;
 		CP_Engine_SetNextGameState(gameover_init, gameover_update, gameover_exit);
 	}
 	CP_Image_Draw(rat, mouse.x, mouse.y, blocksize, blocksize, 255);

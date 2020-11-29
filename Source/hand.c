@@ -3,10 +3,11 @@
 #include "../Header/button.h"
 #include "../Header/gameover.h"
 #include "../Header/character.h"
+#include "../Header/sound.h"
 #include "cprocessing.h"
 #include <time.h>
 
-
+char trigger = 0;
 int htimer = 0;
 CP_Image hand = NULL;
 void hand_Collision(void)
@@ -20,6 +21,8 @@ void hand_Collision(void)
 		)
 	{
 		htimer = 0;
+		
+		sound.fisthit = 1;
 		CP_Engine_SetNextGameState(gameover_init, gameover_update, gameover_exit);
 
 	}
