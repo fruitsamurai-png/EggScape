@@ -2,7 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="Source\main.c" />
-    <ClCompile Include="Source\Score.c" />
     <ClCompile Include="Source\platform.c">
       <Filter>Platforms</Filter>
     </ClCompile>
@@ -33,49 +32,77 @@
     <ClCompile Include="Source\hand.c">
       <Filter>Character</Filter>
     </ClCompile>
+    <ClCompile Include="Source\platforms_break.c">
+      <Filter>Platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\rat.c">
+      <Filter>Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Score.c">
+      <Filter>UI , Sound and others</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\sound.c">
+      <Filter>UI , Sound and others</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\enemies_global.c">
+      <Filter>Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\digipen.c">
+      <Filter>UI , Sound and others</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\character.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Header\button.h">
-      <Filter>Header Files</Filter>
+      <Filter>Character\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Header\collision.h">
-      <Filter>Header Files</Filter>
+      <Filter>Character\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Header\gameover.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Header\rat.h">
+      <Filter>Character\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Header\hand.h">
-      <Filter>Header Files</Filter>
+      <Filter>Character\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\button.h">
+      <Filter>Menus\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\gameover.h">
+      <Filter>Menus\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Header\howtoplay.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Header\main.h">
-      <Filter>Header Files</Filter>
+      <Filter>Menus\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Header\mainmenu.h">
-      <Filter>Header Files</Filter>
+      <Filter>Menus\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Header\platform.h">
-      <Filter>Header Files</Filter>
+      <Filter>Platforms\Header File</Filter>
     </ClInclude>
-    <ClInclude Include="Header\Score.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Header\platform_moving.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Header\platform_break.h">
+      <Filter>Platforms\Header File</Filter>
     </ClInclude>
     <ClInclude Include="Header\platform_global.h">
-      <Filter>Header Files</Filter>
+      <Filter>Platforms\Header File</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\platform_moving.h">
+      <Filter>Platforms\Header File</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Score.h">
+      <Filter>UI , Sound and others\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\sound.h">
+      <Filter>UI , Sound and others\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\main.h" />
+    <ClInclude Include="Header\enemies_global.h">
+      <Filter>Character\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\digipen.h">
+      <Filter>UI , Sound and others\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{eae015df-c464-41c0-a57b-02adab22fe27}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Platforms">
       <UniqueIdentifier>{8bce2017-08cf-4e6b-888e-0867f1375c3b}</UniqueIdentifier>
     </Filter>
@@ -84,6 +111,21 @@
     </Filter>
     <Filter Include="Character">
       <UniqueIdentifier>{4ed5e273-0105-454f-b4fd-c28fc498478e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Character\Header Files">
+      <UniqueIdentifier>{0e688ab5-6e5b-47d9-a5b9-3fcb5361a425}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Menus\Header Files">
+      <UniqueIdentifier>{c64165ec-e1d3-441d-9ef2-6427bff9799e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platforms\Header File">
+      <UniqueIdentifier>{0ecc1815-8c86-42f6-94b7-ac9dda69029a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI , Sound and others">
+      <UniqueIdentifier>{0066d033-c476-4c8e-a4be-8326e4f1817b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI , Sound and others\Header Files">
+      <UniqueIdentifier>{a5b5c496-7c99-4832-82e2-0cfcf4603d50}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -22,29 +22,39 @@
     <ClCompile Include="Source\button.c" />
     <ClCompile Include="Source\character.c" />
     <ClCompile Include="Source\collision.c" />
+    <ClCompile Include="Source\digipen.c" />
+    <ClCompile Include="Source\enemies_global.c" />
     <ClCompile Include="Source\gameover.c" />
     <ClCompile Include="Source\hand.c" />
     <ClCompile Include="Source\howtoplay.c" />
     <ClCompile Include="Source\main.c" />
     <ClCompile Include="Source\mainmenu.c" />
     <ClCompile Include="Source\platform.c" />
+    <ClCompile Include="Source\platforms_break.c" />
     <ClCompile Include="Source\platform_global.c" />
     <ClCompile Include="Source\platform_moving.c" />
+    <ClCompile Include="Source\rat.c" />
     <ClCompile Include="Source\Score.c" />
+    <ClCompile Include="Source\sound.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\button.h" />
     <ClInclude Include="Header\character.h" />
     <ClInclude Include="Header\collision.h" />
+    <ClInclude Include="Header\digipen.h" />
+    <ClInclude Include="Header\enemies_global.h" />
     <ClInclude Include="Header\gameover.h" />
     <ClInclude Include="Header\hand.h" />
     <ClInclude Include="Header\howtoplay.h" />
     <ClInclude Include="Header\main.h" />
     <ClInclude Include="Header\mainmenu.h" />
     <ClInclude Include="Header\platform.h" />
+    <ClInclude Include="Header\platform_break.h" />
     <ClInclude Include="Header\platform_global.h" />
     <ClInclude Include="Header\platform_moving.h" />
+    <ClInclude Include="Header\rat.h" />
     <ClInclude Include="Header\Score.h" />
+    <ClInclude Include="Header\sound.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
