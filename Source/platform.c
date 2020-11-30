@@ -22,17 +22,18 @@ void platform_init(int i)
 void platform_update(int i)
 {
 	
-	if (egg.x < (plats[i].dimx + dimw) &&
-		(egg.x + blocksize) > plats[i].dimx &&
-		(egg.y + blocksize) > plats[i].dimy &&
-		egg.y < (plats[i].dimy + dimh) &&
+	if (egg.x < (plats[i].dimx + dimw-10) &&
+		(egg.x + blocksize-5) > plats[i].dimx &&
+		(egg.y + blocksize+10) > plats[i].dimy &&
+		egg.y < (plats[i].dimy) &&
 		egg.h > 0)
 	{
 		egg.isjump = 1;
 		sound.jump = 1;
+		egg.isgrounded = 1;
+		egg.ro = 0;
 	}
 
-	CP_Settings_Fill(CP_Color_Create(66, 224, 245, 255));
 	CP_Image_Draw(table, (plats[i].dimx), (plats[i].dimy), dimw, dimh,255);
 }
 void platform_exit(void)

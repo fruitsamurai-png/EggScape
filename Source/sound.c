@@ -16,7 +16,11 @@ CP_Sound Djump = NULL;
 CP_Sound breakjump = NULL;
 CP_Sound fisthit = NULL;
 CP_Sound rathit = NULL;
-
+CP_Sound intro = NULL;
+CP_Image mute = NULL;
+CP_Image unmute = NULL;
+CP_Image icon = NULL;
+int i = 0;
 void sound_init(void)
 {
 	Djump = CP_Sound_Load("./Assets/DJump.wav");
@@ -24,33 +28,47 @@ void sound_init(void)
 	breakjump = CP_Sound_Load("./Assets/Breakjump.wav");
 	fisthit = CP_Sound_Load("./Assets/handhit.wav");
 	rathit = CP_Sound_Load("./Assets/rat.wav");
+	intro = CP_Sound_Load("./Assets/intro.wav");
+	mute = CP_Image_Load("./Assets/mute.png");
+	unmute = CP_Image_Load("./Assets/unmute.png");
 	sound.jump = 0;
+	sound.alpha = 0;
 }
 void sound_update(void)
 {
 	static float volume = .5f;
 	if (CP_Input_KeyTriggered(KEY_M))
 	{
-		static int i=0;
-			if (!i)
-			{
-				CP_Sound_PauseAll();
-					i=1;
-			}
-	
-			else if (i)
-			{
-				CP_Sound_ResumeAll();
-				i = 0;
-			}
+		if (!i)
+		{
+			CP_Sound_PauseAll();
+			i = 1;
+			sound.alpha = 255;
+		}
+		else if (i)
+		{
+			CP_Sound_ResumeAll();
+			i = 0;
+			sound.alpha = 255;
+		}
 	}
-	if (CP_Input_KeyDown(KEY_Q))
+	if (i == 1)
+	{
+		CP_Image_Draw(mute, 700, 100, 50, 50, sound.alpha);
+		sound.alpha -= 4;
+	}
+	if (i == 0)
+	{
+		CP_Image_Draw(unmute, 700, 100, 50, 50, sound.alpha);
+		sound.alpha -= 4;
+	}
+	if (CP_Input_KeyTriggered(KEY_Q))
 	{
 		volume -= .02f;
 		if (volume <= 0)
 			volume = 0;
 	}
-	if (CP_Input_KeyDown(KEY_E))
+	if (CP_Input_KeyTriggered(KEY_E))
 	{
 		volume += .02f;
 		if (volume >= 1)
@@ -81,12 +99,14 @@ void sound_update(void)
 			CP_Sound_PlayAdvanced(rathit, volume, 1, 0, CP_SOUND_GROUP_0);
 			sound.rathit = 0;
 		}
-		
 }
 void sound_exit(void)
 {
 	CP_Sound_Free(jump);
 	CP_Sound_Free(Djump);
 	CP_Sound_Free(breakjump);
+	CP_Image_Free(&unmute);
+	CP_Image_Free(&mute);
+	CP_Image_Free(&icon);
 	sound.jump = 0;
 }

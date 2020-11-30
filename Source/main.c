@@ -13,37 +13,36 @@
 //---------------------------------------------------------
 
 #include "cprocessing.h"
+#include "../Header/digipen.h"
+#include "../Header/button.h"
 #include "../Header/main.h"
 #include "../Header/character.h"
 #include "../Header/collision.h"
 #include "../Header/mainmenu.h"
 #include "../Header/Score.h"
 #include "../Header/platform_global.h"
-#include "../Header/hand.h"
-#include "../Header/howtoplay.h"
-#include "../Header/gameover.h"
 #include "../Header/sound.h"
-#include "../Header/rat.h"
+#include "../Header/enemies_global.h"
 #include "stdbool.h"
 CP_Image background=NULL;
 CP_Image pauseimg = NULL;
-float WINDOW_WIDTH;
+float WINDOW_WIDTH,WINDOW_HEIGHT;
 bool pause = 0;
 // use CP_Engine_SetNextGameState to specify this function as the initialization function
 // this function will be called once at the beginning of the program
 
 void game_init(void)
 {
-	WINDOW_WIDTH = (float)CP_System_GetWindowWidth();
-	background = CP_Image_Load("./Assets/background_new.jpg");
+	WINDOW_WIDTH = (float)windowx;
+	WINDOW_HEIGHT = (float)windowy;
+	background = CP_Image_Load("./Assets/background.jpg");
 	pauseimg = CP_Image_Load("./Assets/pause.png");
 	CP_System_SetWindowTitle("EggScape");
-	sound_init();
 	platform_global_init();
+	enemies_init();
 	eggs_init();
 	score_init();
-	hand_init();
-	mouse_init();
+	sound_init();
 	// initialize variables and CProcessing settings for this gamestate
 }
 // use CP_Engine_SetNextGameState to specify this function as the update function
@@ -63,14 +62,13 @@ void game_update(void)
 	}
 	if (!pause)
 	{
-		CP_Image_Draw(background, WINDOW_WIDTH / 2, windowy / 2, windowx, windowy, 255);
+		CP_Image_Draw(background, WINDOW_WIDTH/2, WINDOW_HEIGHT/2, WINDOW_WIDTH, WINDOW_HEIGHT, 255);
 		platform_global_update();
 		eggs_update();
-		score_update();
+		enemies_update();
 		collide();
-		hand_update();
-		//sound_update();
-		mouse_update();
+		score_update();
+		sound_update();
 	}
 	// check input, update simulation, render etc.
 }
@@ -79,13 +77,12 @@ void game_update(void)
 // this function will be called once just before leaving the current gamestate
 void game_exit(void)
 {
-	mainmenu_exit();
-	howtoplay_exit();
-	eggs_exit();
-	score_exit();
 	platform_global_exit();
+	enemies_exit();
+	eggs_exit();
 	sound_exit();
-	mouse_exit();
+	score_exit();
+	exit_button();
 	CP_Image_Free(&background);
 	CP_Image_Free(&pauseimg);
 	// shut down the gamestate and cleanup any dynamic memory
@@ -96,7 +93,7 @@ void game_exit(void)
 // CP_Engine_Run() is the core function that starts the simulation
 int main(void)
 {
-	CP_Engine_SetNextGameState(mainmenu_init, mainmenu_update, mainmenu_exit);
+	CP_Engine_SetNextGameState(intro_init, intro_update, intro_exit);
 	CP_System_SetWindowSize(windowx, windowy);
 	CP_Engine_Run();
 	return 0;

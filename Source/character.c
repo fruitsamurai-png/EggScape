@@ -5,6 +5,9 @@
 #include "../Header/collision.h"
 #include "../Header/sound.h"
 CP_Image eggy1=NULL;
+CP_Image egg_r = NULL;
+CP_Image egg_l = NULL;
+CP_Image ready = NULL;
 int check=0;
 float maxspeed = 0;
 int timer = 0;
@@ -17,16 +20,21 @@ static void doublejump(void)
 	CP_Settings_Fill(CP_Color_Create(255, 255, 255, 255));
 	CP_Font_DrawText("Doublejump:", 470, 20);
 
-	if (CP_Input_KeyDown(KEY_SPACE))
+	if (CP_Input_KeyTriggered(KEY_SPACE))
 		{
 			if (egg.cooldown == 0)
 			{
 				egg.isjump = 1;
 				egg.cooldown = 1;
+				egg.isgrounded = 0;
 				alpha = 0;
 				sound.Djump = 1;
 			}
 		}
+	if (!egg.isgrounded)
+	{
+		egg.ro += 450*CP_System_GetDt();
+	}
 	if (egg.cooldown)
 	{
 		timer++;
@@ -37,18 +45,20 @@ static void doublejump(void)
 			timer = 0;
 		}
 	}
+	if (egg.cooldown == 0 && CP_System_GetSeconds()!=100)
+	{
+		CP_Image_Draw(ready, egg.x, egg.y-75, 30, 30, 255);
+
+	}
 }
 static void eggjump(void)
 {
 	//mode1(normal Jump)
 	float G = 10 * .2f;//gravity for the egg
 
-	if (egg.isdrop) {
-		if (egg.h == 0)
-			egg.h = 8;
+		if (egg.h == 0)egg.h = 8;
 		egg.h += 1.f * G;//velocity of the egg
 		egg.y += .5f * egg.h;
-	}
 
 	if (egg.isjump)
 	{
@@ -57,19 +67,10 @@ static void eggjump(void)
 			egg.h = -60;
 			egg.count = 1;
 		}
-		else
-			egg.h = -40;
-		//if (egg.y > windowy)
+		else egg.h = -40;
 		egg.isjump = 0;
-		//egg.isdrop = 1;
 	}
-	//Mode2(power up)
-	/*int G = 10;
-	egg.h += 0.2f;
-	egg.y += 0.5f*egg.h*G;
-	if (egg.y > windowy)
-		egg.h = -10;
-		*/
+	
 	CP_Vector_Set(egg.x, egg.y);
 }
 
@@ -78,8 +79,8 @@ void eggs_init(void)
 	egg.x = (float)(windowy * 0.50);
 	egg.y = (windowy * 0.50);
 	egg.maxaccel = 30;
-	egg.isdrop = 1;
 	egg.isjump = 0;
+	egg.isgrounded = 1;
 	egg.h = 0;
 	egg.x = plats[7].dimx+(0.5f*dimw);
 	egg.y = windowy / 2;
@@ -87,10 +88,14 @@ void eggs_init(void)
 	maxspeed = 30;
 	egg.cooldown = 0;
 	alpha = 200;
+	egg.ro=0;
+	egg_r= CP_Image_Load("./Assets/egg_r.png");
+	egg_l= CP_Image_Load("./Assets/egg_l.png");
+	ready = CP_Image_Load("./Assets/ready.png");
 }
 void eggs_update(void)
 {
-	eggy1= CP_Image_Load("./Assets/eggy_RRUN.png");
+	eggy1= egg_r;
 	
 		if ((CP_Input_KeyDown(KEY_D) || CP_Input_KeyDown(KEY_RIGHT)))
 		{
@@ -106,12 +111,12 @@ void eggs_update(void)
 		}
 		if (check == 1)
 		{
-			eggy1 = CP_Image_Load("./Assets/eggy_RRUN.png");
+			eggy1 = egg_r;
 	
 		}
 		else if (check == 0)
 		{
-			eggy1 = CP_Image_Load("./Assets/eggy_LRUN.png");
+			eggy1 = egg_l;
 			
 		}
 	
@@ -126,8 +131,7 @@ void eggs_update(void)
 	}
 	eggjump();// egg jumping 
 	doublejump();//double ability
-	CP_Settings_Fill(CP_Color_Create(255, 255, 255, 255));
-	CP_Image_Draw(eggy1, (float)egg.x, (float)egg.y, blocksize, blocksize, 255);
+	CP_Image_DrawAdvanced(eggy1, (float)egg.x, (float)egg.y, blocksize, blocksize,255, egg.ro);
 }
 void eggs_exit(void)
 {
@@ -140,5 +144,9 @@ void eggs_exit(void)
 	egg.count = 0;
 	timer = 0;
 	alpha = 0;
+	egg.ro = 0;
 	CP_Image_Free(&eggy1);
+	CP_Image_Free(&egg_l);
+	CP_Image_Free(&egg_r);
+	CP_Image_Free(&ready);
 }

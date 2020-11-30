@@ -1,18 +1,18 @@
 #include "cprocessing.h"
-#include "../Header/platform_global.h"
 #include "../Header/main.h"
+#include "../Header/platform_global.h"
 #include "../Header/platform_moving.h"
-#include "../Header/platform.h"
 #include "../Header/platform_break.h"
+#include "../Header/platform.h"
 #include "../Header/character.h"
 #include "../Header/Score.h"
-int count=0;
-int rand = 0;
+
 void platform_generator1(int f)
 {
 	if(score>500)rand = 1;
 	if (score > 1000)rand = 2;
 	if (score > 2000)rand = 3;
+	if (score > 3000)rand = 4;
 	switch (rand)
 	{
 		case 0:
@@ -47,7 +47,7 @@ void platform_generator1(int f)
 			count++;
 			if (plats[f].dimy > windowy)
 			{
-				if (plats_break[f].dimy > windowy && count % 5 == 0 && plats[f].dimx != plats_break[f].dimx)
+				if (plats_break[f].dimy > windowy && count % 5 == 0 && plats[f].dimy != plats_break[f].dimy)
 				{
 					plats_break[f].dimy = 0;
 					plats_break[f].dimx = (float)(CP_Random_RangeInt(0, (windowx - dimw)));
@@ -67,22 +67,41 @@ void platform_generator1(int f)
 			count++;
 			if (plats[f].dimy > windowy)
 			{
-				if (plats_break[f].dimy > windowy && count % 5 == 0 && plats[f].dimx != plats_break[f].dimx)
+				if (plats_break[f].dimy > windowy && count % 5 == 0 && plats[f].dimy != plats_break[f].dimy)
 				{
 					plats_break[f].dimy = 0;
 					plats_break[f].dimx = (float)(CP_Random_RangeInt(0, (windowx - dimw)));
 					plats_break[f].isbroken = 1;
 					plats_break[f].alpha = 255;
 				}
-				if (plats_moving[f].dimy > windowy && count % 10 == 0 && plats[f].dimx != plats_moving[f].dimx)
+				if (plats_moving[f].dimy > windowy && count % 10 == 0 && plats[f].dimy != plats_moving[f].dimy)
 				{
 					plats_moving[f].dimy = 0;
 					plats_moving[f].dimx = (float)(CP_Random_RangeInt(0, (windowx - dimw + plats_moving->speed)));
 				}
-				else if (count % 100 != 0)
+				else if (count % 10 != 0)
 				{
 					plats[f].dimy = 0;
 					plats[f].dimx = (float)(CP_Random_RangeInt(0, (windowx - dimw)));
+				}
+			}
+		}
+		case 4:
+		{
+			count++;
+			if (plats[f].dimy > windowy)
+			{
+				if (plats_break[f].dimy > windowy && count % 10 != 0 && plats[f].dimy != plats_break[f].dimy)
+				{
+					plats_break[f].dimy = 0;
+					plats_break[f].dimx = (float)(CP_Random_RangeInt(0, (windowx - dimw)));
+					plats_break[f].isbroken = 1;
+					plats_break[f].alpha = 255;
+				}
+				if (plats_moving[f].dimy > windowy && count % 10 == 0 && plats[f].dimy != plats_moving[f].dimy)
+				{
+					plats_moving[f].dimy = 0;
+					plats_moving[f].dimx = (float)(CP_Random_RangeInt(0, (windowx - dimw + plats_moving->speed)));
 				}
 			}
 		}
@@ -96,6 +115,8 @@ void platform_global_init(void)
 		platform_moving_init();
 		platform_break_init(i);
 	}
+	rand = 0;
+	count = 0;
 }
 void platform_global_update(void)
 {
@@ -124,4 +145,5 @@ void platform_global_exit(void)
 	platform_moving_exit();
 	platform_break_exit();
 	rand = 0;
+	count = 0;
 }
