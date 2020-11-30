@@ -4,6 +4,8 @@
 #include "../Header/button.h"
 #include "../Header/gameover.h"
 #include "../Header/character.h"
+#include "../Header/platform_global.h"
+#include "../Header/sound.h"
 #include "../Header/rat.h"
 #include <time.h>
 int mtimer = 0;
@@ -46,7 +48,9 @@ void mouse_update(void)
 		mouse.y < egg.y + blocksize)
 	{
 		mtimer = 0;
+		sound.rathit = 1;
 		CP_Engine_SetNextGameState(gameover_init, gameover_update, gameover_exit);
+		platform_global_init();
 	}
 	CP_Image_Draw(rat, mouse.x, mouse.y, blocksize, blocksize, 255);
 }

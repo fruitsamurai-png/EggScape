@@ -6,7 +6,6 @@
 #include "../Header/platform.h"
 #include "../Header/character.h"
 #include "../Header/Score.h"
-int count=0;
 
 void platform_generator1(int f)
 {
@@ -17,7 +16,7 @@ void platform_generator1(int f)
 	{
 		case 0:
 		{
-			if (plats[f].dimy > windowy)
+			if (plats[f].dimy > windowy && plats[f+1].dimy >= 20)
 			{
 				plats[f].dimy = 0;
 				plats[f].dimx = (float)(CP_Random_RangeInt(dimw/2, (windowx - dimw)));
@@ -97,6 +96,7 @@ void platform_global_init(void)
 		platform_break_init(i);
 	}
 	rand = 0;
+	count = 0;
 }
 void platform_global_update(void)
 {
@@ -125,4 +125,5 @@ void platform_global_exit(void)
 	platform_moving_exit();
 	platform_break_exit();
 	rand = 0;
+	count = 0;
 }

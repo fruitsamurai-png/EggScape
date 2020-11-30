@@ -4,12 +4,14 @@
 #include "../Header/howtoplay.h"
 #include "../Header/main.h"
 #include "../Header/gameover.h"
+#include "../Header/credit.h"
+#include "../Header/enemies_global.h"
+#include "../Header/platform_global.h"
+#include "../Header/character.h"
 
 void play(Button button)
 {
 	//timer2 = 4.0f;
-
-
 	if (CP_Input_GetMouseX() >= button.positionX - button.sizeX / 2 &&
 		CP_Input_GetMouseX() <= button.positionX + button.sizeX / 2 &&
 		CP_Input_GetMouseY() >= button.positionY - button.sizeY / 2 &&
@@ -123,12 +125,32 @@ void restart(Button button)	//making a restart button to proceeed to the main sc
 
 		if (CP_Input_MouseClicked())
 		{
-			CP_Engine_SetNextGameState(game_init, game_update, game_exit);	//if the mouse is clicked, it will proceed to the main screen
+			CP_Engine_SetNextGameState(game_init, game_update, game_exit);//if the mouse is clicked, it will proceed to the main screen
 		}
 	}
 	else
 	{
-		restartButton.image = CP_Image_Load("./Assets/gameover_RESTART.png");
+		restartButton.image = CP_Image_Load("./Assets/restart.png");
+	}
+}
+
+void credit (Button button)
+{
+	if (CP_Input_GetMouseX() >= button.positionX - button.sizeX / 2 &&
+		CP_Input_GetMouseX() <= button.positionX + button.sizeX / 2 &&
+		CP_Input_GetMouseY() >= button.positionY - button.sizeY / 2 &&
+		CP_Input_GetMouseY() <= button.positionY + button.sizeY / 2)	// where the collision takes place when mouse is clicked on the restart button(font) and if it is not in the boundary of the mouse clicked, it won't proceed anywhere
+	{
+		creditButton.image = CP_Image_Load("./Assets/credit_r.png");
+
+		if (CP_Input_MouseClicked())
+		{
+			CP_Engine_SetNextGameState(credit_init, credit_update, credit_exit);	//if the mouse is clicked, it will proceed to the main screen
+		}
+	}
+	else
+	{
+		creditButton.image = CP_Image_Load("./Assets/credit.png");
 	}
 }
 
@@ -154,7 +176,13 @@ void init_button(void)
 	check = 0;
 	timer3 = 0;
 	speed = 0;
-	x = 80;
+	x = 80; 
+
+	creditButton.image = CP_Image_Load("./Assets/credit.png");
+	creditButton.positionX = 50;
+	creditButton.positionY = 25;
+	creditButton.sizeX = 75;
+	creditButton.sizeY = 30;
 
 }
 
@@ -187,6 +215,16 @@ void init_button3(void)  //gameover screen buttons positioning
 	menuButton.sizeX = 100;
 	menuButton.sizeY = 40;
 }
+
+void init_button4(void)
+{
+	menuButton.image = CP_Image_Load("./Assets/gameover_MAINMENU.png");
+	menuButton.positionX = WINDOW_WIDTH / 2;
+	menuButton.positionY = WINDOW_HEIGHT * 6 / 7;
+	menuButton.sizeX = 100;
+	menuButton.sizeY = 40;
+}
+
 void exit_button(void)
 {
 	check = 0;
@@ -196,4 +234,5 @@ void exit_button(void)
 	CP_Image_Free(&restartButton.image);
 	CP_Image_Free(&playButton.image);
 	CP_Image_Free(&exitButton.image);
+	CP_Image_Free(&creditButton.image);
 }

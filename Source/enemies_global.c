@@ -23,7 +23,8 @@ void enemies_update(void)
 	}
 	if (rand == 3)
 	{
-
+		hand_update();
+		mouse_update();
 	}
 }
 void enemies_exit(void)

@@ -35,7 +35,7 @@ void game_init(void)
 {
 	WINDOW_WIDTH = (float)windowx;
 	WINDOW_HEIGHT = (float)windowy;
-	background = CP_Image_Load("./Assets/background_new.jpg");
+	background = CP_Image_Load("./Assets/background2.jpg");
 	pauseimg = CP_Image_Load("./Assets/pause.png");
 	CP_System_SetWindowTitle("EggScape");
 	platform_global_init();
@@ -68,7 +68,7 @@ void game_update(void)
 		enemies_update();
 		collide();
 		score_update();
-		//sound_update();
+		sound_update();
 	}
 	// check input, update simulation, render etc.
 }

@@ -3,6 +3,8 @@
 #include "../Header/button.h"
 #include "../Header/gameover.h"
 #include "../Header/character.h"
+#include "../Header/platform_global.h"
+#include "../Header/sound.h"
 #include "cprocessing.h"
 #include <time.h>
 
@@ -11,11 +13,10 @@ int htimer = 0;
 CP_Image hand = NULL;
 CP_Image handout = NULL;
 CP_Image handgrab = NULL;
-
+CP_Image handattack = NULL;
 void hand_Collision(void)
 {
-	if (CP_Math_Square(hand_full.positionX - egg.x) < CP_Math_Square((hand_full.sizeX / 2 + 50)) && CP_Math_Square((hand_full.positionY - egg.y)) < CP_Math_Square((hand_full.sizeY / 2 + 50))
-		||
+	if (
 		egg.x + blocksize > (hand_full.positionX - (blocksize / 2 * .5f)) &&
 		egg.x< (hand_full.positionX - (blocksize / 2 * .5f) + blocksize * .75f) &&
 		egg.y + blocksize>hand_full.positionY &&
@@ -23,9 +24,11 @@ void hand_Collision(void)
 		)
 	{
 		htimer = 0;
+		sound.fisthit = 1;
 		CP_Engine_SetNextGameState(gameover_init, gameover_update, gameover_exit);
+		platform_global_init();
 	}
-	//CP_Graphics_DrawRect(hand_full.positionX-(blocksize/2*.5f), hand_full.positionY, blocksize*.75, blocksize);
+	//CP_Graphics_DrawRect(hand_full.positionX-(blocksize/2*.5f), hand_full.positionY, hand_full.sizeX, hand_full.sizeY);
 }
 
 void hands_movement(void)
@@ -52,6 +55,7 @@ void hands_movement(void)
 		hand = handgrab;
 		if(htimer >= attackinter+50)
 		{
+			hand = handattack;
 			hand_full.positionY += -50;
 		}
 	}
@@ -59,40 +63,31 @@ void hands_movement(void)
 	{
 		htimer = 0;
 	}
-	if(hand_full.positionY<WINDOW_HEIGHT)//drop
-	hand_full.positionY += 5;
-	//CP_Graphics_DrawRect(0, WINDOW_HEIGHT * 0.9f, windowx, 5);
-	//CP_Graphics_DrawRect(0, hand_full.positionY-5, windowx, 5);
-
+	if (hand_full.positionY < WINDOW_HEIGHT)//drop
+	{
+		hand_full.positionY += 5;
+	}
 }
 
-//CP_Image hand_bottom;
 void hand_init(void)
 {
-	handgrab = CP_Image_Load("./Assets/hand_GRAB.png");
-	handout = CP_Image_Load("./Assets/hand_OUT.png");
+	handgrab = CP_Image_Load("./Assets/hand_closed.png");
+	handout = CP_Image_Load("./Assets/hand_open.png");
+	handattack = CP_Image_Load("./Assets/hand_attack.png");
+
 	hand_full.increment = -4;
 	hand_full.speed = 40;
 	hand_full.positionY = WINDOW_HEIGHT;
 	hand_full.positionX = (float)CP_Random_RangeInt(10,windowx);
+	hand_full.sizeX = 200;
+	hand_full.sizeY = 200;
 }
 
 void hand_update(void)
 {	
-	//raise_hands();
 	hands_movement();
-	//hand = CP_Image_Load("./Assets/hand_OUT.png");
-	//if (CP_System_GetFrameCount() % 30 == 10)
-	//{
-	//	//hand = CP_Image_Load("./Assets/hand_OUT.png");
-	//}
-
-	//else if (CP_System_GetFrameCount() % 30 == 0)
-	//{
-	//	//hand = CP_Image_Load("./Assets/hand_GRAB.png");
-	//}
 	hand_Collision();
-	CP_Image_Draw(hand, (float)(hand_full.positionX) , (float)hand_full.positionY, 200, 200, 255);
+	CP_Image_Draw(hand, (float)(hand_full.positionX) , (float)hand_full.positionY, hand_full.sizeX, hand_full.sizeY, 255);
 }
 
 void hand_exit(void)
@@ -100,6 +95,7 @@ void hand_exit(void)
 	CP_Image_Free(&hand);
 	CP_Image_Free(&handgrab);
 	CP_Image_Free(&handout);
+	CP_Image_Free(&handattack);
 	htimer = 0;
 	hand_full.positionY = WINDOW_HEIGHT;
 }

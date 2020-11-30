@@ -4,8 +4,11 @@
 #include "../Header/mainmenu.h"
 #include "../Header/main.h"
 #include "../Header/Score.h"
+#include "../Header/sound.h"
 #include <stdio.h>
 #include <stdlib.h>
+extern CP_Sound fisthit;
+extern CP_Sound rathit;
 
 //letting the program know that it is an image that is being called
 CP_Image background_over=NULL;
@@ -48,4 +51,6 @@ void gameover_exit(void)
 	CP_Image_Free(&title_over);
 	deathscore = 0;
 	memset(charbuffer, 0, 100 * sizeof(char));
+	CP_Sound_Free(fisthit);
+	CP_Sound_Free(rathit);
 }
