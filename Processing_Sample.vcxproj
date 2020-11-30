@@ -22,6 +22,9 @@
     <ClCompile Include="Source\button.c" />
     <ClCompile Include="Source\character.c" />
     <ClCompile Include="Source\collision.c" />
+    <ClCompile Include="Source\credit.c" />
+    <ClCompile Include="Source\digipen.c" />
+    <ClCompile Include="Source\enemies_global.c" />
     <ClCompile Include="Source\gameover.c" />
     <ClCompile Include="Source\hand.c" />
     <ClCompile Include="Source\howtoplay.c" />
@@ -39,6 +42,9 @@
     <ClInclude Include="Header\button.h" />
     <ClInclude Include="Header\character.h" />
     <ClInclude Include="Header\collision.h" />
+    <ClInclude Include="Header\credit.h" />
+    <ClInclude Include="Header\digipen.h" />
+    <ClInclude Include="Header\enemies_global.h" />
     <ClInclude Include="Header\gameover.h" />
     <ClInclude Include="Header\hand.h" />
     <ClInclude Include="Header\howtoplay.h" />

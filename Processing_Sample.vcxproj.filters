@@ -8,9 +8,6 @@
     <ClCompile Include="Source\platform_global.c">
       <Filter>Platforms</Filter>
     </ClCompile>
-    <ClCompile Include="Source\platform_moving.c">
-      <Filter>Platforms</Filter>
-    </ClCompile>
     <ClCompile Include="Source\mainmenu.c">
       <Filter>Menus</Filter>
     </ClCompile>
@@ -32,9 +29,6 @@
     <ClCompile Include="Source\hand.c">
       <Filter>Character</Filter>
     </ClCompile>
-    <ClCompile Include="Source\platforms_break.c">
-      <Filter>Platforms</Filter>
-    </ClCompile>
     <ClCompile Include="Source\rat.c">
       <Filter>Character</Filter>
     </ClCompile>
@@ -43,6 +37,21 @@
     </ClCompile>
     <ClCompile Include="Source\sound.c">
       <Filter>UI , Sound and others</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\enemies_global.c">
+      <Filter>Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\digipen.c">
+      <Filter>UI , Sound and others</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\credit.c">
+      <Filter>Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\platform_moving.c">
+      <Filter>Platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\platforms_break.c">
+      <Filter>Platforms</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -73,13 +82,7 @@
     <ClInclude Include="Header\platform.h">
       <Filter>Platforms\Header File</Filter>
     </ClInclude>
-    <ClInclude Include="Header\platform_break.h">
-      <Filter>Platforms\Header File</Filter>
-    </ClInclude>
     <ClInclude Include="Header\platform_global.h">
-      <Filter>Platforms\Header File</Filter>
-    </ClInclude>
-    <ClInclude Include="Header\platform_moving.h">
       <Filter>Platforms\Header File</Filter>
     </ClInclude>
     <ClInclude Include="Header\Score.h">
@@ -89,6 +92,21 @@
       <Filter>UI , Sound and others\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Header\main.h" />
+    <ClInclude Include="Header\enemies_global.h">
+      <Filter>Character\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\digipen.h">
+      <Filter>UI , Sound and others\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\credit.h">
+      <Filter>Menus\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\platform_break.h">
+      <Filter>Platforms\Header File</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\platform_moving.h">
+      <Filter>Platforms\Header File</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Platforms">
