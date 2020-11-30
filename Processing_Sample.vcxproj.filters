@@ -50,6 +50,9 @@
     <ClCompile Include="Source\digipen.c">
       <Filter>UI , Sound and others</Filter>
     </ClCompile>
+    <ClCompile Include="Source\credit.c">
+      <Filter>Menus</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\character.h">
@@ -100,6 +103,9 @@
     </ClInclude>
     <ClInclude Include="Header\digipen.h">
       <Filter>UI , Sound and others\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\credit.h">
+      <Filter>Menus\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
