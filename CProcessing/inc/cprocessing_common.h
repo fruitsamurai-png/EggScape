@@ -236,6 +236,7 @@ typedef union CP_Matrix
 //		Gamepad uses a mapping to XINPUT
 typedef enum CP_KEY
 {
+	KEY_ANY = 0,			// Special value for checking any key
 	KEY_SPACE = 32,
 	KEY_APOSTROPHE = 39,	// '''
 	KEY_COMMA = 44,			// ','
