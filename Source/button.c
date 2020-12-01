@@ -11,14 +11,17 @@
 
 void play(Button button)
 {
-	//timer2 = 4.0f;
+	//button.locx = button.positionX;
 	if (CP_Input_GetMouseX() >= button.positionX - button.sizeX / 2 &&
 		CP_Input_GetMouseX() <= button.positionX + button.sizeX / 2 &&
 		CP_Input_GetMouseY() >= button.positionY - button.sizeY / 2 &&
-		CP_Input_GetMouseY() <= button.positionY + button.sizeY / 2)
+		CP_Input_GetMouseY() <= button.positionY + button.sizeY / 2
+		||
+		button.locx == button.positionX
+		)
 	{
 		playButton.image = CP_Image_Load("./Assets/Buttons/RUN.png");
-		if (CP_Input_MouseClicked())
+		if (CP_Input_MouseClicked() || CP_Input_KeyTriggered(KEY_SPACE)||CP_Input_KeyTriggered(KEY_ENTER))
 		{
 			timer3 = 5.5f;
 			check = 1;
@@ -46,7 +49,7 @@ void play(Button button)
 		{
 			speed += 20;
 		}
-		else if (check==1)
+		else if (check == 1)
 		{
 			CP_Engine_SetNextGameState(game_init, game_update, game_exit);
 			check = 0;
@@ -58,13 +61,17 @@ void play(Button button)
 
 void howtoplay(Button button)
 {
+	//button.locx = button.positionX;
 	if (CP_Input_GetMouseX() >= button.positionX - button.sizeX / 2 &&
 		CP_Input_GetMouseX() <= button.positionX + button.sizeX / 2 &&
 		CP_Input_GetMouseY() >= button.positionY - button.sizeY / 2 &&
-		CP_Input_GetMouseY() <= button.positionY + button.sizeY / 2)	//where the collision takes place when mouse is clicked on the how to play button (font) and if it is not in the boundary of the mouse clicked, it won't proceed anywhere
+		CP_Input_GetMouseY() <= button.positionY + button.sizeY / 2
+		||
+		button.locx == button.positionX
+		)	//where the collision takes place when mouse is clicked on the how to play button (font) and if it is not in the boundary of the mouse clicked, it won't proceed anywhere
 	{
 		howtoplayButton.image = CP_Image_Load("./Assets/Buttons/instructions_r.png");
-		if (CP_Input_MouseClicked())
+		if (CP_Input_MouseClicked() || CP_Input_KeyTriggered(KEY_SPACE)||CP_Input_KeyTriggered(KEY_ENTER))
 		{
 			CP_Engine_SetNextGameState(howtoplay_init, howtoplay_update, howtoplay_exit);	//if the mouse is clicked, it will proceed to the howtoplay screen
 		}
@@ -80,10 +87,13 @@ void exitgame(Button button) //making a exit button to proceeed to terminate the
 	if (CP_Input_GetMouseX() >= button.positionX - button.sizeX / 2 &&
 		CP_Input_GetMouseX() <= button.positionX + button.sizeX / 2 &&
 		CP_Input_GetMouseY() >= button.positionY - button.sizeY / 2 &&
-		CP_Input_GetMouseY() <= button.positionY + button.sizeY / 2)
+		CP_Input_GetMouseY() <= button.positionY + button.sizeY / 2
+		||
+		button.locx == button.positionX
+		)
 	{
 		exitButton.image = CP_Image_Load("./Assets/Buttons/Exit_r.png");
-		if (CP_Input_MouseClicked())
+		if (CP_Input_MouseClicked() || CP_Input_KeyTriggered(KEY_SPACE)||CP_Input_KeyTriggered(KEY_ENTER))
 		{
 
 			CP_Engine_Terminate();	//if the mouse is clicked, it will terminate the screen
@@ -100,10 +110,13 @@ void menu(Button button)	//making a menu button to proceeed to the main menu scr
 	if (CP_Input_GetMouseX() >= button.positionX - button.sizeX / 2 &&
 		CP_Input_GetMouseX() <= button.positionX + button.sizeX / 2 &&
 		CP_Input_GetMouseY() >= button.positionY - button.sizeY / 2 &&
-		CP_Input_GetMouseY() <= button.positionY + button.sizeY / 2) // where the collision takes place when mouse is clicked on the menu button(font) and if it is not in the boundary of the mouse clicked, it won't proceed anywhere
+		CP_Input_GetMouseY() <= button.positionY + button.sizeY / 2
+		||
+		button.locx == button.positionX
+		) // where the collision takes place when mouse is clicked on the menu button(font) and if it is not in the boundary of the mouse clicked, it won't proceed anywhere
 	{
 		menuButton.image = CP_Image_Load("./Assets/Buttons/menu_r.png");
-		if (CP_Input_MouseClicked())
+		if (CP_Input_MouseClicked() || CP_Input_KeyTriggered(KEY_SPACE)||CP_Input_KeyTriggered(KEY_ENTER))
 		{
 			CP_Engine_SetNextGameState(mainmenu_init, mainmenu_update, mainmenu_exit);	//if the mouse is clicked, it will proceed to the main menu screen
 		}
@@ -119,11 +132,14 @@ void restart(Button button)	//making a restart button to proceeed to the main sc
 	if (CP_Input_GetMouseX() >= button.positionX - button.sizeX / 2 &&
 		CP_Input_GetMouseX() <= button.positionX + button.sizeX / 2 &&
 		CP_Input_GetMouseY() >= button.positionY - button.sizeY / 2 &&
-		CP_Input_GetMouseY() <= button.positionY + button.sizeY / 2)	// where the collision takes place when mouse is clicked on the restart button(font) and if it is not in the boundary of the mouse clicked, it won't proceed anywhere
+		CP_Input_GetMouseY() <= button.positionY + button.sizeY / 2
+		||
+		button.locx == button.positionX
+		)	// where the collision takes place when mouse is clicked on the restart button(font) and if it is not in the boundary of the mouse clicked, it won't proceed anywhere
 	{
 		restartButton.image = CP_Image_Load("./Assets/Buttons/restart_r.png");
 
-		if (CP_Input_MouseClicked())
+		if (CP_Input_MouseClicked() || CP_Input_KeyTriggered(KEY_SPACE)||CP_Input_KeyTriggered(KEY_ENTER))
 		{
 			CP_Engine_SetNextGameState(game_init, game_update, game_exit);//if the mouse is clicked, it will proceed to the main screen
 		}
@@ -134,16 +150,19 @@ void restart(Button button)	//making a restart button to proceeed to the main sc
 	}
 }
 
-void credit (Button button)
+void credit(Button button)
 {
 	if (CP_Input_GetMouseX() >= button.positionX - button.sizeX / 2 &&
 		CP_Input_GetMouseX() <= button.positionX + button.sizeX / 2 &&
 		CP_Input_GetMouseY() >= button.positionY - button.sizeY / 2 &&
-		CP_Input_GetMouseY() <= button.positionY + button.sizeY / 2)	// where the collision takes place when mouse is clicked on the restart button(font) and if it is not in the boundary of the mouse clicked, it won't proceed anywhere
+		CP_Input_GetMouseY() <= button.positionY + button.sizeY / 2
+		||
+		button.locx == button.positionX
+		)	// where the collision takes place when mouse is clicked on the restart button(font) and if it is not in the boundary of the mouse clicked, it won't proceed anywhere
 	{
 		creditButton.image = CP_Image_Load("./Assets/Buttons/credit_r.png");
 
-		if (CP_Input_MouseClicked())
+		if (CP_Input_MouseClicked() || CP_Input_KeyTriggered(KEY_SPACE)||CP_Input_KeyTriggered(KEY_ENTER))
 		{
 			CP_Engine_SetNextGameState(credit_init, credit_update, credit_exit);	//if the mouse is clicked, it will proceed to the main screen
 		}
@@ -156,6 +175,7 @@ void credit (Button button)
 
 void init_button(void)
 {
+
 	playButton.image = CP_Image_Load("./Assets/Buttons/mainmenu_RUN.png");
 	playButton.positionX = WINDOW_WIDTH * 1 / 11;
 	playButton.positionY = WINDOW_HEIGHT * 3 / 4;
@@ -176,7 +196,7 @@ void init_button(void)
 	check = 0;
 	timer3 = 0;
 	speed = 0;
-	x = 80; 
+	x = 80;
 
 	creditButton.image = CP_Image_Load("./Assets/Buttons/credit.png");
 	creditButton.positionX = 50;
