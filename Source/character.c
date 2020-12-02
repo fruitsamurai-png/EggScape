@@ -7,6 +7,7 @@
 CP_Image eggy1=NULL;
 CP_Image egg_r = NULL;
 CP_Image egg_l = NULL;
+CP_Image ready = NULL;
 int check=0;
 float maxspeed = 0;
 int timer = 0;
@@ -28,6 +29,8 @@ static void doublejump(void)
 				egg.isgrounded = 0;
 				alpha = 0;
 				sound.Djump = 1;
+				egg.firstjump = 1;
+				egg.alpha = 255;
 			}
 		}
 	if (!egg.isgrounded)
@@ -44,6 +47,11 @@ static void doublejump(void)
 			timer = 0;
 		}
 	}
+	if (egg.firstjump!=0 && egg.cooldown == 0 && CP_System_GetSeconds()!=100)
+	{
+		CP_Image_DrawSubImage(ready, egg.x, egg.y-75, 30, 30, 256,0,348,128,egg.alpha);
+		egg.alpha--;
+	}
 }
 static void eggjump(void)
 {
@@ -56,12 +64,7 @@ static void eggjump(void)
 
 	if (egg.isjump)
 	{
-		if (!egg.count)
-		{
-			egg.h = -60;
-			egg.count = 1;
-		}
-		else egg.h = -40;
+		egg.h = -46;
 		egg.isjump = 0;
 	}
 	
@@ -78,13 +81,15 @@ void eggs_init(void)
 	egg.h = 0;
 	egg.x = plats[7].dimx+(0.5f*dimw);
 	egg.y = windowy / 2;
-	egg.count = 0;
 	maxspeed = 30;
 	egg.cooldown = 0;
 	alpha = 200;
 	egg.ro=0;
+	egg.firstjump = 0;
 	egg_r= CP_Image_Load("./Assets/egg_r.png");
 	egg_l= CP_Image_Load("./Assets/egg_l.png");
+	ready = CP_Image_Load("./Assets/Icons.png");
+
 }
 void eggs_update(void)
 {
@@ -102,16 +107,7 @@ void eggs_update(void)
 			egg.movement -= (egg.maxaccel * CP_System_GetDt());
 			check = 0;
 		}
-		if (check == 1)
-		{
-			eggy1 = egg_r;
-	
-		}
-		else if (check == 0)
-		{
-			eggy1 = egg_l;
-			
-		}
+		eggy1=check!=0 ?  egg_r: egg_l;
 	
 	egg.x += egg.movement;
 	if (egg.movement >= maxspeed)
@@ -124,7 +120,6 @@ void eggs_update(void)
 	}
 	eggjump();// egg jumping 
 	doublejump();//double ability
-	CP_Settings_Fill(CP_Color_Create(255, 255, 255, 255));
 	CP_Image_DrawAdvanced(eggy1, (float)egg.x, (float)egg.y, blocksize, blocksize,255, egg.ro);
 }
 void eggs_exit(void)
@@ -135,11 +130,12 @@ void eggs_exit(void)
 	egg.isjump = 0;
 	egg.h = 0;
 	egg.movement = 0;
-	egg.count = 0;
 	timer = 0;
 	alpha = 0;
 	egg.ro = 0;
 	CP_Image_Free(&eggy1);
 	CP_Image_Free(&egg_l);
 	CP_Image_Free(&egg_r);
+	CP_Image_Free(&ready);
+
 }

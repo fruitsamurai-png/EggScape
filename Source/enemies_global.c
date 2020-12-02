@@ -8,27 +8,49 @@
 
 void enemies_init(void)
 {
-	mouse_init();
+	mouse_init(2);
 	hand_init();
+	ratnum = 0;
+	handnum = 0;
 }
 void enemies_update(void)
 {
-	if (rand == 1)
+	switch (rand)
 	{
-		mouse_update();
+		case 0:
+		{
+			ratnum = 0;
+			break;
+		}
+		case 1:
+		{
+			ratnum = 0;
+			handnum = 1;
+			break;
+		}
+		case 2:
+		{
+			ratnum = 1;
+			handnum = 1;
+			break;
+		}
+		case 3:
+		{
+			ratnum = 2;
+			handnum = 1;
+		}
+		default:
+		{
+
+		}
 	}
-	if (rand == 2)
-	{
-		hand_update();
-	}
-	if (rand == 3)
-	{
-		hand_update();
-		mouse_update();
-	}
+	mouse_update(ratnum);
+	hand_update(handnum);
 }
 void enemies_exit(void)
 {
-	mouse_exit();
+	mouse_exit(handnum);
 	hand_exit();
+	ratnum = 0;
+	handnum = 0;
 }

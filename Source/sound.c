@@ -17,33 +17,51 @@ CP_Sound breakjump = NULL;
 CP_Sound fisthit = NULL;
 CP_Sound rathit = NULL;
 CP_Sound intro = NULL;
+CP_Sound select = NULL;
+CP_Image icons = NULL;
+
+int i = 0;
 void sound_init(void)
 {
-	Djump = CP_Sound_Load("./Assets/DJump.wav");
-	jump = CP_Sound_Load("./Assets/jump.wav");
-	breakjump = CP_Sound_Load("./Assets/Breakjump.wav");
-	fisthit = CP_Sound_Load("./Assets/handhit.wav");
-	rathit = CP_Sound_Load("./Assets/rat.wav");
-	intro = CP_Sound_Load("./Assets/intro.wav");
+	Djump = CP_Sound_Load("./Assets/Sound/DJump.wav");
+	jump = CP_Sound_Load("./Assets/Sound/jump.wav");
+	breakjump = CP_Sound_Load("./Assets/Sound/Breakjump.wav");
+	fisthit = CP_Sound_Load("./Assets/Sound/handhit.wav");
+	rathit = CP_Sound_Load("./Assets/Sound/rat.wav");
+	intro = CP_Sound_Load("./Assets/Sound/intro.wav");
+	select = CP_Sound_Load("./Assets/Sound/selection.wav");
+	icons = CP_Image_Load("./Assets/Icons.png");
+
 	sound.jump = 0;
+	sound.alpha = 0;
 }
 void sound_update(void)
 {
-	
 	static float volume = .5f;
 	if (CP_Input_KeyTriggered(KEY_M))
 	{
-		static int i = 0;
 		if (!i)
 		{
 			CP_Sound_PauseAll();
 			i = 1;
+			sound.alpha = 255;
 		}
 		else if (i)
 		{
 			CP_Sound_ResumeAll();
 			i = 0;
+			sound.alpha = 255;
 		}
+	}
+	if (i == 1)
+	{
+		CP_Image_DrawSubImage(icons, 700, 100, 50, 50, 0,0,128,128,sound.alpha);
+		sound.alpha -= 4;
+	}
+	if (i == 0)
+	{
+		CP_Image_DrawSubImage(icons, 700, 100, 50, 50, 128, 0, 256, 128, sound.alpha);
+		sound.alpha -= 4;
 	}
 	if (CP_Input_KeyTriggered(KEY_Q))
 	{
@@ -82,11 +100,17 @@ void sound_update(void)
 			CP_Sound_PlayAdvanced(rathit, volume, 1, 0, CP_SOUND_GROUP_0);
 			sound.rathit = 0;
 		}
+		if (sound.select)
+		{
+			CP_Sound_PlayAdvanced(select, volume, 1, 0, CP_SOUND_GROUP_0);
+			sound.select = 0;
+		}
 }
 void sound_exit(void)
 {
 	CP_Sound_Free(jump);
 	CP_Sound_Free(Djump);
 	CP_Sound_Free(breakjump);
+	CP_Image_Free(&icons);
 	sound.jump = 0;
 }

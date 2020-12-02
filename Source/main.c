@@ -24,7 +24,7 @@
 #include "../Header/sound.h"
 #include "../Header/enemies_global.h"
 #include "stdbool.h"
-CP_Image background=NULL;
+CP_Image background = NULL;
 CP_Image pauseimg = NULL;
 float WINDOW_WIDTH,WINDOW_HEIGHT;
 bool pause = 0;
@@ -35,9 +35,8 @@ void game_init(void)
 {
 	WINDOW_WIDTH = (float)windowx;
 	WINDOW_HEIGHT = (float)windowy;
-	background = CP_Image_Load("./Assets/background2.jpg");
-	pauseimg = CP_Image_Load("./Assets/pause.png");
-	CP_System_SetWindowTitle("EggScape");
+	background = CP_Image_Load("./Assets/Backgrounds/background.jpg");
+	pauseimg = CP_Image_Load("./Assets/Backgrounds/pause.png");
 	platform_global_init();
 	enemies_init();
 	eggs_init();
@@ -93,6 +92,7 @@ void game_exit(void)
 // CP_Engine_Run() is the core function that starts the simulation
 int main(void)
 {
+	CP_System_SetWindowTitle("EggScape");
 	CP_Engine_SetNextGameState(intro_init, intro_update, intro_exit);
 	CP_System_SetWindowSize(windowx, windowy);
 	CP_Engine_Run();

@@ -23,18 +23,51 @@ static void display_score(void)
 }
 void gameover_init(void)
 {
+	sound_init();
 	WINDOW_HEIGHT = (float)CP_System_GetWindowHeight();	//since the WINDOW_HEIGHT and WINDOW_WIDTH is a float, there is a need to put the CP_System_GetWindow for both lengths in float
 	WINDOW_WIDTH = (float)CP_System_GetWindowWidth();
-	background_over = CP_Image_Load("./Assets/gameover_BACKGROUND.png");
-	title_over = CP_Image_Load("./Assets/gameover_TITLE.png");
+	background_over = CP_Image_Load("./Assets/Backgrounds/gameover_BACKGROUND.png");
+	title_over = CP_Image_Load("./Assets/Backgrounds/gameover_TITLE.png");
 	init_button3();												// init_button3() is called in button.c
 }
 
 void gameover_update(void)
 {
+	static int loc = 0;
+	sound_update();
 	CP_Settings_Background(CP_Color_Create(0, 0, 0, 255));		// background colour to ensure that is a opaque
 	CP_Image_Draw(background_over, WINDOW_WIDTH / 2, windowy / 2, windowx, windowy, 255);
 	CP_Image_Draw(title_over, WINDOW_WIDTH / 2, WINDOW_HEIGHT * 1 / 10, 700, 100, 255);
+	if (CP_Input_KeyTriggered(KEY_RIGHT)||
+		CP_Input_KeyTriggered(KEY_D)
+		)
+	{
+		sound.select = 1;
+		loc += 1;
+		if (loc > 1)
+			loc = 0;
+	}
+	if (CP_Input_KeyTriggered(KEY_LEFT)||
+		CP_Input_KeyTriggered(KEY_A))
+	{
+		sound.select = 1;
+		loc -= 1;
+		if (loc < 0)
+			loc = 1;
+	}
+	switch (loc)
+	{
+	case 0:
+		restartButton.locx = restartButton.positionX;
+		menuButton.locx++;
+		break;
+	case 1:
+		menuButton.locx = menuButton.positionX;
+		restartButton.locx++;
+		break;
+	default:
+		break;
+	}
 
 	CP_Image_Draw(restartButton.image, restartButton.positionX, restartButton.positionY, restartButton.sizeX, restartButton.sizeY, 255);
 	CP_Image_Draw(menuButton.image, menuButton.positionX, menuButton.positionY, menuButton.sizeX, menuButton.sizeY, 255);

@@ -7,6 +7,7 @@ int opa;
 float width, height;
 void intro_init(void)
 {
+	CP_System_SetWindowTitle("EggScape");
 	opa = 0;
 	digipen = CP_Image_Load("./Assets/DigiPen_RED.png");
 	width = (float)CP_Image_GetWidth(digipen);

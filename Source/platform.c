@@ -17,7 +17,7 @@ void platform_init(int i)
 			plats[i].dimy = (float)(CP_Random_RangeInt(50, 150)) + plats[i - 1].dimy;
 			plats[i].dimx = (float)(CP_Random_RangeInt(dimw / 2, (windowx - dimw)));
 		}
-		table = CP_Image_Load("./Assets/plat_norm.png");
+		table = CP_Image_Load("./Assets/Platforms/plat_norm.png");
 }
 void platform_update(int i)
 {

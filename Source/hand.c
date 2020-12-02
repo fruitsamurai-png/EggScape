@@ -71,9 +71,9 @@ void hands_movement(void)
 
 void hand_init(void)
 {
-	handgrab = CP_Image_Load("./Assets/hand_closed.png");
-	handout = CP_Image_Load("./Assets/hand_open.png");
-	handattack = CP_Image_Load("./Assets/hand_attack.png");
+	handgrab = CP_Image_Load("./Assets/Enemy/hand_closed.png");
+	handout = CP_Image_Load("./Assets/Enemy/hand_open.png");
+	handattack = CP_Image_Load("./Assets/Enemy/hand_attack.png");
 
 	hand_full.increment = -4;
 	hand_full.speed = 40;
@@ -83,11 +83,15 @@ void hand_init(void)
 	hand_full.sizeY = 200;
 }
 
-void hand_update(void)
+int hand_update(int yes)
 {	
-	hands_movement();
-	hand_Collision();
-	CP_Image_Draw(hand, (float)(hand_full.positionX) , (float)hand_full.positionY, hand_full.sizeX, hand_full.sizeY, 255);
+	if (yes)
+	{
+		hands_movement();
+		hand_Collision();
+		CP_Image_Draw(hand, (float)(hand_full.positionX), (float)hand_full.positionY, hand_full.sizeX, hand_full.sizeY, 255);
+	}
+	return yes;
 }
 
 void hand_exit(void)

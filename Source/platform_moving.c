@@ -8,7 +8,7 @@
 CP_Image table_moving = NULL;
 void platform_moving_init(void)
 {
-		table_moving = CP_Image_Load("./Assets/plat_move.png");
+		table_moving = CP_Image_Load("./Assets/Platforms/plat_move.png");
 		plats_moving->speed = 40;
 		plats_moving->time = 0;
 }

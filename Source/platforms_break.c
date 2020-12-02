@@ -9,7 +9,7 @@
 CP_Image table_break = NULL;
 void platform_break_init(int i)
 {
-	table_break = CP_Image_Load("./Assets/plat_break.png");
+	table_break = CP_Image_Load("./Assets/Platforms/plat_break.png");
 	plats_break[i].isbroken = 1;
 	plats_break[i].alpha = 255;
 }
