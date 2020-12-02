@@ -57,12 +57,20 @@
     <ClInclude Include="Header\rat.h" />
     <ClInclude Include="Header\Score.h" />
     <ClInclude Include="Header\sound.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="EggScape.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\icon.ico" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{14B654ED-D716-460A-8335-22E3EDB70027}</ProjectGuid>
     <RootNamespace>ProcessingSample</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>EggScape</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

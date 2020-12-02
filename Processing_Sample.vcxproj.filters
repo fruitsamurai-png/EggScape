@@ -8,9 +8,6 @@
     <ClCompile Include="Source\platform_global.c">
       <Filter>Platforms</Filter>
     </ClCompile>
-    <ClCompile Include="Source\platform_moving.c">
-      <Filter>Platforms</Filter>
-    </ClCompile>
     <ClCompile Include="Source\mainmenu.c">
       <Filter>Menus</Filter>
     </ClCompile>
@@ -32,9 +29,6 @@
     <ClCompile Include="Source\hand.c">
       <Filter>Character</Filter>
     </ClCompile>
-    <ClCompile Include="Source\platforms_break.c">
-      <Filter>Platforms</Filter>
-    </ClCompile>
     <ClCompile Include="Source\rat.c">
       <Filter>Character</Filter>
     </ClCompile>
@@ -52,6 +46,12 @@
     </ClCompile>
     <ClCompile Include="Source\credit.c">
       <Filter>Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\platform_moving.c">
+      <Filter>Platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\platforms_break.c">
+      <Filter>Platforms</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -82,13 +82,7 @@
     <ClInclude Include="Header\platform.h">
       <Filter>Platforms\Header File</Filter>
     </ClInclude>
-    <ClInclude Include="Header\platform_break.h">
-      <Filter>Platforms\Header File</Filter>
-    </ClInclude>
     <ClInclude Include="Header\platform_global.h">
-      <Filter>Platforms\Header File</Filter>
-    </ClInclude>
-    <ClInclude Include="Header\platform_moving.h">
       <Filter>Platforms\Header File</Filter>
     </ClInclude>
     <ClInclude Include="Header\Score.h">
@@ -107,6 +101,13 @@
     <ClInclude Include="Header\credit.h">
       <Filter>Menus\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Header\platform_break.h">
+      <Filter>Platforms\Header File</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\platform_moving.h">
+      <Filter>Platforms\Header File</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Platforms">
@@ -133,5 +134,11 @@
     <Filter Include="UI , Sound and others\Header Files">
       <UniqueIdentifier>{a5b5c496-7c99-4832-82e2-0cfcf4603d50}</UniqueIdentifier>
     </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="EggScape.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\icon.ico" />
   </ItemGroup>
 </Project>
