@@ -11,6 +11,7 @@ typedef struct Button
 	float positionY;
 	float sizeX;
 	float sizeY;
+	float locx;
 
 }Button;
 
@@ -37,6 +38,7 @@ CP_Image eggy;
 CP_Image hand;
 
 //prototypes of mainmenu, how to play and gameover screens
+
 void play(Button button);
 void howtoplay(Button button);
 void menu(Button button);

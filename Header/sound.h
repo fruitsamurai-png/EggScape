@@ -7,6 +7,8 @@ struct sound
 	int fisthit;
 	int rathit;
 	int intro;
+	int alpha;
+	int select;
 }sound;
 void sound_init(void);
 void sound_update(void);

@@ -1,9 +1,9 @@
 #pragma once
 struct mouse
 {
-	float x, y, movement, speed;
+	float x, y, movement, speed,alpha;
 }mouse;
-struct mouse mouse;
-void mouse_init(void);
-void mouse_update(void);
-void mouse_exit(void);
+struct mouse mouses[10];
+void mouse_init(size_t count1);
+void mouse_update(size_t count3);
+void mouse_exit(size_t count2);

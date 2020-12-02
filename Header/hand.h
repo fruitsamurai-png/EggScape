@@ -15,5 +15,5 @@ struct hands hand_full;
 void hands_movement(void);
 void hand_Collision(void);
 void hand_init(void);
-void hand_update(void);
+int hand_update(int yes);
 void hand_exit(void);
