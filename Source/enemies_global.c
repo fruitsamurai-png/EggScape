@@ -19,18 +19,19 @@ void enemies_update(void)
 	{
 		case 0:
 		{
-			ratnum = 2;
+			ratnum = 0;
+			handnum = 0;
 			break;
 		}
 		case 1:
 		{
-			ratnum = 2;
+			ratnum = 0;
 			handnum = 1;
 			break;
 		}
 		case 2:
 		{
-			ratnum = 2;
+			ratnum = 1;
 			handnum = 1;
 			break;
 		}
