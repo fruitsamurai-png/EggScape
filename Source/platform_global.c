@@ -32,12 +32,12 @@ void platform_generator1(int f)
 		count++;
 		if (plats[f].dimy > windowy)
 		{
-			if (plats_moving[f].dimy > windowy && count % 4 == 0 && plats[f].dimx != plats_moving[f].dimx)
+			if (plats_moving[f].dimy > windowy && count % 5 == 0 && plats[f].dimx != plats_moving[f].dimx)
 			{
 				plats_moving[f].dimy = 0;
 				plats_moving[f].dimx = (float)(CP_Random_RangeInt(0, (windowx - dimw + plats_moving->speed)));
 			}
-			else if (count % 9 == 0)
+			else if (count % 5 != 0)
 			{
 				plats[f].dimy = 0;
 				plats[f].dimx = (float)(CP_Random_RangeInt(dimw / 2, (windowx - dimw)));
@@ -109,12 +109,17 @@ void platform_generator1(int f)
 
 	case 5: //Lv4
 		count++;
-		if (plats_break[f].dimy > windowy && count % 2 == 0 && plats[f].dimy != plats_break[f].dimy)
+		if (plats_break[f].dimy > windowy && count % 10 != 0 && plats[f].dimy != plats_break[f].dimy)
 		{
 			plats_break[f].dimy = 0;
 			plats_break[f].dimx = (float)(CP_Random_RangeInt(0, (windowx - dimw)));
 			plats_break[f].isbroken = 1;
 			plats_break[f].alpha = 255;
+		}
+		if (plats_moving[f].dimy > windowy && count % 10 == 0 && plats[f].dimy != plats_moving[f].dimy)
+		{
+			plats_moving[f].dimy = 0;
+			plats_moving[f].dimx = (float)(CP_Random_RangeInt(0, (windowx - dimw + plats_moving->speed)));
 		}
 		break;
 	case 6://level 2

@@ -53,9 +53,10 @@ void hands_movement(void)
 	if (htimer >= attackinter && hand_full.positionY > WINDOW_HEIGHT / 2)//attack
 	{
 		hand = handgrab;
+		if (htimer >=attackinter+40)hand = handattack;
+
 		if(htimer >= attackinter+50)
 		{
-			hand = handattack;
 			hand_full.positionY += -50;
 		}
 	}

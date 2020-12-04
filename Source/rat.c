@@ -17,8 +17,8 @@ void mouse_init(size_t count1)
 	{
 		mouses[n].x= (float)(CP_Random_RangeInt(blocksize,windowx));
 		mouses[n].y = -blocksize;
-		mouses[n].speed = 15;
-		if (n / 2 == 0)mouses[n].speed *= -1;
+		mouses[n].speed = 40;
+		if (n==1)mouses[n].speed *= -1;
 		rat = CP_Image_Load("./Assets/Enemy/rat.png");
 		warnings = CP_Image_Load("./Assets/Enemy/warn.png");
 	}
@@ -29,7 +29,7 @@ void mouse_update(size_t count3)
 	{
 		++mtimer;
 		mouses[n].x += mouses[n].speed;
-		if (mouses[n].x > (windowx - 100) || mouses[n].x < 0)
+		if (mouses[n].x > (windowx) || mouses[n].x < 0)
 		{
 			mouses[n].speed *= -1;
 		}
@@ -42,12 +42,21 @@ void mouse_update(size_t count3)
 			mouses[n].speed = 0;
 			mouses[n].y += 20;
 		}
-		if (mouses[n].y > windowy+50)
+		if (n==0 && mouses[n].y > windowy+50)
 		{
 			mtimer = 0;
 			mouses[n].y = -blocksize;
+			mouses[n].x = (float)CP_Random_RangeInt(blocksize, windowx);
 			mouses[n].speed = 20;
-			if (n / 2 == 0)mouses[n].speed *= -1;
+			mtimer = 0;
+		}
+		else if (n == 1 && mouses[0].y && mouses[1].y > windowy + 50)
+		{
+			mtimer = 0;
+			mouses[n].y = -blocksize;
+			mouses[n].x = (float)CP_Random_RangeInt(blocksize, windowx);
+			mouses[n].speed = 20;
+			if (n==1)mouses[n].speed *= -1;
 			mtimer = 0;
 		}
 		if (mouses[n].x + blocksize > egg.x &&
