@@ -24,6 +24,7 @@ void credit_update(void)
 		CP_Input_KeyTriggered(KEY_D))
 	{
 		sound.select = 1;
+		menuButton.mc = 0;
 		loc += 1;
 		if (loc > 0)
 			loc = 0;
@@ -32,6 +33,7 @@ void credit_update(void)
 		CP_Input_KeyTriggered(KEY_A))
 	{
 		sound.select = 1;
+		menuButton.mc = 0;
 		loc += 1;
 		if (loc > 0)
 			loc = 0;

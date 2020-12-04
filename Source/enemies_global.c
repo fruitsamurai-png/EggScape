@@ -15,7 +15,7 @@ void enemies_init(void)
 }
 void enemies_update(void)
 {
-	switch (rand)
+	switch (variation)
 	{
 		case 0:
 		{
@@ -38,10 +38,13 @@ void enemies_update(void)
 		{
 			ratnum = 2;
 			handnum = 1;
+			break;
 		}
 		default:
 		{
-
+			ratnum = 2;
+			handnum = 1;
+			break;
 		}
 	}
 	mouse_update(ratnum);

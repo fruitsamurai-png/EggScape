@@ -36,14 +36,22 @@ void mainmenu_update(void)
 	if (CP_Input_KeyTriggered(KEY_RIGHT)||
 		CP_Input_KeyTriggered(KEY_D))
 	{
+		playButton.mc = 0;
+		howtoplayButton.mc = 0;
+		creditButton.mc = 0;
+		exitButton.mc = 0;
 		sound.select = 1;
 		loc += 1;
 		if (loc > 4)
 			loc = 1;
 	}
-	if (CP_Input_KeyTriggered(KEY_LEFT)||
+	if (CP_Input_KeyTriggered(KEY_LEFT) ||
 		CP_Input_KeyTriggered(KEY_A))
 	{
+		playButton.mc = 0;
+		howtoplayButton.mc = 0;
+		creditButton.mc = 0;
+		exitButton.mc = 0;
 		sound.select = 1;
 		loc -= 1;
 		if (loc < 1)
@@ -88,4 +96,8 @@ void mainmenu_exit(void)
 	CP_Sound_Free(intro);
 	CP_Sound_Free(select);
 	exit_button();
+	playButton.mc = 0;
+	howtoplayButton.mc = 0;
+	creditButton.mc = 0;
+	exitButton.mc = 0;
 }

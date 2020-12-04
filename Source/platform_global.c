@@ -9,18 +9,17 @@
 
 void platform_generator1(int f)
 {
-	if (score > 500)rand = 1;
-	if (score > 1000)rand = 2;
-	if (score > 2000)rand = 3;
-	if (score > 3000)rand = 4;
-	if (score > 4000)rand = 5;
-	if (score > 5000)rand = 6;
-	if (score > 6000)rand = 7;
-	if (score > 7000)rand = 8;
+	if (score > 500)variation = 1;
+	if (score > 1000)variation = 2;
+	if (score > 2000)variation = 3;
+	if (score > 3000)variation = 4;
+	if (score > 4000)variation = 5;
+	if (score > 5000)variation = 6;
+	if (score > 6000)variation = 7;
 
-	switch (rand)
+	switch (variation)
 	{
-	case 1:  //level 1
+	case 0:  //level 1
 		count++;
 		if (plats[f].dimy > windowy)
 		{
@@ -29,19 +28,24 @@ void platform_generator1(int f)
 		}
 		break;
 
-	case 2: //level 3
+	case 1: //level 3
 		count++;
 		if (plats[f].dimy > windowy)
 		{
-			if (plats_moving[f].dimy > windowy && count % 2 == 0 && plats[f].dimx != plats_moving[f].dimx)
+			if (plats_moving[f].dimy > windowy && count % 4 == 0 && plats[f].dimx != plats_moving[f].dimx)
 			{
 				plats_moving[f].dimy = 0;
 				plats_moving[f].dimx = (float)(CP_Random_RangeInt(0, (windowx - dimw + plats_moving->speed)));
 			}
+			else if (count % 9 == 0)
+			{
+				plats[f].dimy = 0;
+				plats[f].dimx = (float)(CP_Random_RangeInt(dimw / 2, (windowx - dimw)));
+			}
 		}
 		break;
 
-	case 3:
+	case 2:
 		count++;
 		if (plats[f].dimy > windowy)
 		{
@@ -58,7 +62,7 @@ void platform_generator1(int f)
 		}
 		break;
 
-	case 4:
+	case 3:
 
 		count++;
 		if (plats[f].dimy > windowy)
@@ -78,7 +82,7 @@ void platform_generator1(int f)
 		}
 		break;
 
-	case 5://lv5
+	case 4://lv5
 
 		count++;
 		if (plats[f].dimy > windowy)
@@ -103,7 +107,7 @@ void platform_generator1(int f)
 		}
 		break;
 
-	case 6: //Lv4
+	case 5: //Lv4
 		count++;
 		if (plats_break[f].dimy > windowy && count % 2 == 0 && plats[f].dimy != plats_break[f].dimy)
 		{
@@ -113,7 +117,7 @@ void platform_generator1(int f)
 			plats_break[f].alpha = 255;
 		}
 		break;
-	case 7://level 2
+	case 6://level 2
 
 		if (plats[f].dimy > windowy)
 		{
@@ -137,7 +141,7 @@ void platform_generator1(int f)
 		}
 		break;
 
-	case 8:
+	case 7:
 		if (plats[f].dimy > windowy)
 		{
 			if (plats_break[f].dimy > windowy && count % 1 == 0 && plats[f].dimy != plats_break[f].dimy)
@@ -169,8 +173,9 @@ void platform_global_init(void)
 		platform_moving_init();
 		platform_break_init(i);
 	}
-	rand = 0;
+	variation = 0;
 	count = 0;
+	isout = 0;
 }
 void platform_global_update(void)
 {
@@ -189,15 +194,18 @@ void platform_global_update(void)
 			plats_moving[f].dimy = plats_moving[f].dimy - egg.h * 1.1f;
 			plats_break[f].dimy = plats_break[f].dimy - egg.h * 1.1f;
 			platform_generator1(f);
+			isout = 1;
+
 		}
 
 	}
+	else isout = 0;
 }
 void platform_global_exit(void)
 {
 	platform_exit();
 	platform_moving_exit();
 	platform_break_exit();
-	rand = 0;
+	variation = 0;
 	count = 0;
 }

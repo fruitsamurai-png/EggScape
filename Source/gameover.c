@@ -43,6 +43,8 @@ void gameover_update(void)
 		)
 	{
 		sound.select = 1;
+		restartButton.mc = 0;
+		menuButton.mc = 0;
 		loc += 1;
 		if (loc > 1)
 			loc = 0;
@@ -51,6 +53,8 @@ void gameover_update(void)
 		CP_Input_KeyTriggered(KEY_A))
 	{
 		sound.select = 1;
+		restartButton.mc = 0;
+		menuButton.mc = 0;
 		loc -= 1;
 		if (loc < 0)
 			loc = 1;
@@ -86,4 +90,6 @@ void gameover_exit(void)
 	memset(charbuffer, 0, 100 * sizeof(char));
 	CP_Sound_Free(fisthit);
 	CP_Sound_Free(rathit);
+	restartButton.mc = 0;
+	menuButton.mc = 0;
 }

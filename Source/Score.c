@@ -3,6 +3,7 @@
 #include "../Header/main.h"
 #include "../Header/character.h"
 #include "../Header/gameover.h"
+#include "../Header/platform_global.h"
 #include <stdio.h>
 #include <stdlib.h>
 int temp;
@@ -19,7 +20,7 @@ void score_update(void)
 	CP_Settings_Fill(CP_Color_Create(255, 255, 255, 255));
 	CP_Font_DrawText("Score:", 10, 20);
 	temp = (int)-egg.h;
-	if(egg.h<0 )egg.score = (int)temp;
+	if(egg.h<0 && isout==1)egg.score = (int)temp;
 	score += egg.score/10;
 	if (score < 0)score = 0;
 	_itoa_s(score, charbuffer, 100, 10);

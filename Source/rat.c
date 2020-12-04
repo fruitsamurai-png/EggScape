@@ -25,7 +25,7 @@ void mouse_init(size_t count1)
 }
 void mouse_update(size_t count3)
 {
-	for (size_t n = 0; n < count3; n++)
+	for (size_t n = 0; n < count3; ++n)
 	{
 		++mtimer;
 		mouses[n].x += mouses[n].speed;
@@ -33,17 +33,18 @@ void mouse_update(size_t count3)
 		{
 			mouses[n].speed *= -1;
 		}
-		if (mtimer < 120 && mtimer >= 100)
+		if (mtimer > 100&&mtimer<120)
 		{
 			CP_Image_Draw(warnings, mouses[n].x, mouses[n].y + (blocksize * 2), blocksize, blocksize, 255);
 		}
-		if (mtimer > 120)
+		if (mtimer >120)
 		{
 			mouses[n].speed = 0;
 			mouses[n].y += 20;
 		}
-		if (mouses[n].y > windowy+20)
+		if (mouses[n].y > windowy+50)
 		{
+			mtimer = 0;
 			mouses[n].y = -blocksize;
 			mouses[n].speed = 20;
 			if (n / 2 == 0)mouses[n].speed *= -1;

@@ -8,6 +8,7 @@
 #include "../Header/enemies_global.h"
 #include "../Header/platform_global.h"
 #include "../Header/character.h"
+#include "../Header/sound.h"
 
 void play(Button button)
 {
@@ -18,22 +19,27 @@ void play(Button button)
 		CP_Input_GetMouseY() <= button.positionY + button.sizeY / 2
 		)
 	{
+		playButton.mc = 1;
+		
+		
 		playButton.image = CP_Image_Load("./Assets/Buttons/RUN.png");
-		if (CP_Input_MouseClicked())
+		if (CP_Input_MouseClicked()||
+			CP_Input_KeyTriggered(KEY_SPACE) ||
+			CP_Input_KeyTriggered(KEY_ENTER))
 		{
+			sound.select = 1;
 			timer3 = 5.5f;
 			check = 1;
 		}
 	}
-	if (button.locx == button.positionX)
+	else if (button.locx == button.positionX && !howtoplayButton.mc  && !exitButton.mc && !creditButton.mc && !menuButton.mc)
 	{
 		playButton.image = CP_Image_Load("./Assets/Buttons/RUN.png");
 		if (CP_Input_KeyTriggered(KEY_SPACE) ||
-			CP_Input_KeyTriggered(KEY_ENTER) ||
-			CP_Input_KeyTriggered(KEY_SPACE) ||
-			CP_Input_KeyTriggered(KEY_SPACE)
+			CP_Input_KeyTriggered(KEY_ENTER)
 			)
 		{
+			sound.select = 1;
 			timer3 = 5.5f;
 			check = 1;
 		}
@@ -42,6 +48,7 @@ void play(Button button)
 	else
 	{
 		playButton.image = CP_Image_Load("./Assets/Buttons/mainmenu_RUN.png");
+		playButton.mc = 0;
 	}
 	if (CP_System_GetFrameCount() % 20 == 10)
 	{
@@ -80,26 +87,32 @@ void howtoplay(Button button)
 		CP_Input_GetMouseY() <= button.positionY + button.sizeY / 2
 		)	//where the collision takes place when mouse is clicked on the how to play button (font) and if it is not in the boundary of the mouse clicked, it won't proceed anywhere
 	{
+		howtoplayButton.mc = 1;
 		howtoplayButton.image = CP_Image_Load("./Assets/Buttons/instructions_r.png");
-		if (CP_Input_MouseClicked())
+		if (CP_Input_MouseClicked()||
+			CP_Input_KeyTriggered(KEY_SPACE) ||
+			CP_Input_KeyTriggered(KEY_ENTER)
+			)
 		{
+			sound.select = 1;
 			CP_Engine_SetNextGameState(howtoplay_init, howtoplay_update, howtoplay_exit);	//if the mouse is clicked, it will proceed to the howtoplay screen
 		}
 	}
-	if (button.locx == button.positionX)
+	 else if (button.locx == button.positionX && !playButton.mc && !exitButton.mc && !creditButton.mc)
 	{
 		howtoplayButton.image = CP_Image_Load("./Assets/Buttons/instructions_r.png");
 		if (CP_Input_KeyTriggered(KEY_SPACE) ||
-			CP_Input_KeyTriggered(KEY_ENTER) ||
-			CP_Input_KeyTriggered(KEY_SPACE)
+			CP_Input_KeyTriggered(KEY_ENTER)
 			)
 		{
+			sound.select = 1;
 			CP_Engine_SetNextGameState(howtoplay_init, howtoplay_update, howtoplay_exit);	//if the mouse is clicked, it will proceed to the howtoplay screen
 		}
 	}
 	else
 	{
 		howtoplayButton.image = CP_Image_Load("./Assets/Buttons/mainmenu_INSTRUCTIONS.png");
+
 	}
 }
 
@@ -112,22 +125,24 @@ void exitgame(Button button) //making a exit button to proceeed to terminate the
 
 		)
 	{
+		exitButton.mc = 1;
 		exitButton.image = CP_Image_Load("./Assets/Buttons/Exit_r.png");
-		if (CP_Input_MouseClicked())
+		if (CP_Input_MouseClicked()||
+			CP_Input_KeyTriggered(KEY_SPACE) ||
+			CP_Input_KeyTriggered(KEY_ENTER))
 		{
-
+			sound.select = 1;
 			CP_Engine_Terminate();	//if the mouse is clicked, it will terminate the screen
 		}
 	}
-	if (button.locx == button.positionX)
+	else if (button.locx == button.positionX && !playButton.mc && !howtoplayButton.mc && !creditButton.mc)
 	{
 		exitButton.image = CP_Image_Load("./Assets/Buttons/Exit_r.png");
 		if (CP_Input_KeyTriggered(KEY_SPACE) ||
-			CP_Input_KeyTriggered(KEY_ENTER) ||
-			CP_Input_KeyTriggered(KEY_SPACE)
+			CP_Input_KeyTriggered(KEY_ENTER)
 			)
 		{
-
+			sound.select = 1;
 			CP_Engine_Terminate();	//if the mouse is clicked, it will terminate the screen
 		}
 	}
@@ -146,21 +161,27 @@ void menu(Button button)	//making a menu button to proceeed to the main menu scr
 
 		) // where the collision takes place when mouse is clicked on the menu button(font) and if it is not in the boundary of the mouse clicked, it won't proceed anywhere
 	{
+		menuButton.mc = 1;
 		menuButton.image = CP_Image_Load("./Assets/Buttons/menu_r.png");
-		if (CP_Input_MouseClicked())
+		if (CP_Input_MouseClicked()||
+			CP_Input_KeyTriggered(KEY_SPACE) ||
+			CP_Input_KeyTriggered(KEY_ENTER)||
+			CP_Input_KeyTriggered(KEY_ESCAPE)
+			)
 		{
+			sound.select = 1;
 			CP_Engine_SetNextGameState(mainmenu_init, mainmenu_update, mainmenu_exit);	//if the mouse is clicked, it will proceed to the main menu screen
 		}
 	}
-	if (button.locx == button.positionX)
+	else if (button.locx == button.positionX && !playButton.mc )
 	{
 		menuButton.image = CP_Image_Load("./Assets/Buttons/menu_r.png");
 		if (CP_Input_KeyTriggered(KEY_SPACE) ||
 			CP_Input_KeyTriggered(KEY_ENTER) ||
-			CP_Input_KeyTriggered(KEY_SPACE) ||
 			CP_Input_KeyTriggered(KEY_ESCAPE)
 			)
 		{
+			sound.select = 1;
 			CP_Engine_SetNextGameState(mainmenu_init, mainmenu_update, mainmenu_exit);	//if the mouse is clicked, it will proceed to the main menu screen
 		}
 	}
@@ -179,25 +200,33 @@ void restart(Button button)	//making a restart button to proceeed to the main sc
 
 		)	// where the collision takes place when mouse is clicked on the restart button(font) and if it is not in the boundary of the mouse clicked, it won't proceed anywhere
 	{
+		restartButton.mc = 1;
 		restartButton.image = CP_Image_Load("./Assets/Buttons/restart_r.png");
 
-		if (CP_Input_MouseClicked()) {
+		if (CP_Input_MouseClicked()||
+			CP_Input_KeyTriggered(KEY_SPACE) ||
+			CP_Input_KeyTriggered(KEY_ENTER)
+			) 
+		{
+			sound.select = 1;
 			CP_Engine_SetNextGameState(game_init, game_update, game_exit);//if the mouse is clicked, it will proceed to the main screen
 		}
 	}
-	if (button.locx == button.positionX)
+	else if (button.locx == button.positionX && !menuButton.mc && !exitButton.mc)
 	{
 		restartButton.image = CP_Image_Load("./Assets/Buttons/restart_r.png");
 		if (CP_Input_KeyTriggered(KEY_SPACE) ||
-			CP_Input_KeyTriggered(KEY_ENTER) ||
-			CP_Input_KeyTriggered(KEY_SPACE))
+			CP_Input_KeyTriggered(KEY_ENTER)
+			)
 		{
+			sound.select = 1;
 			CP_Engine_SetNextGameState(game_init, game_update, game_exit);//if the mouse is clicked, it will proceed to the main screen
 		}
 	}
 	else
 	{
 		restartButton.image = CP_Image_Load("./Assets/Buttons/restart.png");
+
 	}
 }
 
@@ -211,25 +240,32 @@ void credit(Button button)
 		)	// where the collision takes place when mouse is clicked on the restart button(font) and if it is not in the boundary of the mouse clicked, it won't proceed anywhere
 	{
 		creditButton.image = CP_Image_Load("./Assets/Buttons/credit_r.png");
+		creditButton.mc = 1;
 
-		if (CP_Input_MouseClicked())
+		if (CP_Input_MouseClicked()||
+			CP_Input_KeyTriggered(KEY_SPACE) ||
+			CP_Input_KeyTriggered(KEY_ENTER)
+			)
 		{
+			sound.select = 1;
 			CP_Engine_SetNextGameState(credit_init, credit_update, credit_exit);	//if the mouse is clicked, it will proceed to the main screen
 		}
 	}
-	if (button.locx == button.positionX)
+	else if (button.locx == button.positionX && !playButton.mc && !howtoplayButton.mc && !exitButton.mc)
 	{
 		creditButton.image = CP_Image_Load("./Assets/Buttons/credit_r.png");
 		if (CP_Input_KeyTriggered(KEY_SPACE) ||
-			CP_Input_KeyTriggered(KEY_ENTER) ||
-			CP_Input_KeyTriggered(KEY_SPACE))
+			CP_Input_KeyTriggered(KEY_ENTER)
+			)
 		{
+			sound.select = 1;
 			CP_Engine_SetNextGameState(credit_init, credit_update, credit_exit);	//if the mouse is clicked, it will proceed to the main screen
 		}
 	}
 	else
 	{
 		creditButton.image = CP_Image_Load("./Assets/Buttons/credit.png");
+		creditButton.mc = 0;
 	}
 }
 

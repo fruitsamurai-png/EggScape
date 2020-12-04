@@ -24,6 +24,8 @@ void howtoplay_update(void)
 	if (CP_Input_KeyTriggered(KEY_RIGHT) ||
 		CP_Input_KeyTriggered(KEY_D))
 	{
+		playButton.mc = 0;
+		menuButton.mc = 0;
 		sound.select = 1;
 		loc += 1;
 		if (loc > 1)
@@ -33,6 +35,8 @@ void howtoplay_update(void)
 		CP_Input_KeyTriggered(KEY_A)
 		)
 	{
+		playButton.mc = 0;
+		menuButton.mc = 0;
 		sound.select = 1;
 		loc -= 1;
 		if (loc < 0)
@@ -60,5 +64,6 @@ void howtoplay_update(void)
 void howtoplay_exit(void)
 {
 	CP_Image_Free(&title);
-	
+	playButton.mc = 0;
+	menuButton.mc = 0;
 }
