@@ -12,6 +12,7 @@ typedef struct Button
 	float sizeX;
 	float sizeY;
 	float locx;
+	int mc;
 
 }Button;
 
