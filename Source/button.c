@@ -124,7 +124,8 @@ void exitgame(Button button) //making a exit button to proceeed to terminate the
 		exitButton.image = CP_Image_Load("./Assets/Buttons/Exit_r.png");
 		if (CP_Input_KeyTriggered(KEY_SPACE) ||
 			CP_Input_KeyTriggered(KEY_ENTER) ||
-			CP_Input_KeyTriggered(KEY_SPACE))
+			CP_Input_KeyTriggered(KEY_SPACE)
+			)
 		{
 
 			CP_Engine_Terminate();	//if the mouse is clicked, it will terminate the screen
@@ -156,7 +157,8 @@ void menu(Button button)	//making a menu button to proceeed to the main menu scr
 		menuButton.image = CP_Image_Load("./Assets/Buttons/menu_r.png");
 		if (CP_Input_KeyTriggered(KEY_SPACE) ||
 			CP_Input_KeyTriggered(KEY_ENTER) ||
-			CP_Input_KeyTriggered(KEY_SPACE)
+			CP_Input_KeyTriggered(KEY_SPACE) ||
+			CP_Input_KeyTriggered(KEY_ESCAPE)
 			)
 		{
 			CP_Engine_SetNextGameState(mainmenu_init, mainmenu_update, mainmenu_exit);	//if the mouse is clicked, it will proceed to the main menu screen
