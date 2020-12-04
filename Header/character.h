@@ -7,6 +7,7 @@ struct egg {
 	int isjump, cooldown, isgrounded,firstjump;// a boolean that determine when the egg is jumping it must come down
 	int score,alpha;
 }egg;
+
 void eggs_init(void);
 void eggs_update(void);
 void eggs_exit(void);

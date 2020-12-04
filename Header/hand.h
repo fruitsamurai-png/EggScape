@@ -9,7 +9,7 @@ struct hands
 	int speed;
 	int increment;
 }hands;
-
+int htimer;
 struct hands hand_full;
 #define attackinter 120
 void hands_movement(void);

@@ -1,5 +1,6 @@
 #pragma once
 int score;
+int temp;
 char charbuffer[100];
 
 void score_init(void);
