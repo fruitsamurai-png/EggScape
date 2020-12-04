@@ -30,10 +30,12 @@
     <ClCompile Include="Source\howtoplay.c" />
     <ClCompile Include="Source\main.c" />
     <ClCompile Include="Source\mainmenu.c" />
+    <ClCompile Include="Source\plate.c" />
     <ClCompile Include="Source\platform.c" />
     <ClCompile Include="Source\platforms_break.c" />
     <ClCompile Include="Source\platform_global.c" />
     <ClCompile Include="Source\platform_moving.c" />
+    <ClCompile Include="Source\platform_spring.c" />
     <ClCompile Include="Source\rat.c" />
     <ClCompile Include="Source\Score.c" />
     <ClCompile Include="Source\sound.c" />
@@ -50,10 +52,12 @@
     <ClInclude Include="Header\howtoplay.h" />
     <ClInclude Include="Header\main.h" />
     <ClInclude Include="Header\mainmenu.h" />
+    <ClInclude Include="Header\plate.h" />
     <ClInclude Include="Header\platform.h" />
     <ClInclude Include="Header\platform_break.h" />
     <ClInclude Include="Header\platform_global.h" />
     <ClInclude Include="Header\platform_moving.h" />
+    <ClInclude Include="Header\platform_spring.h" />
     <ClInclude Include="Header\rat.h" />
     <ClInclude Include="Header\Score.h" />
     <ClInclude Include="Header\sound.h" />
