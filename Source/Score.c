@@ -6,7 +6,6 @@
 #include "../Header/platform_global.h"
 #include <stdio.h>
 #include <stdlib.h>
-int temp;
 void score_init(void)
 {
 	temp=0;

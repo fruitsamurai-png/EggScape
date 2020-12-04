@@ -4,14 +4,18 @@
 #include "../Header/character.h"
 #include "../Header/collision.h"
 #include "../Header/sound.h"
+#include "../Header/platform_global.h"
+#include "../Header/platform_spring.h"
 CP_Image eggy1=NULL;
 CP_Image egg_r = NULL;
 CP_Image egg_l = NULL;
 CP_Image ready = NULL;
+
 int check=0;
 float maxspeed = 0;
 int timer = 0;
 int alpha = 0;
+
 static void doublejump(void)
 {
 	CP_Settings_Fill(CP_Color_Create(120, 255, 0, 255));
@@ -67,7 +71,12 @@ static void eggjump(void)
 		egg.h = -46;
 		egg.isjump = 0;
 	}
-	
+	if (springs->onspring == 1)
+	{
+		egg.h = -70;
+		springs->onspring = 0;
+	}
+
 	CP_Vector_Set(egg.x, egg.y);
 }
 
@@ -86,8 +95,8 @@ void eggs_init(void)
 	alpha = 200;
 	egg.ro=0;
 	egg.firstjump = 0;
-	egg_r= CP_Image_Load("./Assets/egg_r.png");
-	egg_l= CP_Image_Load("./Assets/egg_l.png");
+	egg_r= CP_Image_Load("./Assets/Character/egg_r.png");
+	egg_l= CP_Image_Load("./Assets/Character/egg_l.png");
 	ready = CP_Image_Load("./Assets/Icons.png");
 
 }
@@ -137,5 +146,4 @@ void eggs_exit(void)
 	CP_Image_Free(&egg_l);
 	CP_Image_Free(&egg_r);
 	CP_Image_Free(&ready);
-
 }

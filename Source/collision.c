@@ -21,7 +21,5 @@ void collide(void)
 	if (egg.y > windowy)//death
 	{
 		CP_Engine_SetNextGameState(gameover_init, gameover_update, gameover_exit);
-		enemies_exit();
-		platform_global_init();
 	}
 }

@@ -9,7 +9,6 @@
 #include <time.h>
 
 
-int htimer = 0;
 CP_Image hand = NULL;
 CP_Image handout = NULL;
 CP_Image handgrab = NULL;
@@ -33,7 +32,7 @@ void hand_Collision(void)
 
 void hands_movement(void)
 {
-	if (hand_full.positionY > WINDOW_HEIGHT * 0.99 && htimer <= attackinter)
+	if (hand_full.positionY > windowy * 0.99 && htimer <= attackinter)
 	{
 		hand = handout;
 		hand_full.positionX += hand_full.speed * CP_System_GetDt();
@@ -48,9 +47,9 @@ void hands_movement(void)
 	}
 	
 	//attaCKKKKKKKKKKKKKKKKKKKKKKK
-	if(hand_full.positionY > WINDOW_HEIGHT * 0.99)//timer++
+	if(hand_full.positionY > windowy * 0.99)//timer++
 	htimer++;
-	if (htimer >= attackinter && hand_full.positionY > WINDOW_HEIGHT / 2)//attack
+	if (htimer >= attackinter && hand_full.positionY > windowy / 2)//attack
 	{
 		hand = handgrab;
 		if (htimer >=attackinter+40)hand = handattack;
@@ -60,11 +59,11 @@ void hands_movement(void)
 			hand_full.positionY += -50;
 		}
 	}
-	if (hand_full.positionY < WINDOW_HEIGHT / 2)//reset timer, stop attack
+	if (hand_full.positionY < windowy / 2)//reset timer, stop attack
 	{
 		htimer = 0;
 	}
-	if (hand_full.positionY < WINDOW_HEIGHT)//drop
+	if (hand_full.positionY < windowy)//drop
 	{
 		hand_full.positionY += 5;
 	}
@@ -75,10 +74,10 @@ void hand_init(void)
 	handgrab = CP_Image_Load("./Assets/Enemy/hand_closed.png");
 	handout = CP_Image_Load("./Assets/Enemy/hand_open.png");
 	handattack = CP_Image_Load("./Assets/Enemy/hand_attack.png");
-
+	htimer = 0;
 	hand_full.increment = -4;
 	hand_full.speed = 40;
-	hand_full.positionY = WINDOW_HEIGHT;
+	hand_full.positionY = windowy;
 	hand_full.positionX = (float)CP_Random_RangeInt(10,windowx);
 	hand_full.sizeX = 200;
 	hand_full.sizeY = 200;
@@ -102,7 +101,7 @@ void hand_exit(void)
 	CP_Image_Free(&handout);
 	CP_Image_Free(&handattack);
 	htimer = 0;
-	hand_full.positionY = WINDOW_HEIGHT;
+	hand_full.positionY = windowy;
 }
 
 

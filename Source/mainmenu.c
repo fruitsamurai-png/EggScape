@@ -6,8 +6,8 @@
 CP_Image digipen_logo = NULL;
 CP_Image play_title = NULL;
 CP_Image howtoplay_title = NULL;
-CP_Image eggy = NULL;
 CP_Image background1 = NULL;
+
 extern CP_Sound intro;
 extern CP_Sound select;
 
@@ -16,8 +16,7 @@ void mainmenu_init(void)
 	sound_init();
 	CP_Sound_PlayAdvanced(intro, .3f, 1, 1, CP_SOUND_GROUP_0);
 	CP_System_SetWindowTitle("EggScape");
-	WINDOW_HEIGHT = (float)CP_System_GetWindowHeight();
-	WINDOW_WIDTH = (float)CP_System_GetWindowWidth();
+
 	background1 = CP_Image_Load("./Assets/Backgrounds/mainmenu_BACKGROUND.png");
 	init_button();
 }
@@ -26,8 +25,8 @@ void mainmenu_update(void)
 {
 	sound_update();
 	static int loc = 1;
-	CP_Image_Draw(background1, WINDOW_WIDTH / 2, windowy / 2, windowx, windowy, 255);
-	CP_Image_Draw(play_title, WINDOW_WIDTH / 2, WINDOW_HEIGHT * 2 / 5, 200, 200, 255);
+	CP_Image_Draw(background1, windowx / 2, windowy / 2, windowx, windowy, 255);
+	CP_Image_Draw(play_title, windowx / 2, windowy * 2 / 5, 200, 200, 255);
 
 	CP_Image_Draw(playButton.image, playButton.positionX, playButton.positionY, playButton.sizeX, playButton.sizeY, 255);
 	CP_Image_Draw(howtoplayButton.image, howtoplayButton.positionX, howtoplayButton.positionY, howtoplayButton.sizeX, howtoplayButton.sizeY, 255);
@@ -91,10 +90,10 @@ void mainmenu_exit(void)
 {
 	CP_Image_Free(&play_title);
 	CP_Image_Free(&howtoplay_title);
-	CP_Image_Free(&eggy);
 	CP_Image_Free(&background1);
 	CP_Sound_Free(intro);
 	CP_Sound_Free(select);
+	sound_exit();
 	exit_button();
 	playButton.mc = 0;
 	howtoplayButton.mc = 0;

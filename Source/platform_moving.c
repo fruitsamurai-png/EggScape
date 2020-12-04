@@ -1,5 +1,5 @@
 #include "cprocessing.h"
-#include "../Header/platform.h"
+#include "../Header/platform_global.h"
 #include "../Header/platform_moving.h"
 #include "../Header/main.h"
 #include "../Header/character.h"
@@ -29,12 +29,12 @@ void platform_moving_update(int f)
 	//equation for moving platform below
 		plats_moving->time += 1;
 		plats_moving[f].dimx += plats_moving->speed * CP_System_GetDt();
-		if (plats_moving->time == 1000 && plats_moving->speed > 0)
+		if (plats_moving->time == 1200 && plats_moving->speed > 0)
 		{
 			plats_moving->speed *= -1;
 			plats_moving->time = 0;
 		}
-		else if (plats_moving->time == 1000 && plats_moving->speed < 0)
+		else if (plats_moving->time == 1200 && plats_moving->speed < 0)
 		{
 			plats_moving->speed *= -1;
 			plats_moving->time = 0;

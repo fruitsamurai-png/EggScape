@@ -1,9 +1,8 @@
 #include "cprocessing.h"
 #include <stdlib.h>
-#include "../Header/platform.h"
+#include "../Header/platform_global.h"
 #include "../Header/main.h"
 #include "../Header/character.h"
-#include "../Header/Score.h"
 #include "../Header/platform_break.h"
 #include "../Header/sound.h"
 CP_Image table_break = NULL;

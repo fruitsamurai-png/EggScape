@@ -26,16 +26,13 @@
 #include "stdbool.h"
 CP_Image background = NULL;
 CP_Image pauseimg = NULL;
-float WINDOW_WIDTH,WINDOW_HEIGHT;
 bool pause = 0;
 // use CP_Engine_SetNextGameState to specify this function as the initialization function
 // this function will be called once at the beginning of the program
 
 void game_init(void)
 {
-	WINDOW_WIDTH = (float)windowx;
-	WINDOW_HEIGHT = (float)windowy;
-	background = CP_Image_Load("./Assets/Backgrounds/background.jpg");
+	background = CP_Image_Load("./Assets/Backgrounds/background.png");
 	pauseimg = CP_Image_Load("./Assets/Backgrounds/pause.png");
 	platform_global_init();
 	enemies_init();
@@ -61,7 +58,7 @@ void game_update(void)
 	}
 	if (!pause)
 	{
-		CP_Image_Draw(background, WINDOW_WIDTH/2, WINDOW_HEIGHT/2, WINDOW_WIDTH, WINDOW_HEIGHT, 255);
+		CP_Image_Draw(background, windowx/2, windowy/2, windowx, windowy, 255);
 		platform_global_update();
 		eggs_update();
 		enemies_update();
@@ -79,9 +76,7 @@ void game_exit(void)
 	platform_global_exit();
 	enemies_exit();
 	eggs_exit();
-	sound_exit();
 	score_exit();
-	exit_button();
 	CP_Image_Free(&background);
 	CP_Image_Free(&pauseimg);
 	// shut down the gamestate and cleanup any dynamic memory

@@ -1,10 +1,13 @@
 #include "cprocessing.h"
 #include "../Header/platform.h"
+#include "../Header/platform_global.h"
 #include "../Header/main.h"
 #include "../Header/character.h"
 #include "../Header/Score.h"
 #include "../Header/sound.h"
+
 CP_Image table=NULL;
+
 void platform_init(int i)
 {
 		if (i == 0)

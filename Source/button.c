@@ -1,5 +1,5 @@
-#include "../Header/button.h"
 #include "Cprocessing.h"
+#include "../Header/button.h"
 #include "../Header/mainmenu.h" 
 #include "../Header/howtoplay.h"
 #include "../Header/main.h"
@@ -10,6 +10,7 @@
 #include "../Header/character.h"
 #include "../Header/sound.h"
 
+CP_Image eggy = NULL;
 void play(Button button)
 {
 	//button.locx = button.positionX;
@@ -29,7 +30,7 @@ void play(Button button)
 		{
 			sound.select = 1;
 			timer3 = 5.5f;
-			check = 1;
+			start = 1;
 		}
 	}
 	else if (button.locx == button.positionX && !howtoplayButton.mc  && !exitButton.mc && !creditButton.mc && !menuButton.mc)
@@ -41,7 +42,7 @@ void play(Button button)
 		{
 			sound.select = 1;
 			timer3 = 5.5f;
-			check = 1;
+			start = 1;
 		}
 
 	}
@@ -52,30 +53,30 @@ void play(Button button)
 	}
 	if (CP_System_GetFrameCount() % 20 == 10)
 	{
-		eggy = CP_Image_Load("./Assets/eggy_RSTAND.png");
+		eggy = CP_Image_Load("./Assets/Backgrounds/eggy_RSTAND.png");
 	}
 
 	else if (CP_System_GetFrameCount() % 20 == 0)
 	{
-		eggy = CP_Image_Load("./Assets/eggy_RRUN.png");
+		eggy = CP_Image_Load("./Assets/Backgrounds/eggy_RRUN.png");
 	}
 	x = 80;
 	if (timer3 > 0)
 	{
 		dt = CP_System_GetDt();
 
-		if (speed < WINDOW_WIDTH)
+		if (speed < windowx)
 		{
 			speed += 20;
 		}
-		else if (check == 1)
+		else if (start)
 		{
 			CP_Engine_SetNextGameState(game_init, game_update, game_exit);
-			check = 0;
+			start = 0;
 		}
 		timer3 -= dt;
 	}
-	CP_Image_Draw(eggy, x + speed, WINDOW_HEIGHT - 85, 200, 200, 255);
+	CP_Image_Draw(eggy, x + speed, windowy - 85, 200, 200, 255);
 }
 
 void howtoplay(Button button)
@@ -173,7 +174,7 @@ void menu(Button button)	//making a menu button to proceeed to the main menu scr
 			CP_Engine_SetNextGameState(mainmenu_init, mainmenu_update, mainmenu_exit);	//if the mouse is clicked, it will proceed to the main menu screen
 		}
 	}
-	else if (button.locx == button.positionX && !playButton.mc )
+	else if (button.locx == button.positionX && !playButton.mc && !restartButton.mc)
 	{
 		menuButton.image = CP_Image_Load("./Assets/Buttons/menu_r.png");
 		if (CP_Input_KeyTriggered(KEY_SPACE) ||
@@ -226,7 +227,6 @@ void restart(Button button)	//making a restart button to proceeed to the main sc
 	else
 	{
 		restartButton.image = CP_Image_Load("./Assets/Buttons/restart.png");
-
 	}
 }
 
@@ -273,23 +273,23 @@ void init_button(void)
 {
 
 	playButton.image = CP_Image_Load("./Assets/Buttons/mainmenu_RUN.png");
-	playButton.positionX = WINDOW_WIDTH * 1 / 11;
-	playButton.positionY = WINDOW_HEIGHT * 3 / 4;
+	playButton.positionX = windowx * 1 / 11;
+	playButton.positionY = windowy * 3 / 4;
 	playButton.sizeX = 100;
 	playButton.sizeY = 50;
 
 	howtoplayButton.image = CP_Image_Load("./Assets/Buttons/mainmenu_INSTRUCTIONS.png");
-	howtoplayButton.positionX = WINDOW_WIDTH / 2;
-	howtoplayButton.positionY = WINDOW_HEIGHT * 3 / 4;
+	howtoplayButton.positionX = windowx / 2;
+	howtoplayButton.positionY = windowy * 3 / 4;
 	howtoplayButton.sizeX = 250;
 	howtoplayButton.sizeY = 50;
 
 	exitButton.image = CP_Image_Load("./Assets/Buttons/mainmenu_EXIT.png");
-	exitButton.positionX = WINDOW_WIDTH * 10 / 11;
-	exitButton.positionY = WINDOW_HEIGHT * 3 / 4;
+	exitButton.positionX = windowx * 10 / 11;
+	exitButton.positionY = windowy * 3 / 4;
 	exitButton.sizeX = 80;
 	exitButton.sizeY = 50;
-	check = 0;
+	start = 0;
 	timer3 = 0;
 	speed = 0;
 	x = 80;
@@ -305,14 +305,14 @@ void init_button(void)
 void init_button2(void)  //howtoplay screen buttons positioning
 {
 	playButton.image = CP_Image_Load("./Assets/Buttons/mainmenu_RUN.png");
-	playButton.positionX = WINDOW_WIDTH * 10 / 11;
-	playButton.positionY = WINDOW_HEIGHT * 8 / 9;
+	playButton.positionX = windowx * 10 / 11;
+	playButton.positionY = windowy * 8 / 9;
 	playButton.sizeX = 100;
 	playButton.sizeY = 50;
 
 	menuButton.image = CP_Image_Load("./Assets/Buttons/menu.png");
-	menuButton.positionX = WINDOW_WIDTH * 8 / 11;
-	menuButton.positionY = WINDOW_HEIGHT * 8 / 9;
+	menuButton.positionX = windowx * 8 / 11;
+	menuButton.positionY = windowy * 8 / 9;
 	menuButton.sizeX = 150;
 	menuButton.sizeY = 50;
 }
@@ -320,14 +320,14 @@ void init_button2(void)  //howtoplay screen buttons positioning
 void init_button3(void)  //gameover screen buttons positioning
 {
 	restartButton.image = CP_Image_Load("./Assets/Buttons/gameover_RESTART.png");
-	restartButton.positionX = WINDOW_WIDTH / 2;
-	restartButton.positionY = WINDOW_HEIGHT * 4 / 5;
+	restartButton.positionX = windowx / 2;
+	restartButton.positionY = windowy * 4 / 5;
 	restartButton.sizeX = 200;
 	restartButton.sizeY = 50;
 
 	menuButton.image = CP_Image_Load("./Assets/Buttons/gameover_MAINMENU.png");
-	menuButton.positionX = WINDOW_WIDTH / 2;
-	menuButton.positionY = WINDOW_HEIGHT * 6 / 7;
+	menuButton.positionX = windowx / 2;
+	menuButton.positionY = windowy * 6 / 7;
 	menuButton.sizeX = 100;
 	menuButton.sizeY = 40;
 }
@@ -335,20 +335,34 @@ void init_button3(void)  //gameover screen buttons positioning
 void init_button4(void)
 {
 	menuButton.image = CP_Image_Load("./Assets/Buttons/gameover_MAINMENU.png");
-	menuButton.positionX = WINDOW_WIDTH / 2;
-	menuButton.positionY = WINDOW_HEIGHT * 6 / 7;
+	menuButton.positionX = windowx / 2;
+	menuButton.positionY = windowy * 6 / 7;
 	menuButton.sizeX = 100;
 	menuButton.sizeY = 40;
 }
 
 void exit_button(void)
 {
-	check = 0;
+	start = 0;
 	x = 80;
 	speed = 0;
-	CP_Image_Free(&menuButton.image);
-	CP_Image_Free(&restartButton.image);
+	CP_Image_Free(&howtoplayButton.image);
 	CP_Image_Free(&playButton.image);
 	CP_Image_Free(&exitButton.image);
 	CP_Image_Free(&creditButton.image);
+	CP_Image_Free(&eggy);
+}
+void exit_button2(void)
+{
+	CP_Image_Free(&playButton.image);
+	CP_Image_Free(&menuButton.image);
+}
+void exit_button3(void)
+{
+	CP_Image_Free(&menuButton.image);
+	CP_Image_Free(&restartButton.image);
+}
+void exit_button4(void)
+{
+	CP_Image_Free(&menuButton.image);
 }

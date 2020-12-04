@@ -1,4 +1,7 @@
 #include "cprocessing.h"
+#include "../Header/character.h"
+#include "../Header/platform_global.h"
+#include "../Header/enemies_global.h"
 #include "../Header/gameover.h"
 #include "../Header/button.h"
 #include "../Header/mainmenu.h"
@@ -24,8 +27,6 @@ static void display_score(void)
 void gameover_init(void)
 {
 	sound_init();
-	WINDOW_HEIGHT = (float)CP_System_GetWindowHeight();	//since the WINDOW_HEIGHT and WINDOW_WIDTH is a float, there is a need to put the CP_System_GetWindow for both lengths in float
-	WINDOW_WIDTH = (float)CP_System_GetWindowWidth();
 	background_over = CP_Image_Load("./Assets/Backgrounds/gameover_BACKGROUND.png");
 	title_over = CP_Image_Load("./Assets/Backgrounds/gameover_TITLE.png");
 	init_button3();												// init_button3() is called in button.c
@@ -35,9 +36,8 @@ void gameover_update(void)
 {
 	static int loc = 0;
 	sound_update();
-	CP_Settings_Background(CP_Color_Create(0, 0, 0, 255));		// background colour to ensure that is a opaque
-	CP_Image_Draw(background_over, WINDOW_WIDTH / 2, windowy / 2, windowx, windowy, 255);
-	CP_Image_Draw(title_over, WINDOW_WIDTH / 2, WINDOW_HEIGHT * 1 / 10, 700, 100, 255);
+	CP_Image_Draw(background_over, windowx/ 2, windowy / 2, windowx, windowy, 255);
+	CP_Image_Draw(title_over, windowx / 2, windowy * 1 / 10, 700, 100, 255);
 	if (CP_Input_KeyTriggered(KEY_RIGHT)||
 		CP_Input_KeyTriggered(KEY_D)
 		)
@@ -86,10 +86,10 @@ void gameover_exit(void)
 {
 	CP_Image_Free(&background_over);
 	CP_Image_Free(&title_over);
-	deathscore = 0;
 	memset(charbuffer, 0, 100 * sizeof(char));
-	CP_Sound_Free(fisthit);
-	CP_Sound_Free(rathit);
+	deathscore = 0;
 	restartButton.mc = 0;
 	menuButton.mc = 0;
+	sound_exit();
+	exit_button3();
 }

@@ -7,25 +7,25 @@
 #include "../Header/platform_global.h"
 #include "../Header/sound.h"
 #include "../Header/rat.h"
-#include <time.h>
-int mtimer = 0;
+#include "../Header/enemies_global.h"
+
 CP_Image rat = NULL;
-CP_Image warnings = NULL;
 void mouse_init(size_t count1)
 {
+	mtimer = 0;
 	for (size_t n = 0; n < count1; n++)
 	{
 		mouses[n].x= (float)(CP_Random_RangeInt(blocksize,windowx));
 		mouses[n].y = -blocksize;
-		mouses[n].speed = 40;
+		mouses[n].speed = 30;
 		if (n==1)mouses[n].speed *= -1;
 		rat = CP_Image_Load("./Assets/Enemy/rat.png");
 		warnings = CP_Image_Load("./Assets/Enemy/warn.png");
 	}
 }
-void mouse_update(size_t count3)
+void mouse_update(size_t count2)
 {
-	for (size_t n = 0; n < count3; ++n)
+	for (size_t n = 0; n < count2; ++n)
 	{
 		++mtimer;
 		mouses[n].x += mouses[n].speed;
@@ -55,9 +55,7 @@ void mouse_update(size_t count3)
 			mtimer = 0;
 			mouses[n].y = -blocksize;
 			mouses[n].x = (float)CP_Random_RangeInt(blocksize, windowx);
-			mouses[n].speed = 20;
 			if (n==1)mouses[n].speed *= -1;
-			mtimer = 0;
 		}
 		if (mouses[n].x + blocksize > egg.x &&
 			mouses[n].x <egg.x + blocksize &&
@@ -71,9 +69,9 @@ void mouse_update(size_t count3)
 		CP_Image_Draw(rat, mouses[n].x, mouses[n].y, blocksize, blocksize, 255);
 	}
 }
-void mouse_exit(size_t count2)
+void mouse_exit(size_t count3)
 {
-	for (size_t n = 0; n < count2; n++)
+	for (size_t n = 0; n < count3; n++)
 	{
 		mouses[n].x = 0;
 		mouses[n].y = 0;

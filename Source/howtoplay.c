@@ -10,16 +10,14 @@ CP_Image title=NULL;
 void howtoplay_init(void)
 {
 	sound_init();
-	WINDOW_HEIGHT = (float)CP_System_GetWindowHeight();		//since the WINDOW_HEIGHT and WINDOW_WIDTH is a float, there is a need to put the CP_System_GetWindow for both lengths in float
-	WINDOW_WIDTH = (float)CP_System_GetWindowWidth();
-	title = CP_Image_Load("./Assets/Backgrounds/tutorial.jpg");
+	title = CP_Image_Load("./Assets/Backgrounds/tutorial.png");
 	init_button2();
 }
 void howtoplay_update(void)
 {
 	sound_update();
 	static int loc = 0;
-	CP_Image_Draw(title, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, WINDOW_WIDTH, WINDOW_HEIGHT, 255);
+	CP_Image_Draw(title, windowx / 2, windowy / 2, windowx, windowy, 255);
 
 	if (CP_Input_KeyTriggered(KEY_RIGHT) ||
 		CP_Input_KeyTriggered(KEY_D))
@@ -64,6 +62,8 @@ void howtoplay_update(void)
 void howtoplay_exit(void)
 {
 	CP_Image_Free(&title);
+	sound_exit();
+	exit_button2();
 	playButton.mc = 0;
 	menuButton.mc = 0;
 }

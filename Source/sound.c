@@ -18,8 +18,8 @@ CP_Sound fisthit = NULL;
 CP_Sound rathit = NULL;
 CP_Sound intro = NULL;
 CP_Sound select = NULL;
-CP_Image icons = NULL;
 
+CP_Image icons = NULL;
 int i = 0;
 void sound_init(void)
 {
@@ -30,7 +30,7 @@ void sound_init(void)
 	rathit = CP_Sound_Load("./Assets/Sound/rat.wav");
 	intro = CP_Sound_Load("./Assets/Sound/intro.wav");
 	select = CP_Sound_Load("./Assets/Sound/selection.wav");
-	icons = CP_Image_Load("./Assets/Icons.png");
+	icons = CP_Image_Load("./Assets/Character/Icons.png");
 
 	sound.jump = 0;
 	sound.alpha = 0;
@@ -111,6 +111,10 @@ void sound_exit(void)
 	CP_Sound_Free(jump);
 	CP_Sound_Free(Djump);
 	CP_Sound_Free(breakjump);
+	CP_Sound_Free(intro);
+	CP_Sound_Free(select);
+	CP_Sound_Free(fisthit);
+	CP_Sound_Free(rathit);
 	CP_Image_Free(&icons);
 	sound.jump = 0;
 }
