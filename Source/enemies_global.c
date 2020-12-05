@@ -20,35 +20,30 @@ void enemies_update(void)
 		{
 			ratnum = 0;
 			handnum = 0;
-			platenum = 1;
 			break;
 		}
 		case 1:
 		{
 			ratnum = 0;
 			handnum = 1;
-			platenum = 1;
 			break;
 		}
 		case 2:
 		{
 			ratnum = 1;
 			handnum = 1;
-			platenum = 1;
 			break;
 		}
 		case 3:
 		{
 			ratnum = 1;
 			handnum = 1;
-			platenum = 1;
 			break;
 		}
 		default:
 		{
 			ratnum = 2;
 			handnum = 1;
-			platenum = 2;
 			break;
 		}
 	}
