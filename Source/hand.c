@@ -24,8 +24,7 @@ void hand_Collision(void)
 	{
 		htimer = 0;
 		sound.fisthit = 1;
-		CP_Engine_SetNextGameState(gameover_init, gameover_update, gameover_exit);
-		platform_global_init();
+		egg.isdead = 1;
 	}
 	//CP_Graphics_DrawRect(hand_full.positionX-(blocksize/2*.5f), hand_full.positionY, hand_full.sizeX, hand_full.sizeY);
 }

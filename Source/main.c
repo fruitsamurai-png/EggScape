@@ -38,7 +38,7 @@ void game_init(void)
 	enemies_init();
 	eggs_init();
 	score_init();
-	sound_init();
+	sound_init();	
 	// initialize variables and CProcessing settings for this gamestate
 }
 // use CP_Engine_SetNextGameState to specify this function as the update function
@@ -65,6 +65,7 @@ void game_update(void)
 		collide();
 		score_update();
 		sound_update();
+		
 	}
 	// check input, update simulation, render etc.
 }

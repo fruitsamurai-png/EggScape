@@ -64,7 +64,7 @@ void mouse_update(size_t count2)
 		{
 			mtimer = 0;
 			sound.rathit = 1;
-			CP_Engine_SetNextGameState(gameover_init, gameover_update, gameover_exit);
+			egg.isdead = 1;
 		}
 		CP_Image_Draw(rat, mouses[n].x, mouses[n].y, blocksize, blocksize, 255);
 	}

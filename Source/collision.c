@@ -20,6 +20,6 @@ void collide(void)
 	}    
 	if (egg.y > windowy)//death
 	{
-		CP_Engine_SetNextGameState(gameover_init, gameover_update, gameover_exit);
+		egg.isdead = 1;
 	}
 }
