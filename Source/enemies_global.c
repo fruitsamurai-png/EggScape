@@ -5,15 +5,12 @@
 #include "../Header/main.h"
 #include "../Header/enemies_global.h"
 #include "../Header/platform_global.h"
-#include "../Header/plate.h"
 void enemies_init(void)
 {
 	mouse_init(2);
-	plates_init(2);
 	hand_init();
 	ratnum = 0;
 	handnum = 0;
-	platenum = 0;
 }
 void enemies_update(void)
 {
@@ -57,14 +54,11 @@ void enemies_update(void)
 	}
 	mouse_update(ratnum);
 	hand_update(handnum);
-	plates_update(platenum);
 }
 void enemies_exit(void)
 {
 	mouse_exit(handnum);
-	plates_exit(platenum);
 	hand_exit();
 	ratnum = 0;
 	handnum = 0;
-	platenum = 0;
 }
