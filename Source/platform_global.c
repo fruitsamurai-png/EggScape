@@ -191,20 +191,20 @@ void platform_global_init(void)
 }
 void platform_global_update(void)
 {
-	if (score > 250)variation = 1;
+	if (score > 500)variation = 1;
 	if (score > 1000)variation = 2;
 	if (score > 2000)variation = 3;
 	if (score > 3000)variation = 4;
 	if (score > 4000)variation = 5;
 	if (score > 5000)variation = 6;
 	if (score > 6000)variation = 7;
-	for (int i = 0; i < 10; ++i)//drawing of the platforms
-	{
-		platform_update(i);
-		platform_moving_update(i);
-		platform_break_update(i);
-		springs_update(i);
-	}
+		for (int i = 0; i < 10; ++i)//drawing of the platforms
+		{
+			platform_update(i);
+			platform_moving_update(i);
+			platform_break_update(i);
+			springs_update(i);
+		}
 	if (egg.y < (windowy / 2))
 	{
 		for (int f = 0; f < 10; f++)
@@ -217,7 +217,6 @@ void platform_global_update(void)
 			platform_generator1(f);
 			spring_generator(f);
 			isout = 1;
-
 		}
 
 	}

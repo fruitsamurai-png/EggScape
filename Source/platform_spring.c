@@ -14,18 +14,20 @@ void springs_init(int i)
 }
 void springs_update(int i)
 {
-	if (egg.x < (springs[i].dimx + dimw - 10) &&
-		(egg.x + blocksize - 5) > springs[i].dimx &&
-		(egg.y + blocksize + 10) > springs[i].dimy &&
-		egg.y < (springs[i].dimy) &&
-		egg.h > 0)
+	if (!egg.isjump)
 	{
-		sound.spring = 1;
-		springs->onspring = 1;
-		egg.isgrounded = 1;
-		egg.ro = 0;
+		if (egg.x < (springs[i].dimx + dimw - 10) &&
+			(egg.x + blocksize - 5) > springs[i].dimx &&
+			(egg.y + blocksize + 10) > springs[i].dimy &&
+			egg.y < (springs[i].dimy) &&
+			egg.h > 0)
+		{
+			sound.jump = 1;
+			springs->onspring = 1;
+			egg.isgrounded = 1;
+			egg.ro = 0;
+		}
 	}
-
 	CP_Image_Draw(springes, (springs[i].dimx), (springs[i].dimy), dimw, dimh, 255);
 }
 void springs_exit(void) 

@@ -18,7 +18,7 @@ void score_update(void)
 	CP_Graphics_DrawRect(0,0,windowx,40);
 	CP_Settings_Fill(CP_Color_Create(255, 255, 255, 255));
 	CP_Font_DrawText("Score:", 10, 20);
-	temp = (int)-egg.h;
+	if(!egg.isdead)temp = (int)-egg.h;
 	if(egg.h<0 && isout==1)egg.score = (int)temp;
 	score += egg.score/10;
 	if (score < 0)score = 0;
