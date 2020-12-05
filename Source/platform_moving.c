@@ -14,26 +14,27 @@ void platform_moving_init(void)
 }
 void platform_moving_update(int f)
 {
-		if (egg.x < (plats_moving[f].dimx + dimw - 10) &&
-			(egg.x + blocksize - 5) > plats_moving[f].dimx &&
-			(egg.y + blocksize + 10) > plats_moving[f].dimy &&
-			egg.y < (plats_moving[f].dimy) &&
-			egg.h > 0)
-		{
-			egg.isjump = 1;
-			sound.jump = 1;
-			egg.isgrounded = 1;
-			egg.ro = 0;
-		}
+
+	if (egg.x < (plats_moving[f].dimx + dimw-10) &&
+		(egg.x + blocksize-5) > plats_moving[f].dimx &&
+		(egg.y + blocksize+10) > plats_moving[f].dimy &&
+		egg.y < (plats_moving[f].dimy) &&
+		egg.h > 0)
+	{
+		egg.isjump = 1;
+		sound.jump = 1;
+		egg.isgrounded = 1;
+		egg.ro = 0;
+	}
 	//equation for moving platform below
 		plats_moving->time += 1;
 		plats_moving[f].dimx += plats_moving->speed * CP_System_GetDt();
-		if (plats_moving->time == 1200 && plats_moving->speed > 0 || plats_moving[f].dimx>windowx)
+		if (plats_moving->time == 1200 && plats_moving->speed > 0)
 		{
 			plats_moving->speed *= -1;
 			plats_moving->time = 0;
 		}
-		else if (plats_moving->time == 1200 && plats_moving->speed < 0 || plats_moving[f].dimx<0)
+		else if (plats_moving->time == 1200 && plats_moving->speed < 0)
 		{
 			plats_moving->speed *= -1;
 			plats_moving->time = 0;

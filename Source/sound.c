@@ -18,6 +18,9 @@ CP_Sound fisthit = NULL;
 CP_Sound rathit = NULL;
 CP_Sound intro = NULL;
 CP_Sound select = NULL;
+CP_Sound spring = NULL;
+CP_Sound ending = NULL;
+CP_Sound endmusic = NULL;
 
 CP_Image icons = NULL;
 int i = 0;
@@ -30,7 +33,12 @@ void sound_init(void)
 	rathit = CP_Sound_Load("./Assets/Sound/rat.wav");
 	intro = CP_Sound_Load("./Assets/Sound/intro.wav");
 	select = CP_Sound_Load("./Assets/Sound/selection.wav");
+	spring = CP_Sound_Load("./Assets/Sound/spring.wav");
+	ending = CP_Sound_Load("./Assets/Sound/eggdie.wav");
+	endmusic = CP_Sound_Load("./Assets/Sound/endingmusic.wav");
+
 	icons = CP_Image_Load("./Assets/Character/Icons.png");
+
 
 	sound.jump = 0;
 	sound.alpha = 0;
@@ -105,6 +113,26 @@ void sound_update(void)
 			CP_Sound_PlayAdvanced(select, volume, 1, 0, CP_SOUND_GROUP_0);
 			sound.select = 0;
 		}
+		if (sound.spring)
+		{
+			CP_Sound_PlayAdvanced(spring, volume, 1, 0, CP_SOUND_GROUP_0);
+			sound.spring = 0;
+		}
+		if (sound.ending)
+		{
+			CP_Sound_PlayAdvanced(ending, volume, 1, 0, CP_SOUND_GROUP_0);
+			sound.ending = 0;
+		}
+		if (sound.endmusic)
+		{
+			CP_Sound_PlayAdvanced(endmusic, volume, 1, 1, CP_SOUND_GROUP_0);
+			sound.endmusic = 0;
+		}
+		if (sound.intro)
+		{
+			CP_Sound_PlayAdvanced(intro, volume, 1, 1, CP_SOUND_GROUP_0);
+			sound.intro = 0;
+		}
 }
 void sound_exit(void)
 {
@@ -115,6 +143,9 @@ void sound_exit(void)
 	CP_Sound_Free(select);
 	CP_Sound_Free(fisthit);
 	CP_Sound_Free(rathit);
+	CP_Sound_Free(select);
+	CP_Sound_Free(ending);
+	CP_Sound_Free(endmusic);
 	CP_Image_Free(&icons);
 	sound.jump = 0;
 }

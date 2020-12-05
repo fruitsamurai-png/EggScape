@@ -4,9 +4,9 @@
 #include "../Header/character.h"
 #include "../Header/collision.h"
 #include "../Header/sound.h"
-#include "../Header/gameover.h"
 #include "../Header/platform_global.h"
 #include "../Header/platform_spring.h"
+CP_Image eggy1=NULL;
 CP_Image egg_r = NULL;
 CP_Image egg_l = NULL;
 CP_Image ready = NULL;
@@ -15,31 +15,7 @@ int check=0;
 float maxspeed = 0;
 int timer = 0;
 int alpha = 0;
-int deadtimer = 0;
-void dead(void)
-{
-	if (egg.isdead)
-	{
-		deadtimer++;
-		if (egg.y > windowy)
-		{
-			if (deadtimer!=100)
-			{
-				
-			}
-			else CP_Engine_SetNextGameState(gameover_init, gameover_update, gameover_exit);
-		}
-		if (egg.y < windowy+50)
-		{
-			egg.isjump = 0;
-			egg.ro += 450 * CP_System_GetDt();
-			egg.y += 20;
-			egg.x -= 10;
-		}
-		else CP_Engine_SetNextGameState(gameover_init, gameover_update, gameover_exit);
-		
-	}
-}
+
 static void doublejump(void)
 {
 	CP_Settings_Fill(CP_Color_Create(120, 255, 0, 255));
@@ -119,16 +95,15 @@ void eggs_init(void)
 	alpha = 200;
 	egg.ro=0;
 	egg.firstjump = 0;
-	egg.isdead = 0;
 	egg_r= CP_Image_Load("./Assets/Character/egg_r.png");
 	egg_l= CP_Image_Load("./Assets/Character/egg_l.png");
 	ready = CP_Image_Load("./Assets/Icons.png");
+
 }
 void eggs_update(void)
 {
 	eggy1= egg_r;
-	if (!egg.isdead)
-	{
+	
 		if ((CP_Input_KeyDown(KEY_D) || CP_Input_KeyDown(KEY_RIGHT)))
 		{
 			if (check == 0)egg.movement = 0;
@@ -141,22 +116,19 @@ void eggs_update(void)
 			egg.movement -= (egg.maxaccel * CP_System_GetDt());
 			check = 0;
 		}
-
-		eggy1 = check != 0 ? egg_r : egg_l;
-
-		egg.x += egg.movement;
-		if (egg.movement >= maxspeed)
-		{
-			egg.movement = maxspeed;
-		}
-		if (egg.movement <= -maxspeed)
-		{
-			egg.movement = -maxspeed;
-		}
-		eggjump();// egg jumping 
-		doublejump();//double ability
+		eggy1=check!=0 ?  egg_r: egg_l;
+	
+	egg.x += egg.movement;
+	if (egg.movement >= maxspeed)
+	{
+		egg.movement = maxspeed;
 	}
-	dead();
+	if (egg.movement <= -maxspeed)
+	{
+		egg.movement = -maxspeed;
+	}
+	eggjump();// egg jumping 
+	doublejump();//double ability
 	CP_Image_DrawAdvanced(eggy1, (float)egg.x, (float)egg.y, blocksize, blocksize,255, egg.ro);
 }
 void eggs_exit(void)

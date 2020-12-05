@@ -14,22 +14,22 @@ void platform_break_init(int i)
 }
 void platform_break_update(int i)
 {
-		if (egg.x < (plats_break[i].dimx + dimw - 10) &&
-			(egg.x + blocksize - 5) > plats_break[i].dimx &&
-			(egg.y + blocksize + 10) > plats_break[i].dimy &&
-			egg.y < (plats_break[i].dimy) &&
-			egg.h > 0)
+	if (egg.x < (plats_break[i].dimx + dimw-10) &&
+		(egg.x + blocksize-5) > plats_break[i].dimx &&
+		(egg.y + blocksize+10) > plats_break[i].dimy &&
+		egg.y < (plats_break[i].dimy) &&
+		egg.h > 0)
+	{
+		if (plats_break[i].isbroken)
 		{
-			if (plats_break[i].isbroken)
-			{
-				egg.isjump = 1;
-				plats_break[i].isbroken = 0;
-				plats_break[i].alpha = 0;
-				sound.breakjump = 1;
-				egg.isgrounded = 1;
-				egg.ro = 0;
-			}
+			egg.isjump = 1;
+			plats_break[i].isbroken = 0;
+			plats_break[i].alpha = 0;
+			sound.breakjump = 1;
+			egg.isgrounded = 1;
+			egg.ro = 0;
 		}
+	}
 	CP_Image_Draw(table_break, (plats_break[i].dimx), (plats_break[i].dimy), dimw, dimh, plats_break[i].alpha);
 }
 void platform_break_exit(void)

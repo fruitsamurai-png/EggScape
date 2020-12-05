@@ -10,6 +10,10 @@
 #include "../Header/sound.h"
 #include <stdio.h>
 #include <stdlib.h>
+extern CP_Sound fisthit;
+extern CP_Sound rathit;
+extern CP_Sound endmusic;
+
 
 //letting the program know that it is an image that is being called
 CP_Image background_over=NULL;
@@ -24,6 +28,9 @@ static void display_score(void)
 }
 void gameover_init(void)
 {
+	sound_init();
+	sound.endmusic = 1;
+	//CP_Sound_PlayAdvanced(endmusic, .3f, 1, 1, CP_SOUND_GROUP_0);
 	background_over = CP_Image_Load("./Assets/Backgrounds/gameover_BACKGROUND.png");
 	title_over = CP_Image_Load("./Assets/Backgrounds/gameover_TITLE.png");
 	init_button3();												// init_button3() is called in button.c
@@ -31,7 +38,10 @@ void gameover_init(void)
 
 void gameover_update(void)
 {
+
+	
 	static int loc = 0;
+	sound_update();
 	CP_Image_Draw(background_over, windowx/ 2, windowy / 2, windowx, windowy, 255);
 	CP_Image_Draw(title_over, windowx / 2, windowy * 1 / 10, 700, 100, 255);
 	if (CP_Input_KeyTriggered(KEY_RIGHT)||
@@ -86,5 +96,7 @@ void gameover_exit(void)
 	deathscore = 0;
 	restartButton.mc = 0;
 	menuButton.mc = 0;
+	sound_exit();
 	exit_button3();
+	CP_Sound_Free(endmusic);
 }

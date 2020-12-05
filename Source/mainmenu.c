@@ -14,7 +14,7 @@ extern CP_Sound select;
 void mainmenu_init(void)
 {
 	sound_init();
-	CP_Sound_PlayAdvanced(intro, .3f, 1, 1, CP_SOUND_GROUP_0);
+	sound.intro = 1;
 	CP_System_SetWindowTitle("EggScape");
 
 	background1 = CP_Image_Load("./Assets/Backgrounds/mainmenu_BACKGROUND.png");
