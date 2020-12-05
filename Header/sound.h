@@ -9,6 +9,9 @@ struct sound
 	int intro;
 	int alpha;
 	int select;
+	int spring;
+	int ending;
+	int endmusic;
 }sound;
 void sound_init(void);
 void sound_update(void);
