@@ -32,11 +32,11 @@ void dead(void)
 		else
 		{
 			deadtimer++;
-
-			if (deadtimer > 30 || CP_Input_KeyTriggered(KEY_ANY))
+			if (deadtimer > 10 || CP_Input_KeyTriggered(KEY_ANY))
 			{
 				sound.ending = 1;
 				CP_Engine_SetNextGameState(gameover_init, gameover_update, gameover_exit);
+				deadtimer=0;
 			}
 		}
 	}
@@ -123,7 +123,7 @@ void eggs_init(void)
 	egg.isdead = 0;
 	egg_r = CP_Image_Load("./Assets/Character/egg_r.png");
 	egg_l = CP_Image_Load("./Assets/Character/egg_l.png");
-	ready = CP_Image_Load("./Assets/Icons.png");
+	ready = CP_Image_Load("./Assets/Character/Icons.png");
 }
 void eggs_update(void)
 {
