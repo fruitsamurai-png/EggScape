@@ -130,6 +130,7 @@ void sound_update(void)
 		}
 		if (sound.intro)
 		{
+
 			CP_Sound_PlayAdvanced(intro, volume, 1, 1, CP_SOUND_GROUP_0);
 			sound.intro = 0;
 		}

@@ -22,7 +22,7 @@ void springs_update(int i)
 			egg.y < (springs[i].dimy) &&
 			egg.h > 0)
 		{
-			sound.jump = 1;
+			sound.spring = 1;
 			springs->onspring = 1;
 			egg.isgrounded = 1;
 			egg.ro = 0;

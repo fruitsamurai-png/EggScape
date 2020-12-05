@@ -5,6 +5,8 @@
 #include "../Header/gameover.h"
 #include "../Header/platform_global.h"
 #include "../Header/enemies_global.h"
+#include "../Header/Sound.h"
+
 void collide(void)
 {
 	if (egg.x+blocksize/2 + egg.movement > (windowx - blocksize) || egg.x+blocksize/2 + egg.movement < 0)//teleport to the other side of the wall.
