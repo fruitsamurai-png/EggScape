@@ -53,9 +53,6 @@
     <ClCompile Include="Source\platforms_break.c">
       <Filter>Platforms</Filter>
     </ClCompile>
-    <ClCompile Include="Source\plate.c">
-      <Filter>Character</Filter>
-    </ClCompile>
     <ClCompile Include="Source\platform_spring.c">
       <Filter>Platforms</Filter>
     </ClCompile>
@@ -114,9 +111,6 @@
       <Filter>Platforms\Header File</Filter>
     </ClInclude>
     <ClInclude Include="resource.h" />
-    <ClInclude Include="Header\plate.h">
-      <Filter>Character\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Header\platform_spring.h">
       <Filter>Platforms\Header File</Filter>
     </ClInclude>
