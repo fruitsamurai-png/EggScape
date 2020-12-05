@@ -3,9 +3,6 @@
 #include "../Header/main.h"
 #include "../Header/sound.h"
 
-CP_Image digipen_logo = NULL;
-CP_Image play_title = NULL;
-CP_Image howtoplay_title = NULL;
 CP_Image background1 = NULL;
 
 extern CP_Sound intro;
@@ -26,7 +23,6 @@ void mainmenu_update(void)
 	sound_update();
 	static int loc = 1;
 	CP_Image_Draw(background1, windowx / 2, windowy / 2, windowx, windowy, 255);
-	CP_Image_Draw(play_title, windowx / 2, windowy * 2 / 5, 200, 200, 255);
 
 	CP_Image_Draw(playButton.image, playButton.positionX, playButton.positionY, playButton.sizeX, playButton.sizeY, 255);
 	CP_Image_Draw(howtoplayButton.image, howtoplayButton.positionX, howtoplayButton.positionY, howtoplayButton.sizeX, howtoplayButton.sizeY, 255);
@@ -88,8 +84,6 @@ void mainmenu_update(void)
 }
 void mainmenu_exit(void)
 {
-	CP_Image_Free(&play_title);
-	CP_Image_Free(&howtoplay_title);
 	CP_Image_Free(&background1);
 	CP_Sound_Free(intro);
 	CP_Sound_Free(select);
