@@ -1,10 +1,11 @@
 //---------------------------------------------------------
 // file:	main.c
-// author:	[NAME]
-// email:	[DIGIPEN EMAIL ADDRESS]
+// author:	Chng Nai Wei Keith,Chen Yen Hsun,Siti Nursafinah Binte Sumsuri
+// email:	n.chng@digipen.edu
+//			c.yenhsun@digipen.edu
+//			sitinursafinah.b@digipen.edu
 //
-// brief:	Main entry point for the sample project
-//			of the CProcessing library
+// brief:	main game scene
 //
 // documentation link:
 // https://inside.digipen.edu/main/GSDP:GAM100/CProcessing
@@ -32,20 +33,21 @@ bool pause = 0;
 
 void game_init(void)
 {
-	background = CP_Image_Load("./Assets/Backgrounds/background.png");
-	pauseimg = CP_Image_Load("./Assets/Backgrounds/pause.png");
-	platform_global_init();
-	enemies_init();
-	eggs_init();
-	score_init();
-	sound_init();	
+	background = CP_Image_Load("./Assets/Backgrounds/background.png");//load the background for the game
+	pauseimg = CP_Image_Load("./Assets/Backgrounds/pause.png");//pause image
+	platform_global_init();//initialises the platform generators
+	enemies_init();//initialises the enemies
+	eggs_init();//character
+	score_init();//score
+	sound_init();//sound
 	// initialize variables and CProcessing settings for this gamestate
 }
 // use CP_Engine_SetNextGameState to specify this function as the update function
 // this function will be called repeatedly every frame
 void game_update(void)
 {
-	if (CP_Input_KeyTriggered(KEY_P) || CP_Input_KeyTriggered(KEY_ESCAPE)) {
+	if (CP_Input_KeyTriggered(KEY_P) || CP_Input_KeyTriggered(KEY_ESCAPE))//if these buttons are pressed, the game will pause 
+	{
 		if (pause)
 		{
 			pause = 0;
@@ -53,7 +55,7 @@ void game_update(void)
 		else
 		{
 			pause = 1;
-			CP_Image_Draw(pauseimg, windowx * 0.50, windowy * 0.5, 100, 100, 255);
+			CP_Image_Draw(pauseimg, windowx * 0.50, windowy * 0.5, 100, 100, 255);//the image will appear at the center of the screen
 		}
 	}
 	if (!pause)
@@ -78,7 +80,7 @@ void game_exit(void)
 	enemies_exit();
 	eggs_exit();
 	score_exit();
-	CP_Image_Free(&background);
+	CP_Image_Free(&background);//free any memory
 	CP_Image_Free(&pauseimg);
 	// shut down the gamestate and cleanup any dynamic memory
 }
@@ -88,9 +90,9 @@ void game_exit(void)
 // CP_Engine_Run() is the core function that starts the simulation
 int main(void)
 {
-	CP_System_SetWindowTitle("EggScape");
+	CP_System_SetWindowTitle("EggScape");// set the window title to be the game name
 	CP_Engine_SetNextGameState(intro_init, intro_update, intro_exit);
-	CP_System_SetWindowSize(windowx, windowy);
+	CP_System_SetWindowSize(windowx, windowy);//window size
 	CP_Engine_Run();
 	return 0;
 }

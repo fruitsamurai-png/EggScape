@@ -1,3 +1,16 @@
+//---------------------------------------------------------
+// file:	platform_break.c
+// author:	Chng Nai Wei Keith
+// email:	n.chng@digipen.edu
+//			
+//
+// brief:	functions for the breaking platform
+//
+// documentation link:
+// https://inside.digipen.edu/main/GSDP:GAM100/CProcessing
+//
+// Copyright ?2020 DigiPen, All rights reserved.
+//---------------------------------------------------------
 #include "cprocessing.h"
 #include <stdlib.h>
 #include "../Header/platform_global.h"
@@ -9,8 +22,8 @@ CP_Image table_break = NULL;
 void platform_break_init(int i)
 {
 	table_break = CP_Image_Load("./Assets/Platforms/plat_break.png");
-	plats_break[i].isbroken = 1;
-	plats_break[i].alpha = 255;
+	plats_break[i].isbroken = 1;//boolean that determines the platform is broken
+	plats_break[i].alpha = 255;//opacity of the platform
 }
 void platform_break_update(int i)
 {
@@ -20,12 +33,12 @@ void platform_break_update(int i)
 			egg.y < (plats_break[i].dimy) &&
 			egg.h > 0)
 		{
-			if (plats_break[i].isbroken)
+			if (plats_break[i].isbroken)//if the characters hit the platform once
 			{
 				egg.isjump = 1;
-				plats_break[i].isbroken = 0;
-				plats_break[i].alpha = 0;
-				sound.breakjump = 1;
+				plats_break[i].isbroken = 0;//boolean is now false,thus cannot collide with the platform anymoree
+				plats_break[i].alpha = 0;//the platform will turn invisble
+				sound.breakjump = 1;//sound for the breaking platform
 				egg.isgrounded = 1;
 				egg.ro = 0;
 			}

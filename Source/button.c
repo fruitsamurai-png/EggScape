@@ -1,3 +1,16 @@
+//---------------------------------------------------------
+// file:	button.c
+// author:	Siti Nursafinah Binte Sumsuri
+// email:	sitinursafinah.b@digipen.edu
+//			
+//
+// brief:	functions for the individual buttons
+//
+// documentation link:
+// https://inside.digipen.edu/main/GSDP:GAM100/CProcessing
+//
+// Copyright ?2020 DigiPen, All rights reserved.
+//---------------------------------------------------------
 #include "Cprocessing.h"
 #include "../Header/button.h"
 #include "../Header/mainmenu.h" 
@@ -13,17 +26,15 @@
 CP_Image eggy = NULL;
 void play(Button button)
 {
-	//button.locx = button.positionX;
 	if (CP_Input_GetMouseX() >= button.positionX - button.sizeX / 2 &&
 		CP_Input_GetMouseX() <= button.positionX + button.sizeX / 2 &&
 		CP_Input_GetMouseY() >= button.positionY - button.sizeY / 2 &&
 		CP_Input_GetMouseY() <= button.positionY + button.sizeY / 2
-		)
+		)//collision of the play button
 	{
-		playButton.mc = 1;
+		playButton.mc = 1;//mouse input boolean
 		
-		
-		playButton.image = CP_Image_Load("./Assets/Buttons/RUN.png");
+		playButton.image = CP_Image_Load("./Assets/Buttons/RUN.png");//the play button image to show (RUN)
 		if (CP_Input_MouseClicked()||
 			CP_Input_KeyTriggered(KEY_SPACE) ||
 			CP_Input_KeyTriggered(KEY_ENTER))
@@ -69,7 +80,7 @@ void play(Button button)
 		{
 			speed += 20;
 		}
-		else if (start)
+		else if (start)//go to next game state
 		{
 			CP_Engine_SetNextGameState(game_init, game_update, game_exit);
 			start = 0;
@@ -81,7 +92,6 @@ void play(Button button)
 
 void howtoplay(Button button)
 {
-	//button.locx = button.positionX;
 	if (CP_Input_GetMouseX() >= button.positionX - button.sizeX / 2 &&
 		CP_Input_GetMouseX() <= button.positionX + button.sizeX / 2 &&
 		CP_Input_GetMouseY() >= button.positionY - button.sizeY / 2 &&
@@ -269,7 +279,7 @@ void credit(Button button)
 	}
 }
 
-void init_button(void)
+void init_button(void)//intialise the coordinates for the buttons for each scene
 {
 
 	playButton.image = CP_Image_Load("./Assets/Buttons/mainmenu_RUN.png");
@@ -336,7 +346,7 @@ void init_button4(void)
 {
 	menuButton.image = CP_Image_Load("./Assets/Buttons/gameover_MAINMENU.png");
 	menuButton.positionX = windowx / 2;
-	menuButton.positionY = windowy * 6 / 7;
+	menuButton.positionY = windowy * 0.78f;
 	menuButton.sizeX = 100;
 	menuButton.sizeY = 40;
 }

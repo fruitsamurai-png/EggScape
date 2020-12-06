@@ -1,3 +1,16 @@
+//---------------------------------------------------------
+// file:	collision.c
+// author:	Chen Yen Hsun,Chng Nai Wei Keith
+// email:	c.yenhsun@digipen.edu
+//			n.chng@digipen.edu
+//
+// brief:	collison with the wall and the bottom screen.
+//
+// documentation link:
+// https://inside.digipen.edu/main/GSDP:GAM100/CProcessing
+//
+// Copyright ?2020 DigiPen, All rights reserved.
+//---------------------------------------------------------
 #include "cprocessing.h"
 #include "../Header/main.h"
 #include "../Header/collision.h"

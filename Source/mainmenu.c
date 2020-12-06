@@ -1,3 +1,16 @@
+//---------------------------------------------------------
+// file:	button.c
+// author:	Siti Nursafinah Binte Sumsuri
+// email:	sitinursafinah.b@digipen.edu
+//			
+//
+// brief:	functions for the main menu scene
+//
+// documentation link:
+// https://inside.digipen.edu/main/GSDP:GAM100/CProcessing
+//
+// Copyright ?2020 DigiPen, All rights reserved.
+//---------------------------------------------------------
 #include "../Header/button.h"
 #include "../Header/howtoplay.h"
 #include "../Header/main.h"
@@ -12,7 +25,7 @@ void mainmenu_init(void)
 {
 	sound_init();
 	sound.intro = 1;
-	CP_System_SetWindowTitle("EggScape");
+	CP_System_SetWindowTitle("EggScape");//set the window title to game name
 
 	background1 = CP_Image_Load("./Assets/Backgrounds/mainmenu_BACKGROUND.png");
 	init_button();

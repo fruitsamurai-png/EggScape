@@ -1,3 +1,16 @@
+//---------------------------------------------------------
+// file:	platform.c
+// author:	Chng Nai Wei Keith
+// email:	n.chng@digipen.edu
+//			
+//
+// brief:	functions for the basic platform
+//
+// documentation link:
+// https://inside.digipen.edu/main/GSDP:GAM100/CProcessing
+//
+// Copyright ?2020 DigiPen, All rights reserved.
+//---------------------------------------------------------
 #include "cprocessing.h"
 #include "../Header/platform.h"
 #include "../Header/platform_global.h"
@@ -10,12 +23,12 @@ CP_Image table=NULL;
 
 void platform_init(int i)
 {
-		if (i == 0)
+		if (i == 0)//intial coordinates of the platform
 		{
 			plats[i].dimy = (float)(CP_Random_RangeInt(50, 150));
 			plats[i].dimx = (float)(CP_Random_RangeInt(0, (windowx - dimw)));
 		}
-		else
+		else//subsequant platforms with the offset of the previous platforms coordinates
 		{
 			plats[i].dimy = (float)(CP_Random_RangeInt(50, 150)) + plats[i - 1].dimy;
 			plats[i].dimx = (float)(CP_Random_RangeInt(dimw / 2, (windowx - dimw)));
@@ -29,12 +42,12 @@ void platform_update(int i)
 		(egg.x + blocksize-5) > plats[i].dimx &&
 		(egg.y + blocksize+10) > plats[i].dimy &&
 		egg.y < (plats[i].dimy) &&
-		egg.h > 0)
+		egg.h > 0)//collision with the platform
 	{
 		egg.isjump = 1;
-		sound.jump = 1;
+		sound.jump = 1;//sound effect to play when the character hit the platform
 		egg.isgrounded = 1;
-		egg.ro = 0;
+		egg.ro = 0;//rotation will reset when the character hit the platform
 	}
 
 	CP_Image_Draw(table, (plats[i].dimx), (plats[i].dimy), dimw, dimh,255);

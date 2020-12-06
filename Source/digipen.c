@@ -1,10 +1,23 @@
+//---------------------------------------------------------
+// file:	digipen.c
+// author:	Chng Nai Wei Keith
+// email:	n.chng@digipen.edu
+//
+//
+// brief:	load the digipen logo when starting up the program 
+//
+// documentation link:
+// https://inside.digipen.edu/main/GSDP:GAM100/CProcessing
+//
+// Copyright ?2020 DigiPen, All rights reserved.
+//---------------------------------------------------------
 #include "cprocessing.h"
 #include "../Header/main.h"
 #include "../Header/mainmenu.h"
 
 CP_Image digipen = NULL;
-int opa;
-float width, height;
+int opa;//opacity of the digipen logo
+float width, height;//width and height of the logo
 void intro_init(void)
 {
 	CP_System_SetWindowTitle("EggScape");
@@ -18,7 +31,7 @@ void intro_update(void)
 	CP_Settings_Background(CP_Color_Create(0, 0, 0, 255));
 	CP_Image_Draw(digipen,windowx/2,windowy/2,width/2,height/2,opa);
 	opa+=2;
-	if ((int)opa % 255 == 0 || CP_Input_KeyTriggered(KEY_ANY)  || CP_Input_MouseClicked())
+	if ((int)opa % 256 == 0 || CP_Input_KeyTriggered(KEY_ANY)  || CP_Input_MouseClicked())//if the opacity is full or any key is triggered,next scene will start
 	{
 		CP_Engine_SetNextGameState(mainmenu_init, mainmenu_update, mainmenu_exit);
 	} 

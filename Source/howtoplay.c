@@ -1,3 +1,16 @@
+//---------------------------------------------------------
+// file:	button.c
+// author:	Siti Nursafinah Binte Sumsuri
+// email:	sitinursafinah.b@digipen.edu
+//			
+//
+// brief:	functions for the how to play scene
+//
+// documentation link:
+// https://inside.digipen.edu/main/GSDP:GAM100/CProcessing
+//
+// Copyright ?2020 DigiPen, All rights reserved.
+//---------------------------------------------------------
 #include "Cprocessing.h"
 #include "../Header/mainmenu.h"
 #include "../Header/main.h"
@@ -20,9 +33,9 @@ void howtoplay_update(void)
 	CP_Image_Draw(title, windowx / 2, windowy / 2, windowx, windowy, 255);
 
 	if (CP_Input_KeyTriggered(KEY_RIGHT) ||
-		CP_Input_KeyTriggered(KEY_D))
+		CP_Input_KeyTriggered(KEY_D))//press left or right switch button location
 	{
-		playButton.mc = 0;
+		playButton.mc = 0;//if there is no mouse input, the keyboard movement will be the dominant type of input
 		menuButton.mc = 0;
 		sound.select = 1;
 		loc += 1;

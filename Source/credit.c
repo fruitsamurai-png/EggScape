@@ -1,3 +1,16 @@
+//---------------------------------------------------------
+// file:	credit.c
+// author:	Siti Nursafinah Binte Sumsuri
+// email:	sitinursafinah.b@digipen.edu
+//			
+//
+// brief:	functions for the credit scene
+//
+// documentation link:
+// https://inside.digipen.edu/main/GSDP:GAM100/CProcessing
+//
+// Copyright ?2020 DigiPen, All rights reserved.
+//---------------------------------------------------------
 #include "../Header/credit.h"
 #include "../Header/button.h"
 #include "cprocessing.h"
@@ -19,10 +32,10 @@ void credit_update(void)
 	static int loc = 0;;
 	sound_update();
 	if (CP_Input_KeyTriggered(KEY_RIGHT)||
-		CP_Input_KeyTriggered(KEY_D))
+		CP_Input_KeyTriggered(KEY_D))//press left or right switch button location
 	{
 		sound.select = 1;
-		menuButton.mc = 0;
+		menuButton.mc = 0;//if there is no mouse input, the keyboard movement will be the dominant type of input
 		loc += 1;
 		if (loc > 0)
 			loc = 0;

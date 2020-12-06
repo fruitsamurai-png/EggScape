@@ -1,3 +1,16 @@
+//---------------------------------------------------------
+// file:	gameover.c
+// author:	Siti Nursafinah Binte Sumsuri
+// email:	sitinursafinah.b@digipen.edu
+//			
+//
+// brief:	functions for the gameover
+//
+// documentation link:
+// https://inside.digipen.edu/main/GSDP:GAM100/CProcessing
+//
+// Copyright ?2020 DigiPen, All rights reserved.
+//---------------------------------------------------------
 #include "cprocessing.h"
 #include "../Header/character.h"
 #include "../Header/platform_global.h"
@@ -30,7 +43,6 @@ void gameover_init(void)
 {
 	sound_init();
 	sound.endmusic = 1;
-	//CP_Sound_PlayAdvanced(endmusic, .3f, 1, 1, CP_SOUND_GROUP_0);
 	background_over = CP_Image_Load("./Assets/Backgrounds/gameover_BACKGROUND.png");
 	title_over = CP_Image_Load("./Assets/Backgrounds/gameover_TITLE.png");
 	init_button3();												// init_button3() is called in button.c
@@ -46,11 +58,11 @@ void gameover_update(void)
 	CP_Image_Draw(title_over, windowx / 2, windowy * 1 / 10, 700, 100, 255);
 	if (CP_Input_KeyTriggered(KEY_RIGHT)||
 		CP_Input_KeyTriggered(KEY_D)
-		)
+		)//press left or right switch button location
 	{
 		sound.select = 1;
 		restartButton.mc = 0;
-		menuButton.mc = 0;
+		menuButton.mc = 0;//if there is no mouse input, the keyboard movement will be the dominant type of input
 		loc += 1;
 		if (loc > 1)
 			loc = 0;
@@ -82,7 +94,7 @@ void gameover_update(void)
 	CP_Image_Draw(restartButton.image, restartButton.positionX, restartButton.positionY, restartButton.sizeX, restartButton.sizeY, 255);
 	CP_Image_Draw(menuButton.image, menuButton.positionX, menuButton.positionY, menuButton.sizeX, menuButton.sizeY, 255);
 
-	display_score();
+	display_score();//to display the highscore when dead
 
 	restart(restartButton);	//calling the button that is in button.c and button.h
 	menu(menuButton);
