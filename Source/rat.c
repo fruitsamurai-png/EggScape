@@ -48,6 +48,7 @@ void mouse_update(size_t count2)
 		}
 		if (mtimer > 100&&mtimer<120)
 		{
+			mouses[n].speed = 0;
 			CP_Image_Draw(warnings, mouses[n].x, mouses[n].y + (blocksize * 2), blocksize, blocksize, 255);//ensuring that the warning comes before the mouse comes out
 		}
 		if (mtimer >120)//if the timer is hit, the rat will come down
@@ -68,7 +69,8 @@ void mouse_update(size_t count2)
 			mtimer = 0;
 			mouses[n].y = -blocksize;
 			mouses[n].x = (float)CP_Random_RangeInt(blocksize, windowx);
-			if (n==1)mouses[n].speed *= -1;
+			mouses[n].speed = 30;
+			if (n==1)mouses[1].speed *= -1;
 		}
 		if (mouses[n].x + blocksize > egg.x &&
 			mouses[n].x <egg.x + blocksize &&
