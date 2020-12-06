@@ -346,7 +346,7 @@ void init_button4(void)
 {
 	menuButton.image = CP_Image_Load("./Assets/Buttons/gameover_MAINMENU.png");
 	menuButton.positionX = windowx / 2;
-	menuButton.positionY = windowy * 0.85f;
+	menuButton.positionY = windowy * 0.9f;
 	menuButton.sizeX = 100;
 	menuButton.sizeY = 40;
 }

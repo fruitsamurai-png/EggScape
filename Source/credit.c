@@ -19,14 +19,12 @@
 
 
 CP_Image end=NULL;
-CP_Image credit1 = NULL;
-CP_Image credit2 = NULL;
 int mousecheck = 0;//if any key or mouse input is detected,the credits will change pictures
 void credit_init(void)
 {
 	sound_init();
-	credit1 = CP_Image_Load("./Assets/Backgrounds/credit1.png");
-	credit2 = CP_Image_Load("./Assets/Backgrounds/credit2.png");
+	end = CP_Image_Load("./Assets/Backgrounds/credit.png");
+	
 	init_button4();
 	mousecheck = 0;
 }
@@ -60,18 +58,7 @@ void credit_update(void)
 	default:
 		break;
 	}
-	if (CP_Input_KeyTriggered(KEY_ANY) || CP_Input_MouseClicked())//if the player click anywhere on the screen,the next picture in the credits will start
-	{
-		if (!mousecheck)
-		{
-			mousecheck = 1;
-		}
-		else if (mousecheck)
-		{
-			mousecheck = 0;
-		}
-	}
-	end = mousecheck == 0 ? credit1 : credit2;
+
 	CP_Image_Draw(end, windowx/ 2, windowy / 2, windowx, windowy, 255);
 	CP_Image_Draw(menuButton.image, menuButton.positionX, menuButton.positionY, menuButton.sizeX, menuButton.sizeY, 255);
 	menu(menuButton);
@@ -79,8 +66,7 @@ void credit_update(void)
 void credit_exit()
 {
 	CP_Image_Free(&end);
-	CP_Image_Free(&credit1);
-	CP_Image_Free(&credit2);
+	
 	exit_button4();
 	sound_exit();
 	mousecheck = 0;
