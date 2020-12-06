@@ -2,16 +2,16 @@
 
 struct hands
 {
-	float positionX;
-	float positionY;
-	float sizeX;
+	float positionX;//x position of the hand
+	float positionY;//y position of the hand
+	float sizeX;//size of the hand
 	float sizeY;
-	int speed;
-	int increment;
+	int speed;//speed of the hand
+	int increment;//position y increment when it attacks
 }hands;
 int htimer;
 struct hands hand_full;
-#define attackinter 120
+#define attackinter 120//timer interval for the attack
 void hands_movement(void);
 void hand_Collision(void);
 void hand_init(void);

@@ -1,5 +1,5 @@
 #pragma once
-struct sound
+struct sound//boolean for the sound to be active
 {
 	int jump;
 	int Djump;
