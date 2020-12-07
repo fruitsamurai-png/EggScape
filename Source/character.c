@@ -21,15 +21,37 @@
 #include "../Header/platform_global.h"
 #include "../Header/platform_spring.h"
 
-CP_Image egg_r = NULL;
-CP_Image egg_l = NULL;
-CP_Image ready = NULL;
+
 int check = 0;
 float maxspeed = 0;
 int timer = 0;
 int alpha = 0;//it is the width of the bar of cooldown meter
 int deadtimer = 0;
-
+void dashimage(void)//this is to draw the afterimage of the double ability
+{
+	for (size_t i = 0; i < 5; i++)
+	{
+		afterimage[i].alpha = 255;//load all of the alpha of afterimage to be 255
+	}
+	for (size_t i = 0; i < 5; i++)
+	{
+		
+		afterimage[i].eggy1 = original.eggy1;//have each iteration of afterimage to be pointing at the original image
+			if (i == 0)
+			{
+				afterimage[i].alpha = -60;
+				afterimage[i].y = 15;
+				afterimage[i].x = 5;
+			}
+			afterimage[i].alpha = afterimage[i + 1].alpha - 60;//each iteration alpha will get lesser
+			afterimage[i].y = 15 + afterimage[i + 1].y;
+			afterimage[i].x = 5 + afterimage[i + 1].x;
+			if (check == LEFT)afterimage[i].x *= -1;//to follow the x direction of egg
+			if (check == RIGHT)afterimage[i].x *= -1;
+			CP_Image_DrawAdvanced(afterimage[i].eggy1, egg.x - afterimage[i].x, egg.y + afterimage[i].y, blocksize, blocksize, afterimage[i].alpha-=2,egg.ro);
+	}
+	egg.ro += 450 * CP_System_GetDt();//this will rotate the egg as it double jumps
+}
 void dead(void)//function that plays the death animation for the character 
 {
 	if (egg.isdead)
@@ -76,7 +98,7 @@ static void doublejump(void)//double jump feature
 	}
 	if (!egg.isgrounded)//when the character isnt on the platform
 	{
-		egg.ro += 450 * CP_System_GetDt();//this is to rotate the character when using the double jump
+		dashimage();
 	}
 	if (egg.cooldown)//cooldown boolean for the double ability
 	{
@@ -110,10 +132,14 @@ static void eggjump(void)
 	}
 	if (springs->onspring == 1)//height of the egg when it is on the spring
 	{
-		egg.h = -70;
+		egg.h = -76;
 		springs->onspring = 0;
+		egg.springjump = 1;
 	}
-	CP_Vector_Set(egg.x, egg.y);
+	if (egg.springjump)
+	{
+		egg.ro += 560 * CP_System_GetDt();//this is to rotate the character when using the spring jump
+	}
 }
 
 void eggs_init(void)// the ready icon wont show up until the character use the double jump for the first time
@@ -130,31 +156,34 @@ void eggs_init(void)// the ready icon wont show up until the character use the d
 	egg.ro = 0;
 	egg.firstjump = 0;
 	egg.isdead = 0;
-	egg_r = CP_Image_Load("./Assets/Character/egg_r.png");
-	egg_l = CP_Image_Load("./Assets/Character/egg_l.png");
+	egg.springjump = 0;
+	original.egg_r = CP_Image_Load("./Assets/Character/egg_r.png");
+	original.egg_l = CP_Image_Load("./Assets/Character/egg_l.png");
 	ready = CP_Image_Load("./Assets/Character/Icons.png");
 }
 void eggs_update(void)
 {
-	eggy1 = egg_r;//initial position of the egg to facing right
+	original.eggy1 = original.egg_r;//initial position of the egg to facing right
 	if (!egg.isdead)//boolean if the character isnt dead
 	{
 		if ((CP_Input_KeyDown(KEY_D) || CP_Input_KeyDown(KEY_RIGHT)))//turn right
 		{
-			if (check == 0)egg.movement = 0;//if moving left and the player hits right,the movement speed will be 0 
+			if (check == LEFT)egg.movement = 0;//if moving left and the player hits right,the movement speed will be 0 
 			egg.movement += (egg.maxaccel * CP_System_GetDt());//movement speed of the egg
 			check = 1;//if moving right , the check will be 1 
 		}
+
 		if ((CP_Input_KeyDown(KEY_A) || CP_Input_KeyDown(KEY_LEFT)))//turn left
 		{
-			if (check == 1)egg.movement = 0;//if moving right and the player hits left,the movement speed will be 0 
+			if (check == RIGHT)egg.movement = 0;//if moving right and the player hits left,the movement speed will be 0 
 			egg.movement -= (egg.maxaccel * CP_System_GetDt());
 			check = 0;//if moving left , the check will be 0 
 		}
 
-		eggy1 = check != 0 ? egg_r : egg_l;//ternary operator for the character to face left or right
+		original.eggy1 = check != LEFT ? original.egg_r : original.egg_l;//ternary operator for the character to face left or right
 
 		egg.x += egg.movement;//movement speed plus the position of the egg
+
 		if (egg.movement >= maxspeed)//to cap the max speed of the egg
 		{
 			egg.movement = maxspeed;
@@ -167,7 +196,7 @@ void eggs_update(void)
 		doublejump();//double ability
 	}
 	dead();//death function
-	CP_Image_DrawAdvanced(eggy1, (float)egg.x, (float)egg.y, blocksize, blocksize, 255, egg.ro);//image of the egg
+	CP_Image_DrawAdvanced(original.eggy1, (float)egg.x, (float)egg.y, blocksize, blocksize, 255, egg.ro);//image of the egg
 }
 void eggs_exit(void)
 {
@@ -181,8 +210,12 @@ void eggs_exit(void)
 	alpha = 0;
 	egg.ro = 0;
 	egg.isdead = 0;
-	CP_Image_Free(&eggy1);
-	CP_Image_Free(&egg_l);
-	CP_Image_Free(&egg_r);
+	CP_Image_Free(&original.eggy1);
+	CP_Image_Free(&original.egg_l);
+	CP_Image_Free(&original.egg_r);
+	for (size_t i = 0; i < 5; i++)
+	{
+		CP_Image_Free(&afterimage[i].eggy1);
+	}
 	CP_Image_Free(&ready);
 }

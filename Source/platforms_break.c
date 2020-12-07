@@ -41,6 +41,7 @@ void platform_break_update(int i)
 				sound.breakjump = 1;//sound for the breaking platform
 				egg.isgrounded = 1;
 				egg.ro = 0;
+				egg.springjump = 0;
 			}
 		}
 	CP_Image_Draw(table_break, (plats_break[i].dimx), (plats_break[i].dimy), dimw, dimh, plats_break[i].alpha);

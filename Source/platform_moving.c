@@ -37,6 +37,7 @@ void platform_moving_update(int f)
 			sound.jump = 1;
 			egg.isgrounded = 1;
 			egg.ro = 0;
+			egg.springjump = 0;
 		}
 	//equation for moving platform below
 		plats_moving->time += 1;

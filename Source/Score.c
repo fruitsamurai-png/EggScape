@@ -37,6 +37,14 @@ void score_update(void)
 	if (score < 0)score = 0;//to prevent negative values 
 	_itoa_s(score, charbuffer, 100, 10);//convert the int to string
 	CP_Font_DrawText(charbuffer,60 ,20);//store and display the value
+
+	if (score > 750)variation = 1;//if the score hits the requirement, the variation of the platform and enemie will change
+	if (score > 1000)variation = 2;
+	if (score > 2000)variation = 3;
+	if (score > 3000)variation = 4;
+	if (score > 4500)variation = 5;
+
+
 	if (egg.isdead)deathscore = score;
 }
 void score_exit(void) 

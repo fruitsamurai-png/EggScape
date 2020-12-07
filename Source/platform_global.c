@@ -164,12 +164,6 @@ void platform_global_init(void)//initialise the platform functions
 }
 void platform_global_update(void)
 {
-	if (score > 750)variation = 1;//if the score hits the requirement, the variation of the platform and enemie will change
-	if (score > 1000)variation = 2;
-	if (score > 2000)variation = 3;
-	if (score > 3000)variation = 4;
-	if (score > 4500)variation = 5;
-
 		for (int i = 0; i < 10; ++i)//drawing of the platforms
 		{
 			platform_update(i);

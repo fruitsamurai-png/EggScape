@@ -17,6 +17,7 @@
 #include "../Header/hand.h"
 #include "../Header/main.h"
 #include "../Header/enemies_global.h"
+#include "../Header/Score.h"
 #include "../Header/platform_global.h"
 void enemies_init(void)//initialise the individual enemie functions
 {

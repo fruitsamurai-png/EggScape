@@ -33,9 +33,9 @@ void mouse_init(size_t count1)
 		mouses->incre = 20;
 		mouses->speed = 30;//how fast the mouse should be
 		if (n==1)mouses[n].speed *= -1;
-		rat = CP_Image_Load("./Assets/Enemy/rat.png");//the image of the rat
-		warnings = CP_Image_Load("./Assets/Enemy/warn.png");//the warning image
 	}
+	rat = CP_Image_Load("./Assets/Enemy/rat.png");//the image of the rat
+	warnings = CP_Image_Load("./Assets/Enemy/warn.png");//the warning image
 }
 void mouse_update(size_t count2)
 {

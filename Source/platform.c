@@ -48,6 +48,7 @@ void platform_update(int i)
 		sound.jump = 1;//sound effect to play when the character hit the platform
 		egg.isgrounded = 1;
 		egg.ro = 0;//rotation will reset when the character hit the platform
+		egg.springjump = 0;
 	}
 
 	CP_Image_Draw(table, (plats[i].dimx), (plats[i].dimy), dimw, dimh,255);

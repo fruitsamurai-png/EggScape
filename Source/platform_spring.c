@@ -38,6 +38,7 @@ void springs_update(int i)
 			sound.spring = 1;//spring sound
 			springs->onspring = 1;
 			egg.isgrounded = 1;
+			egg.springjump = 0;
 			egg.ro = 0;
 		}
 	}
