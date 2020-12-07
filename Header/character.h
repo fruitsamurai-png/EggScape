@@ -11,8 +11,20 @@ struct egg {
 	int isdead;//a boolean when the character egg is dead
 	int score;//raw score for the egg
 	int alpha;//opacity for the ready symbol for the double jump
+	int springjump;//boolean when the egg is jumping from a spring
 }egg;
-CP_Image eggy1;
+typedef struct images
+{
+	CP_Image eggy1;
+	CP_Image egg_r;
+	CP_Image egg_l;
+	float y,x;
+	int alpha;
+}images;
+images original, afterimage[5];
+CP_Image ready;
+#define LEFT 0
+#define RIGHT 1
 void eggs_init(void);
 void eggs_update(void);
 void eggs_exit(void);
