@@ -128,7 +128,7 @@ void sound_update(void)
 		}
 		if (sound.spring)
 		{
-			CP_Sound_PlayAdvanced(spring, volume+0.3f, 1, 0, CP_SOUND_GROUP_0);
+			CP_Sound_PlayAdvanced(spring, volume-0.3f, 1, 0, CP_SOUND_GROUP_0);
 			sound.spring = 0;
 		}
 		if (sound.ending)

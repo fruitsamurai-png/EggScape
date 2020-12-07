@@ -37,8 +37,8 @@ void enemies_update(void)
 		}
 		case 1:
 		{
-			ratnum = 0;
-			handnum = 1;
+			ratnum = 1;
+			handnum = 0;
 			break;
 		}
 		case 2:
@@ -49,7 +49,7 @@ void enemies_update(void)
 		}
 		case 3:
 		{
-			ratnum = 1;
+			ratnum = 2;
 			handnum = 1;
 			break;
 		}

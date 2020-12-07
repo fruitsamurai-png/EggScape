@@ -112,7 +112,7 @@ void platform_generator1(int f)
 			}
 			if (plats_moving[f].dimy > windowy && count % 10 == 0 && plats[f].dimy != plats_moving[f].dimy)
 			{
-				plats_moving[f].dimy = 0;
+				plats_moving[f].dimy = -egg.h/2;
 				plats_moving[f].dimx = (float)(CP_Random_RangeInt(0, (windowx - dimw + plats_moving->speed)));
 			}
 			else if (count % 10 != 0)
@@ -136,55 +136,10 @@ void platform_generator1(int f)
 			}
 			if (plats_moving[f].dimy > windowy && count % 10 == 0)
 			{
-				plats_moving[f].dimy = -egg.h;
+				plats_moving[f].dimy = -egg.h/2;
 				plats_moving[f].dimx = (float)(CP_Random_RangeInt(0, (windowx - dimw + plats_moving->speed)));
 			}
 			else if (count % 100 == 0)
-			{
-				plats[f].dimy = -egg.h;
-				plats[f].dimx = (float)(CP_Random_RangeInt(0, (windowx - dimw)));
-			}
-		}
-		break;
-	case 6://level 6
-		count++;
-		if (plats_break[f].dimy > windowy)
-		{
-			if (plats_break[f].dimy > windowy && count % 100 == 0 && plats[f].dimy != plats_break[f].dimy)
-			{
-				plats_break[f].dimy = 0;
-				plats_break[f].dimx = (float)(CP_Random_RangeInt(0, (windowx - dimw)));
-				plats_break[f].isbroken = 1;
-				plats_break[f].alpha = 255;
-			}
-			if (plats_moving[f].dimy > windowy && count % 10 == 0 && plats[f].dimy != plats_moving[f].dimy)
-			{
-				plats_moving[f].dimy = 0;
-				plats_moving[f].dimx = (float)(CP_Random_RangeInt(0, (windowx - dimw + plats_moving->speed)));
-			}
-			else if (count % 10 != 0)
-			{
-				plats[f].dimy = -egg.h;
-				plats[f].dimx = (float)(CP_Random_RangeInt(0, (windowx - dimw)));
-			}
-		}
-		break;
-	default:
-		if (plats[f].dimy > windowy)
-		{
-			if (plats_break[f].dimy > windowy && count % 100 == 0 && plats[f].dimy != plats_break[f].dimy)
-			{
-				plats_break[f].dimy = 0;
-				plats_break[f].dimx = (float)(CP_Random_RangeInt(0, (windowx - dimw)));
-				plats_break[f].isbroken = 1;
-				plats_break[f].alpha = 255;
-			}
-			if (plats_moving[f].dimy > windowy && count % 10 == 0 && plats[f].dimy != plats_moving[f].dimy)
-			{
-				plats_moving[f].dimy = 0;
-				plats_moving[f].dimx = (float)(CP_Random_RangeInt(0, (windowx - dimw + plats_moving->speed)));
-			}
-			if (count % 10 != 0)
 			{
 				plats[f].dimy = -egg.h;
 				plats[f].dimx = (float)(CP_Random_RangeInt(0, (windowx - dimw)));
@@ -209,12 +164,11 @@ void platform_global_init(void)//initialise the platform functions
 }
 void platform_global_update(void)
 {
-	if (score > 500)variation = 1;//if the score hits the requirement, the variation of the platform and enemie will change
+	if (score > 750)variation = 1;//if the score hits the requirement, the variation of the platform and enemie will change
 	if (score > 1000)variation = 2;
 	if (score > 2000)variation = 3;
 	if (score > 3000)variation = 4;
-	if (score > 4000)variation = 5;
-	if (score > 5000)variation = 6;
+	if (score > 4500)variation = 5;
 
 		for (int i = 0; i < 10; ++i)//drawing of the platforms
 		{

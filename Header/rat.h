@@ -5,6 +5,7 @@ struct mouse
 	float y;//y position of the rat
 	float speed;//movement speed
 	float alpha;//opacity of the warning symbol
+	float incre;//downwards speed of the rat
 }mouse;
 int mtimer;//timer for the rat to appear
 struct mouse mouses[2];

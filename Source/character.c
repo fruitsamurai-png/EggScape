@@ -24,7 +24,6 @@
 CP_Image egg_r = NULL;
 CP_Image egg_l = NULL;
 CP_Image ready = NULL;
-
 int check = 0;
 float maxspeed = 0;
 int timer = 0;
@@ -114,7 +113,6 @@ static void eggjump(void)
 		egg.h = -70;
 		springs->onspring = 0;
 	}
-
 	CP_Vector_Set(egg.x, egg.y);
 }
 

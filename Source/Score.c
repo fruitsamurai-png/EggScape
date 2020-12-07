@@ -37,7 +37,7 @@ void score_update(void)
 	if (score < 0)score = 0;//to prevent negative values 
 	_itoa_s(score, charbuffer, 100, 10);//convert the int to string
 	CP_Font_DrawText(charbuffer,60 ,20);//store and display the value
-	deathscore = score;
+	if (egg.isdead)deathscore = score;
 }
 void score_exit(void) 
 {

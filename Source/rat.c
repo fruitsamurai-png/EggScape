@@ -30,7 +30,8 @@ void mouse_init(size_t count1)
 	{
 		mouses[n].x= (float)(CP_Random_RangeInt(blocksize,windowx));
 		mouses[n].y = -blocksize;
-		mouses[n].speed = 30;//how fast the mouse should be
+		mouses->incre = 20;
+		mouses->speed = 30;//how fast the mouse should be
 		if (n==1)mouses[n].speed *= -1;
 		rat = CP_Image_Load("./Assets/Enemy/rat.png");//the image of the rat
 		warnings = CP_Image_Load("./Assets/Enemy/warn.png");//the warning image
@@ -41,36 +42,27 @@ void mouse_update(size_t count2)
 	for (size_t n = 0; n < count2; ++n)
 	{
 		++mtimer;
-		mouses[n].x += mouses[n].speed;
+		mouses[n].x += mouses->speed;
 		if (mouses[n].x > (windowx) || mouses[n].x < 0)
 		{
-			mouses[n].speed *= -1;//direction toggle when the rat hit the right or left screen
+			mouses->speed *= -1;//direction toggle when the rat hit the right or left screen
 		}
-		if (mtimer > 100&&mtimer<120)
+		if (mtimer > 170 && mtimer<190)
 		{
 			mouses[n].speed = 0;
 			CP_Image_Draw(warnings, mouses[n].x, mouses[n].y + (blocksize * 2), blocksize, blocksize, 255);//ensuring that the warning comes before the mouse comes out
 		}
-		if (mtimer >120)//if the timer is hit, the rat will come down
+		if (mtimer >200)//if the timer is hit, the rat will come down
 		{
-			mouses[n].speed = 0;
-			mouses[n].y += 20;
+			mouses->speed = 0;
+			mouses[n].y += mouses->incre;
 		}
-		if (n==0 && mouses[n].y > windowy+50)//if the rat is out of the screen, it will reset at the top
+		if (mouses[n].y > windowy+50)//if the rat is out of the screen, it will reset at the top
 		{
 			mtimer = 0;
 			mouses[n].y = -blocksize;
 			mouses[n].x = (float)CP_Random_RangeInt(blocksize, windowx);
-			mouses[n].speed = 20;
-			mtimer = 0;
-		}
-		else if (n == 1 && mouses[0].y && mouses[1].y > windowy + 50)//if the second rat is out of the screen,it will reset at the top with a different speed
-		{
-			mtimer = 0;
-			mouses[n].y = -blocksize;
-			mouses[n].x = (float)CP_Random_RangeInt(blocksize, windowx);
-			mouses[n].speed = 30;
-			if (n==1)mouses[1].speed *= -1;
+			mouses->speed = 30;
 		}
 		if (mouses[n].x + blocksize > egg.x &&
 			mouses[n].x <egg.x + blocksize &&
@@ -90,9 +82,10 @@ void mouse_exit(size_t count3)
 	{
 		mouses[n].x = 0;
 		mouses[n].y = 0;
-		mouses[n].speed = 10;
 	}
+	mouses->speed = 0;
 	mtimer = 0;
+	mouses->incre = 0;
 	CP_Image_Free(&rat);
 	CP_Image_Free(&warnings);
 }
